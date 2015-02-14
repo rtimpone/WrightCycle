@@ -20,6 +20,8 @@
 		DA322F2A1A8FDEBE00D9CEE8 /* Oswald-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA322F1C1A8FCB8A00D9CEE8 /* Oswald-Light.ttf */; };
 		DA322F2B1A8FDEBE00D9CEE8 /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA322F1D1A8FCB8A00D9CEE8 /* Oswald-Regular.ttf */; };
 		DA322F2C1A8FDEE600D9CEE8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA322EF91A8FBAD800D9CEE8 /* LaunchScreen.xib */; };
+		DA9367681A9000830047578C /* WRCStationsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9367671A9000830047578C /* WRCStationsMapViewController.m */; };
+		DA93676A1A9000A20047578C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9367691A9000A20047578C /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,9 @@
 		DA322F221A8FCD3100D9CEE8 /* WRCDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCDataManager.m; sourceTree = "<group>"; };
 		DA322F251A8FD2C600D9CEE8 /* WRCStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WRCStation.h; path = Model/WRCStation.h; sourceTree = "<group>"; };
 		DA322F261A8FD2C600D9CEE8 /* WRCStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WRCStation.m; path = Model/WRCStation.m; sourceTree = "<group>"; };
+		DA9367661A9000830047578C /* WRCStationsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCStationsMapViewController.h; sourceTree = "<group>"; };
+		DA9367671A9000830047578C /* WRCStationsMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCStationsMapViewController.m; sourceTree = "<group>"; };
+		DA9367691A9000A20047578C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA93676A1A9000A20047578C /* MapKit.framework in Frameworks */,
 				0C9EDA9180B8437F83AA85A9 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,6 +85,7 @@
 		D4DAEFEED01943F9B5E8D927 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DA9367691A9000A20047578C /* MapKit.framework */,
 				0A67CA82CAF840ADB2C2E018 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -111,6 +118,8 @@
 				DA322EEF1A8FBAD800D9CEE8 /* AppDelegate.m */,
 				DA322F171A8FCB6A00D9CEE8 /* WRCLandingViewController.h */,
 				DA322F181A8FCB6A00D9CEE8 /* WRCLandingViewController.m */,
+				DA9367661A9000830047578C /* WRCStationsMapViewController.h */,
+				DA9367671A9000830047578C /* WRCStationsMapViewController.m */,
 				DA322F241A8FD28100D9CEE8 /* Managers */,
 				DA322F281A8FDA0900D9CEE8 /* Model */,
 				DA322EF41A8FBAD800D9CEE8 /* Main.storyboard */,
@@ -315,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA322F231A8FCD3100D9CEE8 /* WRCDataManager.m in Sources */,
+				DA9367681A9000830047578C /* WRCStationsMapViewController.m in Sources */,
 				DA322EF01A8FBAD800D9CEE8 /* AppDelegate.m in Sources */,
 				DA322EED1A8FBAD800D9CEE8 /* main.m in Sources */,
 				DA322F191A8FCB6A00D9CEE8 /* WRCLandingViewController.m in Sources */,

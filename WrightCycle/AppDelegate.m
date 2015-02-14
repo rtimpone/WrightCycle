@@ -16,7 +16,13 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
+    //custom navigation bar title font and text color
+    UIColor *navBarTitleColor = [UIColor colorWithRed:62/255.0 green: 62/255.0 blue: 62/255.0 alpha: 1.0];
+    UIFont *navBarTitleFont = [UIFont fontWithName: @"Oswald-Light" size: 20];
+    [[UINavigationBar appearance] setTitleTextAttributes: @{ NSForegroundColorAttributeName : navBarTitleColor,
+                                                             NSFontAttributeName : navBarTitleFont }];
+    
     return YES;
 }
 
