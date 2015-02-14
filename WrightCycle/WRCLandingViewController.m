@@ -32,7 +32,9 @@
 {
     [[WRCDataManager sharedManager] getStationsListWithSuccess: ^(NSArray *stations) {
         
-        [self performSegueWithIdentifier: @"stationMapSegue" sender: self];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName: @"Main" bundle: nil];
+        UITabBarController *tabController = [storyboard instantiateViewControllerWithIdentifier: @"tabBarController"];
+        [self presentViewController: tabController animated: YES completion: nil];
         
     } failure: ^(NSError *error) {
 
@@ -47,8 +49,11 @@
 //When the user taps the retry button, another attempt to refresh station data will be made
 - (void)showRetryAlertWithMessage: (NSString *)message
 {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle: @"Error" message: message preferredStyle: UIAlertControllerStyleAlert];
-    UIAlertAction *retryAction = [UIAlertAction actionWithTitle: @"Retry" style: UIAlertActionStyleDefault handler: ^(UIAlertAction *action) {
+    NSString *errorString = NSLocalizedString(@"Error", nil);
+    NSString *retryString = NSLocalizedString(@"Retry", nil);
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle: errorString message: message preferredStyle: UIAlertControllerStyleAlert];
+    UIAlertAction *retryAction = [UIAlertAction actionWithTitle: retryString style: UIAlertActionStyleDefault handler: ^(UIAlertAction *action) {
         [self refreshStations];
     }];
     [alertController addAction: retryAction];
