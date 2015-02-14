@@ -7,10 +7,11 @@
 //
 
 @import CoreLocation;
+@import MapKit;
 
 #import <UIKit/UIKit.h>
 #import "WRCViewController.h"
 
-@interface WRCStationsMapViewController : WRCViewController <CLLocationManagerDelegate>
+@interface WRCStationsMapViewController : WRCViewController <CLLocationManagerDelegate, MKMapViewDelegate>
 
 @end

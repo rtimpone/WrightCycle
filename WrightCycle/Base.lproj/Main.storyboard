@@ -78,6 +78,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CjY-s8-yZr">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <connections>
+                                    <outlet property="delegate" destination="08O-Wg-4Zh" id="mJU-v9-oBz"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -89,6 +92,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="STATIONS MAP" id="7TZ-wa-Oop"/>
+                    <connections>
+                        <outlet property="mapView" destination="CjY-s8-yZr" id="bA3-fA-lML"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bqp-VF-8CG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
