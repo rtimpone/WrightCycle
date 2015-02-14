@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WRCViewController.h"
 
-@interface WRCLandingViewController : UIViewController
+@interface WRCLandingViewController : WRCViewController
 
 @end

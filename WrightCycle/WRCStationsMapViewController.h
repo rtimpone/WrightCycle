@@ -6,8 +6,11 @@
 //  Copyright (c) 2015 Rob Timpone. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import CoreLocation;
 
-@interface WRCStationsMapViewController : UIViewController
+#import <UIKit/UIKit.h>
+#import "WRCViewController.h"
+
+@interface WRCStationsMapViewController : WRCViewController <CLLocationManagerDelegate>
 
 @end
