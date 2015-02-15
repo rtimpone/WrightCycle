@@ -17,6 +17,11 @@
     [self.mapView zoomInOnChicagoAnimated: YES];
 }
 
+- (void)zoomMapViewInOnInitialRegion
+{
+    [self.mapView zoomInOnChicagoAnimated: NO];
+}
+
 - (void)setStations: (NSArray *)stations
 {
     _stations = stations;

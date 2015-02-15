@@ -34,4 +34,7 @@
 /** Zooms the map view in on the city of chicago to handle situations where the user denies access to their location */
 - (void)updateMapViewForUserDeniedLocationServices;
 
+/** Zooms the map view to the initial region without animation */
+- (void)zoomMapViewInOnInitialRegion;
+
 @end

@@ -26,6 +26,8 @@
 {
     [super viewDidLoad];
     
+    [self.mapViewHandler zoomMapViewInOnInitialRegion];
+    
     //need to check for user location services authorization
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
