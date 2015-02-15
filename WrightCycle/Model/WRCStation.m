@@ -8,6 +8,13 @@
 
 #import "WRCStation.h"
 
+@interface WRCStation ()
+
+;
+
+@end
+
+
 @implementation WRCStation
 
 + (instancetype)stationFromDictionary: (NSDictionary *)dictionary
@@ -15,16 +22,8 @@
     WRCStation *station = [[WRCStation alloc] init];
     station.stationId = dictionary[@"id"];
     station.title = dictionary[@"stationName"];
-    
     station.availableBikes = dictionary[@"availableBikes"];
-    NSNumber *availableDocks = dictionary[@"availableDocks"];
-    
-    //a station may have bikes or docks that are broken, so the 'true' total docks count is available bikes plus available docks
-    if (station.availableBikes && availableDocks)
-    {
-        NSInteger totalDocksInteger = [station.availableBikes integerValue] + [availableDocks integerValue];
-        station.totalDocks = @(totalDocksInteger);
-    }
+    station.availableDocks = dictionary[@"availableDocks"];
     
     NSNumber *latitude = dictionary[@"latitude"];
     NSNumber *longitude = dictionary[@"longitude"];
@@ -34,6 +33,28 @@
     }
     
     return station;
+}
+
+- (NSNumber *)totalDocks
+{
+    NSInteger totalDocks = [self.availableBikes integerValue] + [self.availableDocks integerValue];
+    return @(totalDocks);
+}
+
+- (WRCStationBikeAvailability)bikeAvailability
+{
+    if ([self.availableBikes integerValue] < 4)
+    {
+        return WRCStationBikeAvailabilityLow;
+    }
+    else if ([self.availableDocks integerValue] < 4)
+    {
+        return WRCStationBikeAvailabilityHigh;
+    }
+    else
+    {
+        return WRCStationBikeAvailabilityNormal;
+    }
 }
 
 @end

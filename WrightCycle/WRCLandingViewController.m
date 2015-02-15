@@ -14,22 +14,24 @@
 - (void)viewDidAppear: (BOOL)animated
 {
     [super viewDidAppear: animated];
-    
-    //show a retry alert if the user doesn't have an internet connection
-    if (![WRCDataManager internetConnectionIsAvailable])
-    {
-        NSString *noInternetConnectionMessage = NSLocalizedString(@"Unable to retrieve station data, please check your internet connection and try again.", nil);
-        [self showRetryAlertWithMessage: noInternetConnectionMessage];
-        return;
-    }
-    
     [self refreshStations];
 }
 
 //Requests a refreshed list of stations from the API using the data manager
-//Shows a retry alert if there is an error
+//Shows a retry alert if there is an error or the user doesn't have an internet connection
 - (void)refreshStations
 {
+    //show a retry alert if the user doesn't have an internet connection
+    if (![WRCDataManager internetConnectionIsAvailable])
+    {
+        NSString *title = NSLocalizedString(@"No Internet Connection", nil);
+        NSString *message = NSLocalizedString(@"Unable to retrieve station data, please check your internet connection and try again.", nil);
+        [self showRetryAlertWithTitle: title message: message retryAction: ^(UIAlertAction *action) {
+            [self refreshStations];
+        }];
+        return;
+    }
+    
     [[WRCDataManager sharedManager] getStationsListWithSuccess: ^(NSArray *stations) {
         
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName: @"Main" bundle: nil];
@@ -38,26 +40,12 @@
         
     } failure: ^(NSError *error) {
 
-        NSString *errorMessage = NSLocalizedString(@"Unable to retrieve station data, please try again.", nil);
-        [self showRetryAlertWithMessage: errorMessage];
-        
+        NSString *title = NSLocalizedString(@"Error", nil);
+        NSString *message = NSLocalizedString(@"Unable to retrieve station data, please try again.", nil);
+        [self showRetryAlertWithTitle: title message: message retryAction: ^(UIAlertAction *action) {
+            [self refreshStations];
+        }];
     }];
-}
-
-#pragma mark - Error Handling
-//Shows an alert controller with a message and a retry button
-//When the user taps the retry button, another attempt to refresh station data will be made
-- (void)showRetryAlertWithMessage: (NSString *)message
-{
-    NSString *errorString = NSLocalizedString(@"Error", nil);
-    NSString *retryString = NSLocalizedString(@"Retry", nil);
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle: errorString message: message preferredStyle: UIAlertControllerStyleAlert];
-    UIAlertAction *retryAction = [UIAlertAction actionWithTitle: retryString style: UIAlertActionStyleDefault handler: ^(UIAlertAction *action) {
-        [self refreshStations];
-    }];
-    [alertController addAction: retryAction];
-    [self presentViewController: alertController animated: YES completion: nil];
 }
 
 @end
