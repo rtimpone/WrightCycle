@@ -51,7 +51,9 @@
         NSURL *url = [NSURL URLWithString: STATIONS_JSON_URL_STRING];
         NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL: url completionHandler: ^(NSData *data, NSURLResponse *response, NSError *error) {
             
-            if (error)
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
+            
+            if (error && failure)
             {
                 failure(error);
             }
@@ -76,6 +78,7 @@
             }
         }];
         
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
         [task resume];
     }
     

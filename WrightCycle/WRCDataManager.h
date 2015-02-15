@@ -25,7 +25,8 @@
  @param success The block to execute after a successful API response. The array passed to the block
                 is the newly refreshed list of stations.
  
- @param failure The block to execute after encountering an API error.
+ @param failure The block to execute after encountering an API error. This parameter is optional in case
+                the caller wants the request to fail silently. 
  
  @return The currently cached list of stations.
  
