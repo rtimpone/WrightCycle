@@ -84,10 +84,10 @@
 //An API request should only be made if we don't have any data yet or if 60 seconds has elapsed since the last data refresh
 - (BOOL)shouldRefreshStations
 {
-    BOOL noDataAvailable = !self.lastRefreshDate;
-    BOOL enoughTimeHasElapsedToRefresh = -[self.lastRefreshDate timeIntervalSinceNow] >= 60;
+    BOOL thisIsTheFirstRefresh = !self.lastRefreshDate;
+    BOOL enoughTimeHasElapsedToRefresh = -[self.lastRefreshDate timeIntervalSinceNow] >= SECONDS_TO_WAIT_BEFORE_REFRESHING_DATA;
     
-    return noDataAvailable || enoughTimeHasElapsedToRefresh;
+    return thisIsTheFirstRefresh || enoughTimeHasElapsedToRefresh;
 }
 
 @end
