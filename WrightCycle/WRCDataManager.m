@@ -21,8 +21,10 @@
 @end
 
 
-#define SECONDS_TO_WAIT_BEFORE_REFRESHING_DATA 60
 #define STATIONS_JSON_URL_STRING @"http://www.divvybikes.com/stations/json"
+
+//The Divvy API only updates its JSON feed once a minute
+#define SECONDS_TO_WAIT_BEFORE_REFRESHING_DATA 60
 
 @implementation WRCDataManager
 

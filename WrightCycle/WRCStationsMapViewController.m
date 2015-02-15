@@ -79,6 +79,7 @@
 
 - (void)stationsMapViewHandler: (WRCStationsMapViewHandler *)handler didSelectStation: (WRCStation *)station
 {
+    self.selectedStation = station;
     [self performSegueWithIdentifier: @"stationDetailsSegue" sender: self];
 }
 

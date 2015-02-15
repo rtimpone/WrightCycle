@@ -140,6 +140,9 @@
                                                 <exclude reference="cKE-Wl-ipd"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="addToFavoritesAction:" destination="tZW-u3-fjC" eventType="touchUpInside" id="hx8-Ba-lsH"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YTz-YY-8iz" userLabel="button - directions">
                                         <rect key="frame" x="101" y="37" width="98" height="30"/>
@@ -154,6 +157,9 @@
                                                 <exclude reference="QBp-8i-C82"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="getDirectionsAction:" destination="tZW-u3-fjC" eventType="touchUpInside" id="YJi-f0-yra"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -348,6 +354,10 @@
                     <navigationItem key="navigationItem" id="iTF-FU-aT7">
                         <barButtonItem key="backBarButtonItem" title="Back" id="t1m-Jd-fhz"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="numBikesLabel" destination="Wgy-hL-GoM" id="VYv-De-Npg"/>
+                        <outlet property="numDocksLabel" destination="1Jg-1K-9qB" id="2Ab-aJ-Mg5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IQM-7a-WeL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
