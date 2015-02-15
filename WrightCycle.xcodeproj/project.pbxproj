@@ -24,6 +24,7 @@
 		DA86EB891A900E6C002C1FE6 /* MKMapView+WRCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DA86EB881A900E6C002C1FE6 /* MKMapView+WRCAdditions.m */; };
 		DA86EB8E1A9011A7002C1FE6 /* WRCStationsMapViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DA86EB8D1A9011A7002C1FE6 /* WRCStationsMapViewHandler.m */; };
 		DA86EB951A9017C4002C1FE6 /* WRCStationAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA86EB941A9017C4002C1FE6 /* WRCStationAnnotationView.m */; };
+		DA86EB991A9035C9002C1FE6 /* WRCStationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA86EB981A9035C9002C1FE6 /* WRCStationDetailsViewController.m */; };
 		DA9367681A9000830047578C /* WRCStationsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9367671A9000830047578C /* WRCStationsMapViewController.m */; };
 		DA93676A1A9000A20047578C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9367691A9000A20047578C /* MapKit.framework */; };
 /* End PBXBuildFile section */
@@ -69,6 +70,8 @@
 		DA86EB8D1A9011A7002C1FE6 /* WRCStationsMapViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCStationsMapViewHandler.m; sourceTree = "<group>"; };
 		DA86EB931A9017C4002C1FE6 /* WRCStationAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WRCStationAnnotationView.h; path = Views/WRCStationAnnotationView.h; sourceTree = "<group>"; };
 		DA86EB941A9017C4002C1FE6 /* WRCStationAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WRCStationAnnotationView.m; path = Views/WRCStationAnnotationView.m; sourceTree = "<group>"; };
+		DA86EB971A9035C9002C1FE6 /* WRCStationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCStationDetailsViewController.h; sourceTree = "<group>"; };
+		DA86EB981A9035C9002C1FE6 /* WRCStationDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCStationDetailsViewController.m; sourceTree = "<group>"; };
 		DA9367661A9000830047578C /* WRCStationsMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCStationsMapViewController.h; sourceTree = "<group>"; };
 		DA9367671A9000830047578C /* WRCStationsMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCStationsMapViewController.m; sourceTree = "<group>"; };
 		DA9367691A9000A20047578C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -135,6 +138,7 @@
 				DA86EB861A9007A4002C1FE6 /* Superclasses */,
 				DA322F241A8FD28100D9CEE8 /* Managers */,
 				DA322F281A8FDA0900D9CEE8 /* Model */,
+				DA86EB9A1A9035CD002C1FE6 /* Station Details */,
 				DA86EB8B1A901149002C1FE6 /* Stations Map */,
 				DA322EF41A8FBAD800D9CEE8 /* Main.storyboard */,
 				DA322EF71A8FBAD800D9CEE8 /* Images.xcassets */,
@@ -235,6 +239,15 @@
 				DA86EB941A9017C4002C1FE6 /* WRCStationAnnotationView.m */,
 			);
 			name = "Annotation Views";
+			sourceTree = "<group>";
+		};
+		DA86EB9A1A9035CD002C1FE6 /* Station Details */ = {
+			isa = PBXGroup;
+			children = (
+				DA86EB971A9035C9002C1FE6 /* WRCStationDetailsViewController.h */,
+				DA86EB981A9035C9002C1FE6 /* WRCStationDetailsViewController.m */,
+			);
+			name = "Station Details";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,6 +397,7 @@
 				DA322EED1A8FBAD800D9CEE8 /* main.m in Sources */,
 				DA86EB851A9007A0002C1FE6 /* WRCViewController.m in Sources */,
 				DA322F191A8FCB6A00D9CEE8 /* WRCLandingViewController.m in Sources */,
+				DA86EB991A9035C9002C1FE6 /* WRCStationDetailsViewController.m in Sources */,
 				DA322F271A8FD2C600D9CEE8 /* WRCStation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
