@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Rob Timpone. All rights reserved.
 //
 
-#import "MKMapView+WRCAdditions.h"
+#import "WRCDataManager.h"
 #import "WRCStationsMapViewController.h"
 
 @interface WRCStationsMapViewController ()
@@ -14,8 +14,8 @@
 /** A location manager to get permission from the user to use their location */
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
-/** The map view used to display stations in */
-@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+/** Handles displaying stations on the mapview, zooming in, and responding to the user's station selection */
+@property (strong, nonatomic) IBOutlet WRCStationsMapViewHandler *mapViewHandler;
 
 @end
 
@@ -26,9 +26,23 @@
 {
     [super viewDidLoad];
     
+    //need to check for user location services authorization
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     [self.locationManager requestWhenInUseAuthorization];
+    
+    //load cached station data into the mapview and request refreshed data from the API if necessary
+    self.mapViewHandler.stations = [[WRCDataManager sharedManager] getStationsListWithSuccess: ^(NSArray *stations) {
+        
+        self.mapViewHandler.stations = stations;
+        
+    } failure: ^(NSError *error) {
+        
+        NSString *title = NSLocalizedString(@"Error", nil);
+        NSString *message = NSLocalizedString(@"There was an error trying to retrieve station data, station information may not be up to date.", nil);
+        [self showOkAlertWithTitle: title message: message];
+
+    }];
 }
 
 #pragma mark - Location Manager Delegate
@@ -42,19 +56,15 @@
         [self showOkAlertWithTitle: title message: message];
         
         //the user isn't letting us use their location, so just zoom in on chicago so they can see most of the stations
-        [self.mapView zoomInOnChicagoAnimated: YES];
+        [self.mapViewHandler updateMapViewForUserDeniedLocationServices];
     }
 }
 
-#pragma mark - Map View Delegate
+#pragma mark - Map View Handler Delegate
 
-- (void)mapView: (MKMapView *)mapView didUpdateUserLocation: (MKUserLocation *)userLocation
+- (void)stationsMapViewHandler: (WRCStationsMapViewHandler *)handler didSelectStation: (WRCStation *)station
 {
-    //this delegate method fires every time the map view gets a user location, but we only want to zoom in on the user's location once
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [mapView zoomInOnCurrentUserLocationAnimated: YES];
-    });
+    //segue to station details screen for the selected station
 }
 
 @end

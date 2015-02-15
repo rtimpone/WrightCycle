@@ -11,6 +11,12 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, WRCStationBikeAvailability) {
+    WRCStationBikeAvailabilityLow,
+    WRCStationBikeAvailabilityNormal,
+    WRCStationBikeAvailabilityHigh
+};
+
 
 @interface WRCStation : NSObject <MKAnnotation>
 
@@ -30,16 +36,19 @@
 /** The number of usable bikes currently available */
 @property (strong, nonatomic) NSNumber *availableBikes;
 
-/** The total number of functioning docks at this station */
+/** The number of usable docks currently available */
+@property (strong, nonatomic) NSNumber *availableDocks;
+
+/** The total number of functioning docks at this station, including docks with and without bikes in them */
 @property (strong, nonatomic) NSNumber *totalDocks;
+
+/** An enum describing bike availability at this station */
+@property (nonatomic) WRCStationBikeAvailability bikeAvailability;
 
 /** Create a station object from a JSON dictionary
  
  @param dictionary A dictionary representation of the station
  @return A WRCStation object with its property values populated from the dictionary
- 
- @attention There are no default values assigned. If a key is missing from the dictionary, 
- that property will be nil when the object is returned.
 
  */
 + (instancetype)stationFromDictionary: (NSDictionary *)dictionary;

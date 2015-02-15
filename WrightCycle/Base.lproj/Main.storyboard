@@ -79,7 +79,7 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CjY-s8-yZr">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <connections>
-                                    <outlet property="delegate" destination="08O-Wg-4Zh" id="mJU-v9-oBz"/>
+                                    <outlet property="delegate" destination="Cqc-Mc-dlG" id="dS0-Jq-dNg"/>
                                 </connections>
                             </mapView>
                         </subviews>
@@ -93,10 +93,16 @@
                     </view>
                     <navigationItem key="navigationItem" title="STATIONS MAP" id="7TZ-wa-Oop"/>
                     <connections>
-                        <outlet property="mapView" destination="CjY-s8-yZr" id="bA3-fA-lML"/>
+                        <outlet property="mapViewHandler" destination="Cqc-Mc-dlG" id="8gy-tE-qfV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bqp-VF-8CG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="Cqc-Mc-dlG" customClass="WRCStationsMapViewHandler">
+                    <connections>
+                        <outlet property="delegate" destination="08O-Wg-4Zh" id="jvD-oe-G6k"/>
+                        <outlet property="mapView" destination="CjY-s8-yZr" id="YKG-aG-jXp"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="2467" y="-109"/>
         </scene>
