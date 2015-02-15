@@ -13,7 +13,7 @@
 
 @implementation WRCStationAnnotationView
 
-+ (instancetype)annotationViewForStation: (WRCStation *)station
++ (instancetype)annotationViewForStation: (WRCStation *)station withCalloutEnabled: (BOOL)calloutEnabled
 {
     static NSString *pinViewReuseIdentifier = @"stationAnnotationView";
     WRCStationAnnotationView *pinView = [[WRCStationAnnotationView alloc] initWithAnnotation: station reuseIdentifier: pinViewReuseIdentifier];
@@ -31,8 +31,11 @@
         pinView.pinColor = MKPinAnnotationColorGreen;
     }
     
-    pinView.canShowCallout = YES;
-    pinView.rightCalloutAccessoryView = [UIButton buttonWithType: UIButtonTypeInfoLight];
+    if (calloutEnabled)
+    {
+        pinView.canShowCallout = YES;
+        pinView.rightCalloutAccessoryView = [UIButton buttonWithType: UIButtonTypeInfoLight];
+    }
     
     return pinView;
 }

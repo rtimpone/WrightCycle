@@ -49,7 +49,7 @@
         return nil;
     }
     
-    return [WRCStationAnnotationView annotationViewForStation: (WRCStation *)annotation];
+    return [WRCStationAnnotationView annotationViewForStation: (WRCStation *)annotation withCalloutEnabled: YES];
 }
 
 - (void)mapView: (MKMapView *)mapView annotationView: (MKAnnotationView *)view calloutAccessoryControlTapped: (UIControl *)control

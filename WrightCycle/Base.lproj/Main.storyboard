@@ -121,8 +121,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mVO-Me-qem">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mVO-Me-qem">
                                 <rect key="frame" x="0.0" y="64" width="600" height="367"/>
+                                <connections>
+                                    <outlet property="delegate" destination="QNa-zn-khY" id="G36-X3-hds"/>
+                                </connections>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7dX-jb-VqE" userLabel="View - Actions">
                                 <rect key="frame" x="300" y="455" width="300" height="96"/>
@@ -355,11 +358,17 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="t1m-Jd-fhz"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="mapViewHandler" destination="QNa-zn-khY" id="wV7-YZ-jn9"/>
                         <outlet property="numBikesLabel" destination="Wgy-hL-GoM" id="VYv-De-Npg"/>
                         <outlet property="numDocksLabel" destination="1Jg-1K-9qB" id="2Ab-aJ-Mg5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IQM-7a-WeL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="QNa-zn-khY" customClass="WRCStationDetailsMapViewHandler">
+                    <connections>
+                        <outlet property="mapView" destination="mVO-Me-qem" id="Bx6-EU-kBz"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="3383" y="358.5"/>
         </scene>

@@ -8,6 +8,7 @@
 
 #import "WRCDataManager.h"
 #import "WRCStation.h"
+#import "WRCStationDetailsMapViewHandler.h"
 #import "WRCStationDetailsViewController.h"
 
 @interface WRCStationDetailsViewController ()
@@ -17,6 +18,9 @@
 
 /** A label that displays the number of docks available */
 @property (weak, nonatomic) IBOutlet UILabel *numDocksLabel;
+
+/** Handles displaying the station's location in the map view */
+@property (strong, nonatomic) IBOutlet WRCStationDetailsMapViewHandler *mapViewHandler;
 
 @end
 
@@ -28,6 +32,7 @@
     [super viewDidLoad];
     
     [self updateStationLabelsText];
+    self.mapViewHandler.station = self.station;
     
     //refresh the stations list if needed
     [[WRCDataManager sharedManager] getStationsListWithSuccess: ^(NSArray *stations) {
