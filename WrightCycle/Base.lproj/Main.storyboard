@@ -144,7 +144,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <action selector="addToFavoritesAction:" destination="tZW-u3-fjC" eventType="touchUpInside" id="hx8-Ba-lsH"/>
+                                            <action selector="modifyFavoritesAction:" destination="tZW-u3-fjC" eventType="touchUpInside" id="eon-Sh-UEB"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YTz-YY-8iz" userLabel="button - directions">
@@ -319,14 +319,14 @@
                             <mask key="constraints">
                                 <exclude reference="B67-3g-VlB"/>
                                 <exclude reference="Lyo-AM-KZH"/>
-                                <exclude reference="3Rg-kl-NfD"/>
-                                <exclude reference="6QV-4b-6Nj"/>
                                 <exclude reference="RWn-Ji-Q4L"/>
                                 <exclude reference="XMl-2Z-dY9"/>
                                 <exclude reference="cQj-BC-bVF"/>
                                 <exclude reference="dEd-sO-M30"/>
                                 <exclude reference="am9-h9-qk9"/>
                                 <exclude reference="xDR-01-udu"/>
+                                <exclude reference="3Rg-kl-NfD"/>
+                                <exclude reference="6QV-4b-6Nj"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
@@ -336,10 +336,6 @@
                                 <include reference="Lyo-AM-KZH"/>
                                 <exclude reference="Ydp-vU-k6Z"/>
                                 <exclude reference="huS-nN-0oY"/>
-                                <include reference="3Rg-kl-NfD"/>
-                                <include reference="6QV-4b-6Nj"/>
-                                <exclude reference="RJq-8K-wvA"/>
-                                <exclude reference="mrf-2n-V5b"/>
                                 <include reference="RWn-Ji-Q4L"/>
                                 <include reference="XMl-2Z-dY9"/>
                                 <exclude reference="c8A-Jp-VUo"/>
@@ -351,6 +347,10 @@
                                 <exclude reference="hHL-Ae-Vt7"/>
                                 <exclude reference="kPq-Lp-beB"/>
                                 <include reference="xDR-01-udu"/>
+                                <include reference="3Rg-kl-NfD"/>
+                                <include reference="6QV-4b-6Nj"/>
+                                <exclude reference="RJq-8K-wvA"/>
+                                <exclude reference="mrf-2n-V5b"/>
                             </mask>
                         </variation>
                     </view>
@@ -358,6 +358,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="t1m-Jd-fhz"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="favoriteButton" destination="hdD-SI-s5C" id="YKS-vt-G0o"/>
                         <outlet property="mapViewHandler" destination="QNa-zn-khY" id="wV7-YZ-jn9"/>
                         <outlet property="numBikesLabel" destination="Wgy-hL-GoM" id="VYv-De-Npg"/>
                         <outlet property="numDocksLabel" destination="1Jg-1K-9qB" id="2Ab-aJ-Mg5"/>

@@ -19,6 +19,9 @@
 /** A label that displays the number of docks available */
 @property (weak, nonatomic) IBOutlet UILabel *numDocksLabel;
 
+/** The button used to add or remove the station from the favorites list */
+@property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+
 /** Handles displaying the station's location in the map view */
 @property (strong, nonatomic) IBOutlet WRCStationDetailsMapViewHandler *mapViewHandler;
 
@@ -31,7 +34,9 @@
 {
     [super viewDidLoad];
     
+    [self updateFavoritesButtonText];
     [self updateStationLabelsText];
+    
     self.mapViewHandler.station = self.station;
     
     //refresh the stations list if needed
@@ -46,9 +51,18 @@
 
 #pragma mark - Actions
 
-- (IBAction)addToFavoritesAction: (id)sender
+- (IBAction)modifyFavoritesAction: (id)sender
 {
-    //add this station to the favorites list
+    if ([[WRCDataManager sharedManager] stationIsFavorite: self.station])
+    {
+        [[WRCDataManager sharedManager] removeStationFromFavorites: self.station];
+    }
+    else
+    {
+        [[WRCDataManager sharedManager] addStationAsFavorite: self.station];
+    }
+    
+    [self updateFavoritesButtonText];
 }
 
 - (IBAction)getDirectionsAction: (id)sender
@@ -56,7 +70,7 @@
     //open google maps with callback to get directions to this station
 }
 
-#pragma mark - Setters
+#pragma mark - UI Updates
 
 - (void)updateStationLabelsText
 {
@@ -67,6 +81,15 @@
     
     self.numBikesLabel.text = [NSString stringWithFormat: @"%@: %@", bikesString, self.station.availableBikes];
     self.numDocksLabel.text = [NSString stringWithFormat: @"%@: %@", docksString, self.station.availableDocks];
+}
+
+- (void)updateFavoritesButtonText
+{
+    NSString *addToFavoritesString = NSLocalizedString(@"Add to Favorites", nil);
+    NSString *removeFromFavoritesString = NSLocalizedString(@"Remove from Favorites", nil);
+    NSString *buttonText = [[WRCDataManager sharedManager] stationIsFavorite: self.station] ? removeFromFavoritesString : addToFavoritesString;
+    
+    [self.favoriteButton setTitle: buttonText forState: UIControlStateNormal];
 }
 
 @end

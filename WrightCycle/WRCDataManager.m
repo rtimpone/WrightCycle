@@ -21,10 +21,14 @@
 @end
 
 
-#define STATIONS_JSON_URL_STRING @"http://www.divvybikes.com/stations/json"
+NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/stations/json";
+
+//The key used to store an array of station ids in user defaults representing the user's favorite stations
+NSString * const kFavoriteStations = @"kFavoriteStations";
 
 //The Divvy API only updates its JSON feed once a minute
 #define SECONDS_TO_WAIT_BEFORE_REFRESHING_DATA 60
+
 
 @implementation WRCDataManager
 
@@ -44,11 +48,13 @@
     return reachabilty.isReachable;
 }
 
+#pragma mark - Divvy API Methods
+
 - (NSArray *)getStationsListWithSuccess: (void (^)(NSArray *))success failure: (void (^)(NSError *))failure
 {
     if ([self shouldRefreshStations])
     {
-        NSURL *url = [NSURL URLWithString: STATIONS_JSON_URL_STRING];
+        NSURL *url = [NSURL URLWithString: kDivvyStationsJsonFeedUrlString];
         NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL: url completionHandler: ^(NSData *data, NSURLResponse *response, NSError *error) {
             
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
@@ -93,6 +99,68 @@
     BOOL enoughTimeHasElapsedToRefresh = -[self.lastRefreshDate timeIntervalSinceNow] >= SECONDS_TO_WAIT_BEFORE_REFRESHING_DATA;
     
     return thisIsTheFirstRefresh || enoughTimeHasElapsedToRefresh;
+}
+
+#pragma mark - Favorite Stations Methods
+
+//The array of favorite station ids stored in user defaults
+- (NSArray *)fetchFavoriteStationsIds
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *favoriteStationIds = [defaults objectForKey: kFavoriteStations];
+    
+    if (!favoriteStationIds)
+    {
+        favoriteStationIds = @[];
+    }
+    
+    return favoriteStationIds;
+}
+
+- (NSArray *)fetchFavoriteStations
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *favoriteStationIds = [defaults objectForKey: kFavoriteStations];
+    
+    NSMutableArray *favoriteStations = [[NSMutableArray alloc] init];
+    for (NSNumber *stationId in favoriteStationIds)
+    {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"stationId = %@", stationId];
+        WRCStation *station = [[self.cachedStations filteredArrayUsingPredicate: predicate] firstObject];
+        [favoriteStations addObject: station];
+    }
+    
+    return favoriteStations;
+}
+
+- (void)addStationAsFavorite: (WRCStation *)station
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *favoriteStationIds = [self fetchFavoriteStationsIds];
+
+    NSMutableArray *mutableFavoriteStationIds = [favoriteStationIds mutableCopy];
+    [mutableFavoriteStationIds addObject: station.stationId];
+    
+    [defaults setObject: mutableFavoriteStationIds forKey: kFavoriteStations];
+    [defaults synchronize];
+}
+
+- (void)removeStationFromFavorites: (WRCStation *)station
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *favoriteStationIds = [self fetchFavoriteStationsIds];
+    
+    NSMutableArray *mutableFavoriteStationIds = [favoriteStationIds mutableCopy];
+    [mutableFavoriteStationIds removeObject: station.stationId];
+    
+    [defaults setObject: mutableFavoriteStationIds forKey: kFavoriteStations];
+    [defaults synchronize];
+}
+
+- (BOOL)stationIsFavorite: (WRCStation *)station
+{
+    NSArray *favoriteStationIds = [self fetchFavoriteStationsIds];
+    return [favoriteStationIds containsObject: station.stationId];
 }
 
 @end
