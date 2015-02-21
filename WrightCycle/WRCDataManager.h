@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class WRCStation;
+
 @interface WRCDataManager : NSObject
 
 /** A shared data manager to be used as a singleton */
@@ -25,11 +27,48 @@
  @param success The block to execute after a successful API response. The array passed to the block
                 is the newly refreshed list of stations.
  
- @param failure The block to execute after encountering an API error.
+ @param failure The block to execute after encountering an API error. This parameter is optional in case
+                the caller wants the request to fail silently. 
  
  @return The currently cached list of stations.
  
-*/
+ */
 - (NSArray *)getStationsListWithSuccess: (void (^)(NSArray *stations))success failure: (void (^)(NSError *error))failure;
+
+/** Add a station to the favorites list
+ 
+ This will add the station's id to the favorites list stored in user defaults
+ 
+ @param station The station to add as a favorite
+ 
+ */
+- (void)addStationAsFavorite: (WRCStation *)station;
+
+/** Remove a station from the favorites list
+ 
+ This will remove the station's id from the favorites list stored in user defaults
+ 
+ @param station The station to remove from the favorites list
+ 
+ */
+- (void)removeStationFromFavorites: (WRCStation *)station;
+
+/** Whether a station is in the favories list
+ 
+ Checks the list of favorite station ids stored in user defaults to see if the station is a favorite.
+ 
+ @return Whether the station is a favorite
+ 
+ */
+- (BOOL)stationIsFavorite: (WRCStation *)station;
+
+/** The current list of the user's favorite stations
+ 
+ Stored as an array in user defaults to preserve the way the user may have ordered the list.
+ 
+ @return An array containing the user's favorite stations
+ 
+ */
+- (NSArray *)fetchFavoriteStations;
 
 @end

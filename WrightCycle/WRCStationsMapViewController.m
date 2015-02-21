@@ -7,6 +7,7 @@
 //
 
 #import "WRCDataManager.h"
+#import "WRCStationDetailsViewController.h"
 #import "WRCStationsMapViewController.h"
 
 @interface WRCStationsMapViewController ()
@@ -16,6 +17,9 @@
 
 /** Handles displaying stations on the mapview, zooming in, and responding to the user's station selection */
 @property (strong, nonatomic) IBOutlet WRCStationsMapViewHandler *mapViewHandler;
+
+/** The station that the user selected and is about to be shown in the station details screen */
+@property (strong, nonatomic) WRCStation *selectedStation;
 
 @end
 
@@ -47,6 +51,15 @@
     }];
 }
 
+- (void)prepareForSegue: (UIStoryboardSegue *)segue sender: (id)sender
+{
+    if ([segue.identifier isEqualToString: @"stationDetailsSegue"])
+    {
+        WRCStationDetailsViewController *vc = segue.destinationViewController;
+        vc.station = self.selectedStation;
+    }
+}
+
 #pragma mark - Location Manager Delegate
 
 - (void)locationManager: (CLLocationManager *)manager didChangeAuthorizationStatus: (CLAuthorizationStatus)status
@@ -66,7 +79,8 @@
 
 - (void)stationsMapViewHandler: (WRCStationsMapViewHandler *)handler didSelectStation: (WRCStation *)station
 {
-    //segue to station details screen for the selected station
+    self.selectedStation = station;
+    [self performSegueWithIdentifier: @"stationDetailsSegue" sender: self];
 }
 
 @end
