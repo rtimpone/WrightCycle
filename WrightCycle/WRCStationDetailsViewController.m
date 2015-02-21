@@ -7,6 +7,7 @@
 //
 
 #import "WRCDataManager.h"
+#import "WRCGoogleMapsManager.h"
 #import "WRCStation.h"
 #import "WRCStationDetailsMapViewHandler.h"
 #import "WRCStationDetailsViewController.h"
@@ -67,7 +68,18 @@
 
 - (IBAction)getDirectionsAction: (id)sender
 {
-    //open google maps with callback to get directions to this station
+    if ([WRCGoogleMapsManager canOpenGoogleMaps])
+    {
+        NSURL *googleMapsURL = [WRCGoogleMapsManager URLForDirectionsToLocation: self.station.coordinate transportationMode: WRCGoogleMapsTransportationModeWalking];
+        [[UIApplication sharedApplication] openURL: googleMapsURL];
+    }
+    else
+    {
+        //attempt to open apple maps
+    }
+    
+    //else
+        //show alert that you can't get directions
 }
 
 #pragma mark - UI Updates
