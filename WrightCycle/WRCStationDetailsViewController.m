@@ -7,7 +7,7 @@
 //
 
 #import "WRCDataManager.h"
-#import "WRCGoogleMapsManager.h"
+#import "WRCInterappURLManager.h"
 #import "WRCStation.h"
 #import "WRCStationDetailsMapViewHandler.h"
 #import "WRCStationDetailsViewController.h"
@@ -68,18 +68,22 @@
 
 - (IBAction)getDirectionsAction: (id)sender
 {
-    if ([WRCGoogleMapsManager canOpenGoogleMaps])
+    if ([WRCInterappURLManager canOpenGoogleMaps])
     {
-        NSURL *googleMapsURL = [WRCGoogleMapsManager URLForDirectionsToLocation: self.station.coordinate transportationMode: WRCGoogleMapsTransportationModeWalking];
+        NSURL *googleMapsURL = [WRCInterappURLManager googleMapsURLForDirectionsToLocation: self.station.coordinate transportationMode: WRCGoogleMapsTransportationModeWalking];
         [[UIApplication sharedApplication] openURL: googleMapsURL];
+    }
+    else if ([WRCInterappURLManager canOpenAppleMaps])
+    {
+        NSURL *appleMapsURL = [WRCInterappURLManager appleMapsURLForDirectionsToLocation: self.station.coordinate];
+        [[UIApplication sharedApplication] openURL: appleMapsURL];
     }
     else
     {
-        //attempt to open apple maps
+        NSString *title = NSLocalizedString(@"Could Not Find Maps App", nil);
+        NSString *message = NSLocalizedString(@"To get directions to this stations, you must have Google Maps or Apple Maps installed.", nil);
+        [self showOkAlertWithTitle: title message: message];
     }
-    
-    //else
-        //show alert that you can't get directions
 }
 
 #pragma mark - UI Updates

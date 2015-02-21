@@ -20,7 +20,7 @@
 		DA322F2A1A8FDEBE00D9CEE8 /* Oswald-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA322F1C1A8FCB8A00D9CEE8 /* Oswald-Light.ttf */; };
 		DA322F2B1A8FDEBE00D9CEE8 /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA322F1D1A8FCB8A00D9CEE8 /* Oswald-Regular.ttf */; };
 		DA322F2C1A8FDEE600D9CEE8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA322EF91A8FBAD800D9CEE8 /* LaunchScreen.xib */; };
-		DA82508A1A98EE0E006717E4 /* WRCGoogleMapsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8250891A98EE0E006717E4 /* WRCGoogleMapsManager.m */; };
+		DA82508A1A98EE0E006717E4 /* WRCInterappURLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8250891A98EE0E006717E4 /* WRCInterappURLManager.m */; };
 		DA8250901A98FE5C006717E4 /* NSURL+WRCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DA82508F1A98FE5C006717E4 /* NSURL+WRCAdditions.m */; };
 		DA86EB851A9007A0002C1FE6 /* WRCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA86EB841A9007A0002C1FE6 /* WRCViewController.m */; };
 		DA86EB891A900E6C002C1FE6 /* MKMapView+WRCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DA86EB881A900E6C002C1FE6 /* MKMapView+WRCAdditions.m */; };
@@ -65,8 +65,8 @@
 		DA322F221A8FCD3100D9CEE8 /* WRCDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCDataManager.m; sourceTree = "<group>"; };
 		DA322F251A8FD2C600D9CEE8 /* WRCStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WRCStation.h; path = Model/WRCStation.h; sourceTree = "<group>"; };
 		DA322F261A8FD2C600D9CEE8 /* WRCStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WRCStation.m; path = Model/WRCStation.m; sourceTree = "<group>"; };
-		DA8250881A98EE0E006717E4 /* WRCGoogleMapsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WRCGoogleMapsManager.h; path = Managers/WRCGoogleMapsManager.h; sourceTree = "<group>"; };
-		DA8250891A98EE0E006717E4 /* WRCGoogleMapsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WRCGoogleMapsManager.m; path = Managers/WRCGoogleMapsManager.m; sourceTree = "<group>"; };
+		DA8250881A98EE0E006717E4 /* WRCInterappURLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WRCInterappURLManager.h; path = Managers/WRCInterappURLManager.h; sourceTree = "<group>"; };
+		DA8250891A98EE0E006717E4 /* WRCInterappURLManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WRCInterappURLManager.m; path = Managers/WRCInterappURLManager.m; sourceTree = "<group>"; };
 		DA82508E1A98FE5C006717E4 /* NSURL+WRCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+WRCAdditions.h"; path = "Categories/NSURL+WRCAdditions.h"; sourceTree = "<group>"; };
 		DA82508F1A98FE5C006717E4 /* NSURL+WRCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+WRCAdditions.m"; path = "Categories/NSURL+WRCAdditions.m"; sourceTree = "<group>"; };
 		DA86EB831A9007A0002C1FE6 /* WRCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCViewController.h; sourceTree = "<group>"; };
@@ -199,8 +199,8 @@
 			children = (
 				DA322F211A8FCD3100D9CEE8 /* WRCDataManager.h */,
 				DA322F221A8FCD3100D9CEE8 /* WRCDataManager.m */,
-				DA8250881A98EE0E006717E4 /* WRCGoogleMapsManager.h */,
-				DA8250891A98EE0E006717E4 /* WRCGoogleMapsManager.m */,
+				DA8250881A98EE0E006717E4 /* WRCInterappURLManager.h */,
+				DA8250891A98EE0E006717E4 /* WRCInterappURLManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -409,7 +409,7 @@
 				DA86EB891A900E6C002C1FE6 /* MKMapView+WRCAdditions.m in Sources */,
 				DA86EB951A9017C4002C1FE6 /* WRCStationAnnotationView.m in Sources */,
 				DA322EF01A8FBAD800D9CEE8 /* AppDelegate.m in Sources */,
-				DA82508A1A98EE0E006717E4 /* WRCGoogleMapsManager.m in Sources */,
+				DA82508A1A98EE0E006717E4 /* WRCInterappURLManager.m in Sources */,
 				DA8250901A98FE5C006717E4 /* NSURL+WRCAdditions.m in Sources */,
 				DA86EB8E1A9011A7002C1FE6 /* WRCStationsMapViewHandler.m in Sources */,
 				DA322EED1A8FBAD800D9CEE8 /* main.m in Sources */,
