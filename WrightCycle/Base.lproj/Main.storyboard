@@ -92,7 +92,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="STATIONS MAP" id="7TZ-wa-Oop">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="EV1-Us-KfR"/>
+                        <barButtonItem key="backBarButtonItem" title="Back" id="gSq-O6-ygA"/>
                     </navigationItem>
                     <connections>
                         <outlet property="mapViewHandler" destination="Cqc-Mc-dlG" id="8gy-tE-qfV"/>
@@ -178,14 +178,18 @@
                             <constraint firstItem="iOs-st-su7" firstAttribute="top" secondItem="rrm-Fy-aXw" secondAttribute="topMargin" id="jOb-rq-pcm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Favorite Stations" id="h24-F1-gX8"/>
+                    <navigationItem key="navigationItem" title="Favorite Stations" id="h24-F1-gX8">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Qvi-7J-pSI"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableViewHandler" destination="WSb-Yh-bpt" id="KCl-jN-fNe"/>
+                        <segue destination="tZW-u3-fjC" kind="show" identifier="stationDetailsSegue" id="O1l-4m-hlP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fLO-49-U2Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="WSb-Yh-bpt" customClass="WRCFavoritesTableViewHandler">
                     <connections>
+                        <outlet property="delegate" destination="73F-mA-b2e" id="Wd8-aG-g9a"/>
                         <outlet property="tableView" destination="iOs-st-su7" id="Lak-1a-jaK"/>
                     </connections>
                 </customObject>
@@ -500,4 +504,7 @@
     <resources>
         <image name="splash_skyline" width="375" height="667"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="O1l-4m-hlP"/>
+    </inferredMetricsTieBreakers>
 </document>

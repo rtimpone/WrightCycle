@@ -44,6 +44,15 @@
     return cell;
 }
 
+#pragma mark - Table View Delegate
+
+- (void)tableView: (UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath
+{
+    WRCStation *selectedStation = self.favoriteStations[indexPath.row];
+    [self.delegate favoritesTableViewHandler: self userSelectedStation: selectedStation];
+    [tableView deselectRowAtIndexPath: indexPath animated: YES];
+}
+
 #pragma mark - Helpers
 
 - (void)updateTableWithFavoriteStations: (NSArray *)favoriteStations
