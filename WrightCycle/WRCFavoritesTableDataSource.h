@@ -12,6 +12,7 @@
 
 @interface WRCFavoritesTableDataSource : NSObject <UITableViewDataSource, UITableViewDelegate>
 
+/** Updates the data source with a list of favorite stations and reload the table view */
 - (void)updateTableWithFavoriteStations: (NSArray *)favoriteStations;
 
 @end

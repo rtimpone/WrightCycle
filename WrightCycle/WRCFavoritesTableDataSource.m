@@ -7,12 +7,16 @@
 //
 
 #import "WRCFavoritesTableDataSource.h"
+#import "WRCStation.h"
 
 @interface WRCFavoritesTableDataSource ()
 
+/** The table view to display the favorite stations in */
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+/** The favorite stations to display in the table view */
 @property (strong, nonatomic) NSArray *favoriteStations;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
 
@@ -30,7 +34,12 @@
     static NSString *CellIdentifier = @"favoritesCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: CellIdentifier];
     
-    //configure cell
+    WRCStation *station = self.favoriteStations[indexPath.row];
+    cell.textLabel.text = station.title;
+    
+    NSString *bikesString = NSLocalizedString(@"Bikes", nil);
+    NSString *docksString = NSLocalizedString(@"Docks", nil);
+    cell.detailTextLabel.text = [NSString stringWithFormat: @"%@: %@, %@: %@", bikesString, station.availableBikes, docksString, station.availableDocks];
     
     return cell;
 }
@@ -40,8 +49,7 @@
 - (void)updateTableWithFavoriteStations: (NSArray *)favoriteStations
 {
     self.favoriteStations = favoriteStations;
-    
-    //reload table view
+    [self.tableView reloadData];
 }
 
 @end

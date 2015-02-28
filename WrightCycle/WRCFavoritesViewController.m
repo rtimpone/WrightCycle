@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Rob Timpone. All rights reserved.
 //
 
+#import "WRCDataManager.h"
 #import "WRCFavoritesTableDataSource.h"
 #import "WRCFavoritesViewController.h"
 
@@ -18,6 +19,12 @@
 
 @implementation WRCFavoritesViewController
 
-
+- (void)viewWillAppear: (BOOL)animated
+{
+    [super viewWillAppear: animated];
+    
+    NSArray *favoriteStations = [[WRCDataManager sharedManager] fetchFavoriteStations];
+    [self.tableDataSource updateTableWithFavoriteStations: favoriteStations];
+}
 
 @end

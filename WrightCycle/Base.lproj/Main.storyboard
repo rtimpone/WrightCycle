@@ -126,7 +126,7 @@
             </objects>
             <point key="canvasLocation" x="1743" y="647"/>
         </scene>
-        <!--Favorites View Controller-->
+        <!--Favorite Stations-->
         <scene sceneID="HCg-T3-hw8">
             <objects>
                 <viewController id="73F-mA-b2e" customClass="WRCFavoritesViewController" sceneMemberID="viewController">
@@ -178,7 +178,7 @@
                             <constraint firstItem="iOs-st-su7" firstAttribute="top" secondItem="rrm-Fy-aXw" secondAttribute="topMargin" id="jOb-rq-pcm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="h24-F1-gX8"/>
+                    <navigationItem key="navigationItem" title="Favorite Stations" id="h24-F1-gX8"/>
                     <connections>
                         <outlet property="tableDataSource" destination="WSb-Yh-bpt" id="Bh6-rz-o1e"/>
                     </connections>
