@@ -31,7 +31,7 @@
 		DA9367681A9000830047578C /* WRCStationsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9367671A9000830047578C /* WRCStationsMapViewController.m */; };
 		DA93676A1A9000A20047578C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9367691A9000A20047578C /* MapKit.framework */; };
 		DAA6D1451AA22160001D70B1 /* WRCFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA6D1441AA22160001D70B1 /* WRCFavoritesViewController.m */; };
-		DAFEAF5B1AA223B600F86151 /* WRCFavoritesTableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFEAF5A1AA223B600F86151 /* WRCFavoritesTableDataSource.m */; };
+		DAFEAF5B1AA223B600F86151 /* WRCFavoritesTableViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFEAF5A1AA223B600F86151 /* WRCFavoritesTableViewHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,8 +88,8 @@
 		DA9367691A9000A20047578C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DAA6D1431AA22160001D70B1 /* WRCFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCFavoritesViewController.h; sourceTree = "<group>"; };
 		DAA6D1441AA22160001D70B1 /* WRCFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCFavoritesViewController.m; sourceTree = "<group>"; };
-		DAFEAF591AA223B600F86151 /* WRCFavoritesTableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCFavoritesTableDataSource.h; sourceTree = "<group>"; };
-		DAFEAF5A1AA223B600F86151 /* WRCFavoritesTableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCFavoritesTableDataSource.m; sourceTree = "<group>"; };
+		DAFEAF591AA223B600F86151 /* WRCFavoritesTableViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCFavoritesTableViewHandler.h; sourceTree = "<group>"; };
+		DAFEAF5A1AA223B600F86151 /* WRCFavoritesTableViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCFavoritesTableViewHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,8 +277,8 @@
 			children = (
 				DAA6D1431AA22160001D70B1 /* WRCFavoritesViewController.h */,
 				DAA6D1441AA22160001D70B1 /* WRCFavoritesViewController.m */,
-				DAFEAF591AA223B600F86151 /* WRCFavoritesTableDataSource.h */,
-				DAFEAF5A1AA223B600F86151 /* WRCFavoritesTableDataSource.m */,
+				DAFEAF591AA223B600F86151 /* WRCFavoritesTableViewHandler.h */,
+				DAFEAF5A1AA223B600F86151 /* WRCFavoritesTableViewHandler.m */,
 			);
 			name = "Favorites Screen";
 			sourceTree = "<group>";
@@ -431,7 +431,7 @@
 				DA82508A1A98EE0E006717E4 /* WRCInterappURLManager.m in Sources */,
 				DA8250901A98FE5C006717E4 /* NSURL+WRCAdditions.m in Sources */,
 				DA86EB8E1A9011A7002C1FE6 /* WRCStationsMapViewHandler.m in Sources */,
-				DAFEAF5B1AA223B600F86151 /* WRCFavoritesTableDataSource.m in Sources */,
+				DAFEAF5B1AA223B600F86151 /* WRCFavoritesTableViewHandler.m in Sources */,
 				DA322EED1A8FBAD800D9CEE8 /* main.m in Sources */,
 				DA86EB851A9007A0002C1FE6 /* WRCViewController.m in Sources */,
 				DA322F191A8FCB6A00D9CEE8 /* WRCLandingViewController.m in Sources */,

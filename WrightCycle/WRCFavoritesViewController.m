@@ -7,12 +7,12 @@
 //
 
 #import "WRCDataManager.h"
-#import "WRCFavoritesTableDataSource.h"
+#import "WRCFavoritesTableViewHandler.h"
 #import "WRCFavoritesViewController.h"
 
 @interface WRCFavoritesViewController ()
 
-@property (strong, nonatomic) IBOutlet WRCFavoritesTableDataSource *tableDataSource;
+@property (strong, nonatomic) IBOutlet WRCFavoritesTableViewHandler *tableViewHandler;
 
 @end
 
@@ -24,7 +24,7 @@
     [super viewWillAppear: animated];
     
     NSArray *favoriteStations = [[WRCDataManager sharedManager] fetchFavoriteStations];
-    [self.tableDataSource updateTableWithFavoriteStations: favoriteStations];
+    [self.tableViewHandler updateTableWithFavoriteStations: favoriteStations];
 }
 
 @end

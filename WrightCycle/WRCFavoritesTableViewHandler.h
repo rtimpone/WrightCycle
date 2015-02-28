@@ -1,5 +1,5 @@
 //
-//  WRCFavoritesTableDataSource.h
+//  WRCFavoritesTableViewHandler.h
 //  WrightCycle
 //
 //  Created by Rob Timpone on 2/28/15.
@@ -10,7 +10,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WRCFavoritesTableDataSource : NSObject <UITableViewDataSource, UITableViewDelegate>
+@interface WRCFavoritesTableViewHandler : NSObject <UITableViewDataSource, UITableViewDelegate>
 
 /** Updates the data source with a list of favorite stations and reload the table view */
 - (void)updateTableWithFavoriteStations: (NSArray *)favoriteStations;

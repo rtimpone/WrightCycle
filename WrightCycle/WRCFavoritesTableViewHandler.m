@@ -1,15 +1,15 @@
 //
-//  WRCFavoritesTableDataSource.m
+//  WRCFavoritesTableViewHandler.m
 //  WrightCycle
 //
 //  Created by Rob Timpone on 2/28/15.
 //  Copyright (c) 2015 Rob Timpone. All rights reserved.
 //
 
-#import "WRCFavoritesTableDataSource.h"
+#import "WRCFavoritesTableViewHandler.h"
 #import "WRCStation.h"
 
-@interface WRCFavoritesTableDataSource ()
+@interface WRCFavoritesTableViewHandler ()
 
 /** The table view to display the favorite stations in */
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -20,7 +20,7 @@
 @end
 
 
-@implementation WRCFavoritesTableDataSource
+@implementation WRCFavoritesTableViewHandler
 
 #pragma mark - Table View Data Source
 

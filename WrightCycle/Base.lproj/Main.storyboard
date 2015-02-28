@@ -180,11 +180,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Favorite Stations" id="h24-F1-gX8"/>
                     <connections>
-                        <outlet property="tableDataSource" destination="WSb-Yh-bpt" id="Bh6-rz-o1e"/>
+                        <outlet property="tableViewHandler" destination="WSb-Yh-bpt" id="KCl-jN-fNe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fLO-49-U2Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="WSb-Yh-bpt" customClass="WRCFavoritesTableDataSource">
+                <customObject id="WSb-Yh-bpt" customClass="WRCFavoritesTableViewHandler">
                     <connections>
                         <outlet property="tableView" destination="iOs-st-su7" id="Lak-1a-jaK"/>
                     </connections>
