@@ -37,4 +37,7 @@
 /** Zooms the map view to the initial region without animation */
 - (void)zoomMapViewInOnInitialRegion;
 
+/** Zooms the map view in on the user's current location */
+- (void)zoomMapViewInOnUsersLocation;
+
 @end

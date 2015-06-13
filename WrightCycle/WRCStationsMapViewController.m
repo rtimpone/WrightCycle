@@ -66,9 +66,7 @@
 {
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
     {
-        NSString *title = NSLocalizedString(@"Location Services are Disabled", nil);
-        NSString *message = NSLocalizedString(@"To zoom in on stations near you, this app needs access to your current location. You can enable location services by going to the iPhone settings and navigating to WrightCycle -> Location Services", nil);
-        [self showOkAlertWithTitle: title message: message];
+        [self showLocationServicesDisabledAlert];
         
         //the user isn't letting us use their location, so just zoom in on chicago so they can see most of the stations
         [self.mapViewHandler updateMapViewForUserDeniedLocationServices];
@@ -81,6 +79,32 @@
 {
     self.selectedStation = station;
     [self performSegueWithIdentifier: @"stationDetailsSegue" sender: self];
+}
+
+#pragma mark - Actions
+
+//Called when the user taps the near me button
+//Zooms the map view in on the user's current location
+- (IBAction)nearMeAction: (id)sender
+{
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
+    {
+        [self showLocationServicesDisabledAlert];
+    }
+    else
+    {
+        [self.mapViewHandler zoomMapViewInOnUsersLocation];
+    }
+}
+
+#pragma mark - Helpers
+
+//Shows an alert to the user letting them know location services are disabled
+- (void)showLocationServicesDisabledAlert
+{
+    NSString *title = NSLocalizedString(@"Location Services are Disabled", nil);
+    NSString *message = NSLocalizedString(@"To zoom in on stations near you, this app needs access to your current location. You can enable location services by going to the iPhone settings and navigating to WrightCycle -> Location Services", nil);
+    [self showOkAlertWithTitle: title message: message];
 }
 
 @end

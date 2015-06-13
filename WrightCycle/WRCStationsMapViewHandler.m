@@ -22,6 +22,11 @@
     [self.mapView zoomInOnChicagoAnimated: NO];
 }
 
+- (void)zoomMapViewInOnUsersLocation
+{
+    [self.mapView zoomInOnCurrentUserLocationAnimated: YES];
+}
+
 - (void)setStations: (NSArray *)stations
 {
     _stations = stations;

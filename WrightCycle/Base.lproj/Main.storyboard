@@ -93,6 +93,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="STATIONS MAP" id="7TZ-wa-Oop">
                         <barButtonItem key="backBarButtonItem" title="Back" id="gSq-O6-ygA"/>
+                        <barButtonItem key="rightBarButtonItem" title="Near Me" id="MoA-28-4qB">
+                            <connections>
+                                <action selector="nearMeAction:" destination="08O-Wg-4Zh" id="hfk-3f-OME"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mapViewHandler" destination="Cqc-Mc-dlG" id="8gy-tE-qfV"/>
@@ -528,6 +533,6 @@
         <image name="splash_skyline" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="O1l-4m-hlP"/>
+        <segue reference="dsr-ft-Gog"/>
     </inferredMetricsTieBreakers>
 </document>
