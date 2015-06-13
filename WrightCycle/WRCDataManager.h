@@ -20,20 +20,31 @@
 
 /** Request the current list of stations and refresh stations if necessary
  
- Returns the currently cached list of stations if available immediately. Also makes a request to the
- Divvy API to refresh stations if it has been at least 1 minute since the last refresh. The completion
- blocks will only be triggered if an API request is made.
+ Returns the currently cached list of stations immediately. Also makes a request to the Divvy API to refresh stations if it has been at least 
+ 1 minute since the last refresh. The completion blocks will only be triggered if an API request is actually made.
  
- @param success The block to execute after a successful API response. The array passed to the block
-                is the newly refreshed list of stations.
- 
- @param failure The block to execute after encountering an API error. This parameter is optional in case
-                the caller wants the request to fail silently. 
+ @param success The block to execute after a successful API response. The array passed to the blockis the newly refreshed list of stations.
+ @param failure The block to execute after encountering an API error. This parameter is optional in casethe caller wants the request to fail silently.
  
  @return The currently cached list of stations.
  
  */
 - (NSArray *)getStationsListWithSuccess: (void (^)(NSArray *stations))success failure: (void (^)(NSError *error))failure;
+
+/** Request the current list of stations and refresh stations immediately or if necessary
+ 
+ Returns the currently cached list of stations immediately. Also makes a request to the Divvy API to refresh stations if it has been at least 
+ 1 minute since the last refresh or if the shouldMakeRequestImmediately is YES. The completion blocks will only be triggered if an API request 
+ is actually made.
+ 
+ @param shouldMakeRequestImmediately Whether the API request should be made regardless of the last time the request was made.
+ @param success The block to execute after a successful API response. The array passed to the blockis the newly refreshed list of stations.
+ @param failure The block to execute after encountering an API error. This parameter is optional in case the caller wants the request to fail silently.
+ 
+ @return The currently cached list of stations.
+ 
+ */
+- (NSArray *)getStationsListImmediately: (BOOL)shouldMakeRequestImmediately withSuccess: (void (^)(NSArray *stations))success failure: (void (^)(NSError *error))failure;
 
 /** Add a station to the favorites list
  

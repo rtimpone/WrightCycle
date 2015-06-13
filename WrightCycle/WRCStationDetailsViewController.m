@@ -52,6 +52,7 @@
 
 #pragma mark - Actions
 
+//Add or remove the station from the user's favorites list
 - (IBAction)modifyFavoritesAction: (id)sender
 {
     if ([[WRCDataManager sharedManager] stationIsFavorite: self.station])
@@ -66,6 +67,7 @@
     [self updateFavoritesButtonText];
 }
 
+//Open the station in Google Maps if possible, otherwise open in Apple Maps
 - (IBAction)getDirectionsAction: (id)sender
 {
     if ([WRCInterappURLManager canOpenGoogleMaps])
