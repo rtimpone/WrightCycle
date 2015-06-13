@@ -62,7 +62,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="27" y="359"/>
+            <point key="canvasLocation" x="31" y="647"/>
         </scene>
         <!--STATIONS MAP-->
         <scene sceneID="Hvb-jS-31O">
@@ -113,7 +113,7 @@
         <scene sceneID="kOS-tA-QuC">
             <objects>
                 <navigationController id="PDQ-5Z-ykt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorites" id="b52-if-4Ui"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="Star" id="b52-if-4Ui"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yKr-ah-VzO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -125,6 +125,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nK6-QG-WzW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1743" y="647"/>
+        </scene>
+        <!--Account-->
+        <scene sceneID="1GK-Mk-Hzu">
+            <objects>
+                <viewController id="QAN-eT-Oet" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qg7-EU-VI9"/>
+                        <viewControllerLayoutGuide type="bottom" id="WaI-3Q-hZO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tRd-ZJ-vXJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Account" image="Contacts" id="lE4-2q-p0m"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1yo-3j-u4p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1743" y="1415"/>
         </scene>
         <!--FAVORITE STATIONS-->
         <scene sceneID="HCg-T3-hw8">
@@ -462,11 +481,11 @@
             </objects>
             <point key="canvasLocation" x="3383" y="358.5"/>
         </scene>
-        <!--Stations Map-->
+        <!--Map-->
         <scene sceneID="uMr-QJ-Oyx">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" id="Kvh-p6-LLV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Stations Map" id="gOd-up-WdQ"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="Map" id="gOd-up-WdQ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="b1P-E2-aYz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -494,14 +513,18 @@
                     <connections>
                         <segue destination="Kvh-p6-LLV" kind="relationship" relationship="viewControllers" id="G1o-GJ-2QN"/>
                         <segue destination="PDQ-5Z-ykt" kind="relationship" relationship="viewControllers" id="Jok-Cy-3dU"/>
+                        <segue destination="QAN-eT-Oet" kind="relationship" relationship="viewControllers" id="JIl-6H-HKS"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2LM-kX-PuG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="873" y="359"/>
+            <point key="canvasLocation" x="877" y="647"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Contacts" width="25" height="25"/>
+        <image name="Map" width="25" height="25"/>
+        <image name="Star" width="25" height="25"/>
         <image name="splash_skyline" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
