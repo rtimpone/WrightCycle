@@ -52,17 +52,18 @@
 //Tells the request handler to get fresh data from the API
 - (void)favoritesTableViewHandlerUserActivatedRefreshControl: (WRCFavoritesTableViewHandler *)handler
 {
-    [[WRCDataManager sharedManager] getStationsListWithSuccess: ^(NSArray *stations) {
+    [[WRCDataManager sharedManager] getStationsListImmediately: YES
+                                                   withSuccess: ^(NSArray *stations) {
         
-        [self refreshFavoriteStations];
+                                                       [self refreshFavoriteStations];
         
-    } failure: ^(NSError *error) {
+                                                   } failure: ^(NSError *error) {
         
-        NSString *title = NSLocalizedString(@"Error", nil);
-        NSString *message = NSLocalizedString(@"Unable to refresh station data.", nil);
-        [self showOkAlertWithTitle: title message: message];
-        
-    }];
+                                                       NSString *title = NSLocalizedString(@"Error", nil);
+                                                       NSString *message = NSLocalizedString(@"Unable to refresh station data.", nil);
+                                                       [self showOkAlertWithTitle: title message: message];
+                                                        
+                                                   }];
 }
 
 #pragma mark - Helpers

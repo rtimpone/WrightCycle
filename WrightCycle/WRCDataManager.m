@@ -50,9 +50,14 @@ NSString * const kFavoriteStations = @"kFavoriteStations";
 
 #pragma mark - Divvy API Methods
 
-- (NSArray *)getStationsListWithSuccess: (void (^)(NSArray *))success failure: (void (^)(NSError *))failure
+- (NSArray *)getStationsListWithSuccess: (void (^)(NSArray *stations))success failure: (void (^)(NSError *error))failure
 {
-    if ([self shouldRefreshStations])
+    return [self getStationsListImmediately: NO withSuccess: success failure: failure];
+}
+
+- (NSArray *)getStationsListImmediately: (BOOL)shouldMakeRequestImmediately withSuccess: (void (^)(NSArray *stations))success failure: (void (^)(NSError *error))failure
+{
+    if ([self shouldRefreshStations] || shouldMakeRequestImmediately)
     {
         NSURL *url = [NSURL URLWithString: kDivvyStationsJsonFeedUrlString];
         NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL: url completionHandler: ^(NSData *data, NSURLResponse *response, NSError *error) {
