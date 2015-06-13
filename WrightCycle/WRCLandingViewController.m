@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Rob Timpone. All rights reserved.
 //
 
-#import "WRCDataManager.h"
+#import "WRCNetworkingManager.h"
 #import "WRCLandingViewController.h"
 
 @implementation WRCLandingViewController
@@ -22,7 +22,7 @@
 - (void)refreshStations
 {
     //show a retry alert if the user doesn't have an internet connection
-    if (![WRCDataManager internetConnectionIsAvailable])
+    if (![WRCNetworkingManager internetConnectionIsAvailable])
     {
         NSString *title = NSLocalizedString(@"No Internet Connection", nil);
         NSString *message = NSLocalizedString(@"Unable to retrieve station data, please check your internet connection and try again.", nil);
@@ -32,7 +32,7 @@
         return;
     }
     
-    [[WRCDataManager sharedManager] getStationsListWithSuccess: ^(NSArray *stations) {
+    [[WRCNetworkingManager sharedManager] getStationsListWithSuccess: ^(NSArray *stations) {
         
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName: @"Main" bundle: nil];
         UITabBarController *tabController = [storyboard instantiateViewControllerWithIdentifier: @"tabBarController"];

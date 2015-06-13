@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0C9EDA9180B8437F83AA85A9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A67CA82CAF840ADB2C2E018 /* libPods.a */; };
+		DA1D53BF1B2C88D200BD31E3 /* WRCFavoriteStationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1D53BE1B2C88D200BD31E3 /* WRCFavoriteStationsManager.m */; };
 		DA322EED1A8FBAD800D9CEE8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA322EEC1A8FBAD800D9CEE8 /* main.m */; };
 		DA322EF01A8FBAD800D9CEE8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA322EEF1A8FBAD800D9CEE8 /* AppDelegate.m */; };
 		DA322EF61A8FBAD800D9CEE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA322EF41A8FBAD800D9CEE8 /* Main.storyboard */; };
 		DA322EF81A8FBAD800D9CEE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA322EF71A8FBAD800D9CEE8 /* Images.xcassets */; };
 		DA322F071A8FBAD800D9CEE8 /* WrightCycleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA322F061A8FBAD800D9CEE8 /* WrightCycleTests.m */; };
 		DA322F191A8FCB6A00D9CEE8 /* WRCLandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA322F181A8FCB6A00D9CEE8 /* WRCLandingViewController.m */; };
-		DA322F231A8FCD3100D9CEE8 /* WRCDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA322F221A8FCD3100D9CEE8 /* WRCDataManager.m */; };
+		DA322F231A8FCD3100D9CEE8 /* WRCNetworkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA322F221A8FCD3100D9CEE8 /* WRCNetworkingManager.m */; };
 		DA322F271A8FD2C600D9CEE8 /* WRCStation.m in Sources */ = {isa = PBXBuildFile; fileRef = DA322F261A8FD2C600D9CEE8 /* WRCStation.m */; };
 		DA322F291A8FDEBE00D9CEE8 /* Oswald-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA322F1B1A8FCB8A00D9CEE8 /* Oswald-Bold.ttf */; };
 		DA322F2A1A8FDEBE00D9CEE8 /* Oswald-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA322F1C1A8FCB8A00D9CEE8 /* Oswald-Light.ttf */; };
@@ -47,6 +48,8 @@
 /* Begin PBXFileReference section */
 		0A67CA82CAF840ADB2C2E018 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B460B74BEDC944DBB4C38577 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		DA1D53BD1B2C88D200BD31E3 /* WRCFavoriteStationsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WRCFavoriteStationsManager.h; path = Managers/WRCFavoriteStationsManager.h; sourceTree = "<group>"; };
+		DA1D53BE1B2C88D200BD31E3 /* WRCFavoriteStationsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WRCFavoriteStationsManager.m; path = Managers/WRCFavoriteStationsManager.m; sourceTree = "<group>"; };
 		DA322EE71A8FBAD800D9CEE8 /* WrightCycle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WrightCycle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA322EEB1A8FBAD800D9CEE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA322EEC1A8FBAD800D9CEE8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -63,8 +66,8 @@
 		DA322F1B1A8FCB8A00D9CEE8 /* Oswald-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Bold.ttf"; sourceTree = "<group>"; };
 		DA322F1C1A8FCB8A00D9CEE8 /* Oswald-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Light.ttf"; sourceTree = "<group>"; };
 		DA322F1D1A8FCB8A00D9CEE8 /* Oswald-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Regular.ttf"; sourceTree = "<group>"; };
-		DA322F211A8FCD3100D9CEE8 /* WRCDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCDataManager.h; sourceTree = "<group>"; };
-		DA322F221A8FCD3100D9CEE8 /* WRCDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCDataManager.m; sourceTree = "<group>"; };
+		DA322F211A8FCD3100D9CEE8 /* WRCNetworkingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCNetworkingManager.h; sourceTree = "<group>"; };
+		DA322F221A8FCD3100D9CEE8 /* WRCNetworkingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCNetworkingManager.m; sourceTree = "<group>"; };
 		DA322F251A8FD2C600D9CEE8 /* WRCStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WRCStation.h; path = Model/WRCStation.h; sourceTree = "<group>"; };
 		DA322F261A8FD2C600D9CEE8 /* WRCStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WRCStation.m; path = Model/WRCStation.m; sourceTree = "<group>"; };
 		DA8250881A98EE0E006717E4 /* WRCInterappURLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WRCInterappURLManager.h; path = Managers/WRCInterappURLManager.h; sourceTree = "<group>"; };
@@ -204,10 +207,12 @@
 		DA322F241A8FD28100D9CEE8 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				DA322F211A8FCD3100D9CEE8 /* WRCDataManager.h */,
-				DA322F221A8FCD3100D9CEE8 /* WRCDataManager.m */,
+				DA1D53BD1B2C88D200BD31E3 /* WRCFavoriteStationsManager.h */,
+				DA1D53BE1B2C88D200BD31E3 /* WRCFavoriteStationsManager.m */,
 				DA8250881A98EE0E006717E4 /* WRCInterappURLManager.h */,
 				DA8250891A98EE0E006717E4 /* WRCInterappURLManager.m */,
+				DA322F211A8FCD3100D9CEE8 /* WRCNetworkingManager.h */,
+				DA322F221A8FCD3100D9CEE8 /* WRCNetworkingManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -421,7 +426,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA322F231A8FCD3100D9CEE8 /* WRCDataManager.m in Sources */,
+				DA322F231A8FCD3100D9CEE8 /* WRCNetworkingManager.m in Sources */,
 				DA86EB9D1A904956002C1FE6 /* WRCStationDetailsMapViewHandler.m in Sources */,
 				DA9367681A9000830047578C /* WRCStationsMapViewController.m in Sources */,
 				DAA6D1451AA22160001D70B1 /* WRCFavoritesViewController.m in Sources */,
@@ -432,6 +437,7 @@
 				DA8250901A98FE5C006717E4 /* NSURL+WRCAdditions.m in Sources */,
 				DA86EB8E1A9011A7002C1FE6 /* WRCStationsMapViewHandler.m in Sources */,
 				DAFEAF5B1AA223B600F86151 /* WRCFavoritesTableViewHandler.m in Sources */,
+				DA1D53BF1B2C88D200BD31E3 /* WRCFavoriteStationsManager.m in Sources */,
 				DA322EED1A8FBAD800D9CEE8 /* main.m in Sources */,
 				DA86EB851A9007A0002C1FE6 /* WRCViewController.m in Sources */,
 				DA322F191A8FCB6A00D9CEE8 /* WRCLandingViewController.m in Sources */,

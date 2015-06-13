@@ -6,7 +6,8 @@
 //  Copyright (c) 2015 Rob Timpone. All rights reserved.
 //
 
-#import "WRCDataManager.h"
+#import "WRCNetworkingManager.h"
+#import "WRCFavoriteStationsManager.h"
 #import "WRCInterappURLManager.h"
 #import "WRCStation.h"
 #import "WRCStationDetailsMapViewHandler.h"
@@ -40,8 +41,8 @@
     
     self.mapViewHandler.station = self.station;
     
-    //refresh the stations list if needed
-    [[WRCDataManager sharedManager] getStationsListWithSuccess: ^(NSArray *stations) {
+    //refresh the stations list if needed and fail silently
+    [[WRCNetworkingManager sharedManager] getStationsListWithSuccess: ^(NSArray *stations) {
         
         NSPredicate *predicate = [NSPredicate predicateWithFormat: @"stationId = %@", self.station.stationId];
         self.station = [[stations filteredArrayUsingPredicate: predicate] firstObject];
@@ -55,13 +56,13 @@
 //Add or remove the station from the user's favorites list
 - (IBAction)modifyFavoritesAction: (id)sender
 {
-    if ([[WRCDataManager sharedManager] stationIsFavorite: self.station])
+    if ([WRCFavoriteStationsManager stationIsFavorite: self.station])
     {
-        [[WRCDataManager sharedManager] removeStationFromFavorites: self.station];
+        [WRCFavoriteStationsManager removeStationFromFavorites: self.station];
     }
     else
     {
-        [[WRCDataManager sharedManager] addStationAsFavorite: self.station];
+        [WRCFavoriteStationsManager addStationAsFavorite: self.station];
     }
     
     [self updateFavoritesButtonText];
@@ -105,7 +106,7 @@
 {
     NSString *addToFavoritesString = NSLocalizedString(@"Add to Favorites", nil);
     NSString *removeFromFavoritesString = NSLocalizedString(@"Remove from Favorites", nil);
-    NSString *buttonText = [[WRCDataManager sharedManager] stationIsFavorite: self.station] ? removeFromFavoritesString : addToFavoritesString;
+    NSString *buttonText = [WRCFavoriteStationsManager stationIsFavorite: self.station] ? removeFromFavoritesString : addToFavoritesString;
     
     [self.favoriteButton setTitle: buttonText forState: UIControlStateNormal];
 }

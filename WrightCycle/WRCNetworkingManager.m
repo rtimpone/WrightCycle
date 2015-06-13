@@ -1,5 +1,5 @@
 //
-//  WRCDataManager.m
+//  WRCNetworkingManager.m
 //  WrightCycle
 //
 //  Created by Rob Timpone on 2/14/15.
@@ -7,10 +7,10 @@
 //
 
 #import <Reachability/Reachability.h>
-#import "WRCDataManager.h"
+#import "WRCNetworkingManager.h"
 #import "WRCStation.h"
 
-@interface WRCDataManager ()
+@interface WRCNetworkingManager ()
 
 /** The most recent list of stations from the API */
 @property (strong, nonatomic) NSArray *cachedStations;
@@ -23,24 +23,24 @@
 
 NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/stations/json";
 
-//The key used to store an array of station ids in user defaults representing the user's favorite stations
-NSString * const kFavoriteStations = @"kFavoriteStations";
-
 //The Divvy API only updates its JSON feed once a minute
 #define SECONDS_TO_WAIT_BEFORE_REFRESHING_DATA 60
 
+@implementation WRCNetworkingManager
 
-@implementation WRCDataManager
+#pragma mark - Singleton
 
 + (instancetype)sharedManager
 {
-    static WRCDataManager *sharedManager;
+    static WRCNetworkingManager *sharedManager;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedManager = [[WRCDataManager alloc] init];
+        sharedManager = [[WRCNetworkingManager alloc] init];
     });
     return sharedManager;
 }
+
+#pragma mark - Reachability
 
 + (BOOL)internetConnectionIsAvailable
 {
@@ -48,7 +48,7 @@ NSString * const kFavoriteStations = @"kFavoriteStations";
     return reachabilty.isReachable;
 }
 
-#pragma mark - Divvy API Methods
+#pragma mark - Divvy API Requests
 
 - (NSArray *)getStationsListWithSuccess: (void (^)(NSArray *stations))success failure: (void (^)(NSError *error))failure
 {
@@ -97,6 +97,8 @@ NSString * const kFavoriteStations = @"kFavoriteStations";
     return self.cachedStations;
 }
 
+#pragma mark - Cooldown Period
+
 //An API request should only be made if we don't have any data yet or if 60 seconds has elapsed since the last data refresh
 - (BOOL)shouldRefreshStations
 {
@@ -106,66 +108,12 @@ NSString * const kFavoriteStations = @"kFavoriteStations";
     return thisIsTheFirstRefresh || enoughTimeHasElapsedToRefresh;
 }
 
-#pragma mark - Favorite Stations Methods
+#pragma mark - Cached Stations
 
-//The array of favorite station ids stored in user defaults
-- (NSArray *)fetchFavoriteStationsIds
+- (NSArray *)fetchCachedStationsWithIds: (NSArray *)stationIds
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *favoriteStationIds = [defaults objectForKey: kFavoriteStations];
-    
-    if (!favoriteStationIds)
-    {
-        favoriteStationIds = @[];
-    }
-    
-    return favoriteStationIds;
-}
-
-- (NSArray *)fetchFavoriteStations
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *favoriteStationIds = [defaults objectForKey: kFavoriteStations];
-    
-    NSMutableArray *favoriteStations = [[NSMutableArray alloc] init];
-    for (NSNumber *stationId in favoriteStationIds)
-    {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"stationId = %@", stationId];
-        WRCStation *station = [[self.cachedStations filteredArrayUsingPredicate: predicate] firstObject];
-        [favoriteStations addObject: station];
-    }
-    
-    return favoriteStations;
-}
-
-- (void)addStationAsFavorite: (WRCStation *)station
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *favoriteStationIds = [self fetchFavoriteStationsIds];
-
-    NSMutableArray *mutableFavoriteStationIds = [favoriteStationIds mutableCopy];
-    [mutableFavoriteStationIds addObject: station.stationId];
-    
-    [defaults setObject: mutableFavoriteStationIds forKey: kFavoriteStations];
-    [defaults synchronize];
-}
-
-- (void)removeStationFromFavorites: (WRCStation *)station
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *favoriteStationIds = [self fetchFavoriteStationsIds];
-    
-    NSMutableArray *mutableFavoriteStationIds = [favoriteStationIds mutableCopy];
-    [mutableFavoriteStationIds removeObject: station.stationId];
-    
-    [defaults setObject: mutableFavoriteStationIds forKey: kFavoriteStations];
-    [defaults synchronize];
-}
-
-- (BOOL)stationIsFavorite: (WRCStation *)station
-{
-    NSArray *favoriteStationIds = [self fetchFavoriteStationsIds];
-    return [favoriteStationIds containsObject: station.stationId];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"stationId IN %@", stationIds];
+    return [self.cachedStations filteredArrayUsingPredicate: predicate];
 }
 
 @end

@@ -6,7 +6,8 @@
 //  Copyright (c) 2015 Rob Timpone. All rights reserved.
 //
 
-#import "WRCDataManager.h"
+#import "WRCNetworkingManager.h"
+#import "WRCFavoriteStationsManager.h"
 #import "WRCFavoritesViewController.h"
 #import "WRCStationDetailsViewController.h"
 
@@ -52,7 +53,7 @@
 //Tells the request handler to get fresh data from the API
 - (void)favoritesTableViewHandlerUserActivatedRefreshControl: (WRCFavoritesTableViewHandler *)handler
 {
-    [[WRCDataManager sharedManager] getStationsListImmediately: YES
+    [[WRCNetworkingManager sharedManager] getStationsListImmediately: YES
                                                    withSuccess: ^(NSArray *stations) {
         
                                                        [self refreshFavoriteStations];
@@ -71,7 +72,7 @@
 //Fetches the favorite stations from the data manager and passes them to the table view handler to update the table
 - (void)refreshFavoriteStations
 {
-    NSArray *favoriteStations = [[WRCDataManager sharedManager] fetchFavoriteStations];
+    NSArray *favoriteStations = [WRCFavoriteStationsManager fetchFavoriteStations];
     [self.tableViewHandler updateTableWithFavoriteStations: favoriteStations];
 }
 
