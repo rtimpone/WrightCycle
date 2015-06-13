@@ -17,6 +17,9 @@
 /** Called when the user taps on a favorite station table view cell */
 - (void)favoritesTableViewHandler: (WRCFavoritesTableViewHandler *)handler userSelectedStation: (WRCStation *)station;
 
+/** Called when the user activates the table refresh control */
+- (void)favoritesTableViewHandlerUserActivatedRefreshControl: (WRCFavoritesTableViewHandler *)handler;
+
 @end
 
 

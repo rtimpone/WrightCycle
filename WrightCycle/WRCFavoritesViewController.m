@@ -26,9 +26,7 @@
 - (void)viewWillAppear: (BOOL)animated
 {
     [super viewWillAppear: animated];
-    
-    NSArray *favoriteStations = [[WRCDataManager sharedManager] fetchFavoriteStations];
-    [self.tableViewHandler updateTableWithFavoriteStations: favoriteStations];
+    [self refreshFavoriteStations];
 }
 
 - (void)prepareForSegue: (UIStoryboardSegue *)segue sender: (id)sender
@@ -48,6 +46,32 @@
 {
     self.selectedStation = station;
     [self performSegueWithIdentifier: @"stationDetailsSegue" sender: self];
+}
+
+//Called when the user activates the table view's refresh control
+//Tells the request handler to get fresh data from the API
+- (void)favoritesTableViewHandlerUserActivatedRefreshControl: (WRCFavoritesTableViewHandler *)handler
+{
+    [[WRCDataManager sharedManager] getStationsListWithSuccess: ^(NSArray *stations) {
+        
+        [self refreshFavoriteStations];
+        
+    } failure: ^(NSError *error) {
+        
+        NSString *title = NSLocalizedString(@"Error", nil);
+        NSString *message = NSLocalizedString(@"Unable to refresh station data.", nil);
+        [self showOkAlertWithTitle: title message: message];
+        
+    }];
+}
+
+#pragma mark - Helpers
+
+//Fetches the favorite stations from the data manager and passes them to the table view handler to update the table
+- (void)refreshFavoriteStations
+{
+    NSArray *favoriteStations = [[WRCDataManager sharedManager] fetchFavoriteStations];
+    [self.tableViewHandler updateTableWithFavoriteStations: favoriteStations];
 }
 
 @end

@@ -17,6 +17,9 @@
 /** The favorite stations to display in the table view */
 @property (strong, nonatomic) NSArray *favoriteStations;
 
+/** The refresh control to handle pull to refresh functionality */
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+
 @end
 
 
@@ -53,10 +56,38 @@
     [tableView deselectRowAtIndexPath: indexPath animated: YES];
 }
 
+#pragma mark - Actions
+
+//Called when the user activates the refresh control
+//Alerts the delegate that the refresh control was activated
+- (void)refreshControlAction
+{
+    [self.delegate favoritesTableViewHandlerUserActivatedRefreshControl: self];
+}
+
+#pragma mark - Setters
+
+//Sets up a refresh control when the table view is set
+- (void)setTableView: (UITableView *)tableView
+{
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget: self action: @selector(refreshControlAction) forControlEvents: UIControlEventValueChanged];
+    [tableView addSubview: refreshControl];
+    [tableView sendSubviewToBack: refreshControl];
+
+    self.refreshControl = refreshControl;
+}
+
 #pragma mark - Helpers
 
+//Stops the refresh control, updates the favorites stations array, and reloads the table view
 - (void)updateTableWithFavoriteStations: (NSArray *)favoriteStations
 {
+    if (self.refreshControl.isRefreshing)
+    {
+        [self.refreshControl endRefreshing];
+    }
+    
     self.favoriteStations = favoriteStations;
     [self.tableView reloadData];
 }

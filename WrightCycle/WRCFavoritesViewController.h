@@ -10,8 +10,9 @@
 
 #import <Foundation/Foundation.h>
 #import "WRCFavoritesTableViewHandler.h"
+#import "WRCViewController.h"
 
-@interface WRCFavoritesViewController : UIViewController <WRCFavoritesTableViewHandlerDelegate>
+@interface WRCFavoritesViewController : WRCViewController <WRCFavoritesTableViewHandlerDelegate>
 
 
 
