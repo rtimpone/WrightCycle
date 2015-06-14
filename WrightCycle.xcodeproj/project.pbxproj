@@ -47,7 +47,7 @@
 
 /* Begin PBXFileReference section */
 		0A67CA82CAF840ADB2C2E018 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B460B74BEDC944DBB4C38577 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		6227A4CBE91ED54197257B43 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DA1D53BD1B2C88D200BD31E3 /* WRCFavoriteStationsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WRCFavoriteStationsManager.h; path = Managers/WRCFavoriteStationsManager.h; sourceTree = "<group>"; };
 		DA1D53BE1B2C88D200BD31E3 /* WRCFavoriteStationsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WRCFavoriteStationsManager.m; path = Managers/WRCFavoriteStationsManager.m; sourceTree = "<group>"; };
 		DA322EE71A8FBAD800D9CEE8 /* WrightCycle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WrightCycle.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +93,7 @@
 		DAA6D1441AA22160001D70B1 /* WRCFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCFavoritesViewController.m; sourceTree = "<group>"; };
 		DAFEAF591AA223B600F86151 /* WRCFavoritesTableViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCFavoritesTableViewHandler.h; sourceTree = "<group>"; };
 		DAFEAF5A1AA223B600F86151 /* WRCFavoritesTableViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCFavoritesTableViewHandler.m; sourceTree = "<group>"; };
+		F81832382BDE3F1C5B9D0881 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +116,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B0B142E63179F7BFD2E3E41F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F81832382BDE3F1C5B9D0881 /* Pods.debug.xcconfig */,
+				6227A4CBE91ED54197257B43 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D4DAEFEED01943F9B5E8D927 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,8 +140,8 @@
 				DA322EE91A8FBAD800D9CEE8 /* WrightCycle */,
 				DA322F031A8FBAD800D9CEE8 /* WrightCycleTests */,
 				DA322EE81A8FBAD800D9CEE8 /* Products */,
-				B460B74BEDC944DBB4C38577 /* Pods.xcconfig */,
 				D4DAEFEED01943F9B5E8D927 /* Frameworks */,
+				B0B142E63179F7BFD2E3E41F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -416,7 +426,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -564,7 +574,7 @@
 		};
 		DA322F0B1A8FBAD800D9CEE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B460B74BEDC944DBB4C38577 /* Pods.xcconfig */;
+			baseConfigurationReference = F81832382BDE3F1C5B9D0881 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WrightCycle/Info.plist;
@@ -575,7 +585,7 @@
 		};
 		DA322F0C1A8FBAD800D9CEE8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B460B74BEDC944DBB4C38577 /* Pods.xcconfig */;
+			baseConfigurationReference = 6227A4CBE91ED54197257B43 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WrightCycle/Info.plist;
@@ -586,6 +596,7 @@
 		};
 		DA322F0E1A8FBAD800D9CEE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F81832382BDE3F1C5B9D0881 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -605,6 +616,7 @@
 		};
 		DA322F0F1A8FBAD800D9CEE8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6227A4CBE91ED54197257B43 /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
