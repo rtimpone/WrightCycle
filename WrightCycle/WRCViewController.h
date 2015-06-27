@@ -24,10 +24,10 @@
  
  @param title The title to show at the top of the alert.
  @param message The message to display in the alert.
- @param action The block to execute when the user taps on the Retry button. Usually to re-attempt some action that failed.
+ @param retryBlock The block to execute when the user taps on the Retry button. Usually to re-attempt some action that failed.
  
  */
-- (void)showRetryAlertWithTitle: (NSString *)title message: (NSString *)message retryAction: (void (^)(UIAlertAction *action))action;
+- (void)showRetryAlertWithTitle: (NSString *)title message: (NSString *)message retryAction: (void (^)())retryBlock;
 
 /** Show an alert controller with a title, message, and two buttons: Yes and No.
  

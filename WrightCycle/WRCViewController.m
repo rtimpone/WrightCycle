@@ -18,12 +18,12 @@
     [self presentViewController: alertController animated: YES completion: nil];
 }
 
-- (void)showRetryAlertWithTitle: (NSString *)title message: (NSString *)message retryAction: (void (^)(UIAlertAction *action))action
+- (void)showRetryAlertWithTitle: (NSString *)title message: (NSString *)message retryAction: (void (^)())retryBlock
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle: title message: message preferredStyle: UIAlertControllerStyleAlert];
     
     NSString *retryString = NSLocalizedString(@"Retry", nil);
-    UIAlertAction *retryAction = [UIAlertAction actionWithTitle: retryString style: UIAlertActionStyleDefault handler: action];
+    UIAlertAction *retryAction = [UIAlertAction actionWithTitle: retryString style: UIAlertActionStyleDefault handler: retryBlock];
     [alertController addAction: retryAction];
     
     [self presentViewController: alertController animated: YES completion: nil];
