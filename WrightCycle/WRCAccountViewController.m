@@ -14,6 +14,12 @@
 ///The webview to show the account page in
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
+///The activity indicator that is visible when the page first loads
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
+///The toolbar containing the webview controls
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+
 @end
 
 
@@ -27,7 +33,13 @@ NSString * const kPasswordFieldElementName = @"subscriberPassword";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    //adjust insets of the webview to account for the toolbar
+    UIEdgeInsets insets = self.webView.scrollView.contentInset;
+    UIEdgeInsets newInsets = UIEdgeInsetsMake(insets.top, insets.left, insets.bottom + self.toolbar.frame.size.height, insets.right);
+    self.webView.scrollView.contentInset = newInsets;
+    self.webView.scrollView.scrollIndicatorInsets = newInsets;
+    
     //load the Divvy account login page
     NSURL *url = [NSURL URLWithString: kDivvyAccountURL];
     NSURLRequest *request = [NSURLRequest requestWithURL: url];
@@ -47,6 +59,8 @@ NSString * const kPasswordFieldElementName = @"subscriberPassword";
 
 - (void)webViewDidFinishLoad: (UIWebView *)webView
 {
+    [self.activityIndicator stopAnimating];
+    
     if ([self.webView.request.URL.absoluteString isEqualToString: kDivvyAccountURL])
     {
         [self updateUsernameAndPasswordFieldsInWebview];
