@@ -26,7 +26,7 @@
     {
         NSString *title = NSLocalizedString(@"No Internet Connection", nil);
         NSString *message = NSLocalizedString(@"Unable to retrieve station data, please check your internet connection and try again.", nil);
-        [self showRetryAlertWithTitle: title message: message retryAction: ^(UIAlertAction *action) {
+        [self showRetryAlertWithTitle: title message: message retryAction: ^() {
             [self refreshStations];
         }];
         return;
@@ -42,7 +42,7 @@
 
         NSString *title = NSLocalizedString(@"Error", nil);
         NSString *message = NSLocalizedString(@"Unable to retrieve station data, please try again.", nil);
-        [self showRetryAlertWithTitle: title message: message retryAction: ^(UIAlertAction *action) {
+        [self showRetryAlertWithTitle: title message: message retryAction: ^() {
             [self refreshStations];
         }];
     }];

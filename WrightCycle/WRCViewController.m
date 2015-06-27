@@ -12,19 +12,39 @@
 
 - (void)showOkAlertWithTitle: (NSString *)title message: (NSString *)message
 {
+    [self showOkAlertWithTitle: title message: message okAction: nil];
+}
+
+- (void)showOkAlertWithTitle: (NSString *)title message: (NSString *)message okAction: (void (^)())okBlock
+{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle: title message: message preferredStyle: UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle: @"OK" style: UIAlertActionStyleDefault handler: nil];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle: @"OK" style: UIAlertActionStyleDefault handler: okBlock];
     [alertController addAction: okAction];
     [self presentViewController: alertController animated: YES completion: nil];
 }
 
-- (void)showRetryAlertWithTitle: (NSString *)title message: (NSString *)message retryAction: (void (^)(UIAlertAction *action))action
+- (void)showRetryAlertWithTitle: (NSString *)title message: (NSString *)message retryAction: (void (^)())retryBlock
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle: title message: message preferredStyle: UIAlertControllerStyleAlert];
     
     NSString *retryString = NSLocalizedString(@"Retry", nil);
-    UIAlertAction *retryAction = [UIAlertAction actionWithTitle: retryString style: UIAlertActionStyleDefault handler: action];
+    UIAlertAction *retryAction = [UIAlertAction actionWithTitle: retryString style: UIAlertActionStyleDefault handler: retryBlock];
     [alertController addAction: retryAction];
+    
+    [self presentViewController: alertController animated: YES completion: nil];
+}
+
+- (void)showYesNoAlertWithTitle: (NSString *)title message: (NSString *)message yesAction: (void (^)())yesBlock noAction: (void (^)())noBlock
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle: title message: message preferredStyle: UIAlertControllerStyleAlert];
+    
+    NSString *yesString = NSLocalizedString(@"Yes", nil);
+    UIAlertAction *yesAction = [UIAlertAction actionWithTitle: yesString style: UIAlertActionStyleDefault handler: yesBlock];
+    [alertController addAction: yesAction];
+    
+    NSString *noString = NSLocalizedString(@"No", nil);
+    UIAlertAction *noAction = [UIAlertAction actionWithTitle: noString style: UIAlertActionStyleDefault handler: noBlock];
+    [alertController addAction: noAction];
     
     [self presentViewController: alertController animated: YES completion: nil];
 }

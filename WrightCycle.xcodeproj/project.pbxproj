@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C9EDA9180B8437F83AA85A9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A67CA82CAF840ADB2C2E018 /* libPods.a */; };
+		2DABE78B8FDEDA5B9B54D47E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DAC4622DEF8C4C362B5E7A8 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		DA1D53BF1B2C88D200BD31E3 /* WRCFavoriteStationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1D53BE1B2C88D200BD31E3 /* WRCFavoriteStationsManager.m */; };
+		DA32205B1B3F0BAD00C2276A /* WRCKeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA32205A1B3F0BAD00C2276A /* WRCKeychainManager.swift */; };
 		DA322EED1A8FBAD800D9CEE8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA322EEC1A8FBAD800D9CEE8 /* main.m */; };
 		DA322EF01A8FBAD800D9CEE8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA322EEF1A8FBAD800D9CEE8 /* AppDelegate.m */; };
 		DA322EF61A8FBAD800D9CEE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA322EF41A8FBAD800D9CEE8 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 		DA322F2A1A8FDEBE00D9CEE8 /* Oswald-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA322F1C1A8FCB8A00D9CEE8 /* Oswald-Light.ttf */; };
 		DA322F2B1A8FDEBE00D9CEE8 /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA322F1D1A8FCB8A00D9CEE8 /* Oswald-Regular.ttf */; };
 		DA322F2C1A8FDEE600D9CEE8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA322EF91A8FBAD800D9CEE8 /* LaunchScreen.xib */; };
+		DA4C71C11B3F26AB0053E6F0 /* WRCSetupLoginTextHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4C71C01B3F26AB0053E6F0 /* WRCSetupLoginTextHandler.m */; };
 		DA82508A1A98EE0E006717E4 /* WRCInterappURLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8250891A98EE0E006717E4 /* WRCInterappURLManager.m */; };
 		DA8250901A98FE5C006717E4 /* NSURL+WRCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DA82508F1A98FE5C006717E4 /* NSURL+WRCAdditions.m */; };
 		DA86EB851A9007A0002C1FE6 /* WRCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA86EB841A9007A0002C1FE6 /* WRCViewController.m */; };
@@ -32,6 +34,8 @@
 		DA9367681A9000830047578C /* WRCStationsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9367671A9000830047578C /* WRCStationsMapViewController.m */; };
 		DA93676A1A9000A20047578C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9367691A9000A20047578C /* MapKit.framework */; };
 		DAA6D1451AA22160001D70B1 /* WRCFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA6D1441AA22160001D70B1 /* WRCFavoritesViewController.m */; };
+		DAD5EC071B3EEC0A0044FBF8 /* WRCAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD5EC061B3EEC0A0044FBF8 /* WRCAccountViewController.m */; };
+		DAD5EC0C1B3EF3B40044FBF8 /* WRCSetupLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD5EC0B1B3EF3B40044FBF8 /* WRCSetupLoginViewController.m */; };
 		DAFEAF5B1AA223B600F86151 /* WRCFavoritesTableViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFEAF5A1AA223B600F86151 /* WRCFavoritesTableViewHandler.m */; };
 /* End PBXBuildFile section */
 
@@ -46,10 +50,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0A67CA82CAF840ADB2C2E018 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6227A4CBE91ED54197257B43 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		7DAC4622DEF8C4C362B5E7A8 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA1D53BD1B2C88D200BD31E3 /* WRCFavoriteStationsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WRCFavoriteStationsManager.h; path = Managers/WRCFavoriteStationsManager.h; sourceTree = "<group>"; };
 		DA1D53BE1B2C88D200BD31E3 /* WRCFavoriteStationsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WRCFavoriteStationsManager.m; path = Managers/WRCFavoriteStationsManager.m; sourceTree = "<group>"; };
+		DA3220591B3F0BAC00C2276A /* WrightCycle-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WrightCycle-Bridging-Header.h"; sourceTree = "<group>"; };
+		DA32205A1B3F0BAD00C2276A /* WRCKeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WRCKeychainManager.swift; path = Managers/WRCKeychainManager.swift; sourceTree = "<group>"; };
 		DA322EE71A8FBAD800D9CEE8 /* WrightCycle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WrightCycle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA322EEB1A8FBAD800D9CEE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA322EEC1A8FBAD800D9CEE8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -70,6 +76,8 @@
 		DA322F221A8FCD3100D9CEE8 /* WRCNetworkingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCNetworkingManager.m; sourceTree = "<group>"; };
 		DA322F251A8FD2C600D9CEE8 /* WRCStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WRCStation.h; path = Model/WRCStation.h; sourceTree = "<group>"; };
 		DA322F261A8FD2C600D9CEE8 /* WRCStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WRCStation.m; path = Model/WRCStation.m; sourceTree = "<group>"; };
+		DA4C71BF1B3F26AB0053E6F0 /* WRCSetupLoginTextHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCSetupLoginTextHandler.h; sourceTree = "<group>"; };
+		DA4C71C01B3F26AB0053E6F0 /* WRCSetupLoginTextHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCSetupLoginTextHandler.m; sourceTree = "<group>"; };
 		DA8250881A98EE0E006717E4 /* WRCInterappURLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WRCInterappURLManager.h; path = Managers/WRCInterappURLManager.h; sourceTree = "<group>"; };
 		DA8250891A98EE0E006717E4 /* WRCInterappURLManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WRCInterappURLManager.m; path = Managers/WRCInterappURLManager.m; sourceTree = "<group>"; };
 		DA82508E1A98FE5C006717E4 /* NSURL+WRCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+WRCAdditions.h"; path = "Categories/NSURL+WRCAdditions.h"; sourceTree = "<group>"; };
@@ -91,7 +99,11 @@
 		DA9367691A9000A20047578C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DAA6D1431AA22160001D70B1 /* WRCFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCFavoritesViewController.h; sourceTree = "<group>"; };
 		DAA6D1441AA22160001D70B1 /* WRCFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCFavoritesViewController.m; sourceTree = "<group>"; };
+		DAD5EC051B3EEC0A0044FBF8 /* WRCAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCAccountViewController.h; sourceTree = "<group>"; };
+		DAD5EC061B3EEC0A0044FBF8 /* WRCAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCAccountViewController.m; sourceTree = "<group>"; };
 		DAD5EC091B3EEDD00044FBF8 /* Chicago, IL, USA.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Chicago, IL, USA.gpx"; sourceTree = "<group>"; };
+		DAD5EC0A1B3EF3B40044FBF8 /* WRCSetupLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCSetupLoginViewController.h; sourceTree = "<group>"; };
+		DAD5EC0B1B3EF3B40044FBF8 /* WRCSetupLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCSetupLoginViewController.m; sourceTree = "<group>"; };
 		DAFEAF591AA223B600F86151 /* WRCFavoritesTableViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCFavoritesTableViewHandler.h; sourceTree = "<group>"; };
 		DAFEAF5A1AA223B600F86151 /* WRCFavoritesTableViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCFavoritesTableViewHandler.m; sourceTree = "<group>"; };
 		F81832382BDE3F1C5B9D0881 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -103,7 +115,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA93676A1A9000A20047578C /* MapKit.framework in Frameworks */,
-				0C9EDA9180B8437F83AA85A9 /* libPods.a in Frameworks */,
+				2DABE78B8FDEDA5B9B54D47E /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,7 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				DA9367691A9000A20047578C /* MapKit.framework */,
-				0A67CA82CAF840ADB2C2E018 /* libPods.a */,
+				7DAC4622DEF8C4C362B5E7A8 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -162,6 +174,7 @@
 				DA322EEF1A8FBAD800D9CEE8 /* AppDelegate.m */,
 				DA322F171A8FCB6A00D9CEE8 /* WRCLandingViewController.h */,
 				DA322F181A8FCB6A00D9CEE8 /* WRCLandingViewController.m */,
+				DAD5EC081B3EEC0E0044FBF8 /* Account Screen */,
 				DA86EB961A9017CA002C1FE6 /* Annotation Views */,
 				DA86EB8A1A900E71002C1FE6 /* Categories */,
 				DAA6D1461AA22165001D70B1 /* Favorites Screen */,
@@ -185,6 +198,7 @@
 				DA322F1A1A8FCB8A00D9CEE8 /* Fonts */,
 				DA322EEB1A8FBAD800D9CEE8 /* Info.plist */,
 				DA322EEC1A8FBAD800D9CEE8 /* main.m */,
+				DA3220591B3F0BAC00C2276A /* WrightCycle-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -223,6 +237,7 @@
 				DA1D53BE1B2C88D200BD31E3 /* WRCFavoriteStationsManager.m */,
 				DA8250881A98EE0E006717E4 /* WRCInterappURLManager.h */,
 				DA8250891A98EE0E006717E4 /* WRCInterappURLManager.m */,
+				DA32205A1B3F0BAD00C2276A /* WRCKeychainManager.swift */,
 				DA322F211A8FCD3100D9CEE8 /* WRCNetworkingManager.h */,
 				DA322F221A8FCD3100D9CEE8 /* WRCNetworkingManager.m */,
 			);
@@ -300,6 +315,19 @@
 			name = "Favorites Screen";
 			sourceTree = "<group>";
 		};
+		DAD5EC081B3EEC0E0044FBF8 /* Account Screen */ = {
+			isa = PBXGroup;
+			children = (
+				DAD5EC051B3EEC0A0044FBF8 /* WRCAccountViewController.h */,
+				DAD5EC061B3EEC0A0044FBF8 /* WRCAccountViewController.m */,
+				DAD5EC0A1B3EF3B40044FBF8 /* WRCSetupLoginViewController.h */,
+				DAD5EC0B1B3EF3B40044FBF8 /* WRCSetupLoginViewController.m */,
+				DA4C71BF1B3F26AB0053E6F0 /* WRCSetupLoginTextHandler.h */,
+				DA4C71C01B3F26AB0053E6F0 /* WRCSetupLoginTextHandler.m */,
+			);
+			name = "Account Screen";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -312,6 +340,7 @@
 				DA322EE41A8FBAD800D9CEE8 /* Frameworks */,
 				DA322EE51A8FBAD800D9CEE8 /* Resources */,
 				DF67375E3E6A40CB9437D41F /* Copy Pods Resources */,
+				3F3B67D07FE4CB6AC159141A /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -401,6 +430,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3F3B67D07FE4CB6AC159141A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		DCCB46A524E9446895458748 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -439,20 +483,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA322F231A8FCD3100D9CEE8 /* WRCNetworkingManager.m in Sources */,
+				DAD5EC071B3EEC0A0044FBF8 /* WRCAccountViewController.m in Sources */,
 				DA86EB9D1A904956002C1FE6 /* WRCStationDetailsMapViewHandler.m in Sources */,
 				DA9367681A9000830047578C /* WRCStationsMapViewController.m in Sources */,
 				DAA6D1451AA22160001D70B1 /* WRCFavoritesViewController.m in Sources */,
 				DA86EB891A900E6C002C1FE6 /* MKMapView+WRCAdditions.m in Sources */,
 				DA86EB951A9017C4002C1FE6 /* WRCStationAnnotationView.m in Sources */,
 				DA322EF01A8FBAD800D9CEE8 /* AppDelegate.m in Sources */,
+				DA32205B1B3F0BAD00C2276A /* WRCKeychainManager.swift in Sources */,
 				DA82508A1A98EE0E006717E4 /* WRCInterappURLManager.m in Sources */,
 				DA8250901A98FE5C006717E4 /* NSURL+WRCAdditions.m in Sources */,
+				DAD5EC0C1B3EF3B40044FBF8 /* WRCSetupLoginViewController.m in Sources */,
 				DA86EB8E1A9011A7002C1FE6 /* WRCStationsMapViewHandler.m in Sources */,
 				DAFEAF5B1AA223B600F86151 /* WRCFavoritesTableViewHandler.m in Sources */,
 				DA1D53BF1B2C88D200BD31E3 /* WRCFavoriteStationsManager.m in Sources */,
 				DA322EED1A8FBAD800D9CEE8 /* main.m in Sources */,
 				DA86EB851A9007A0002C1FE6 /* WRCViewController.m in Sources */,
 				DA322F191A8FCB6A00D9CEE8 /* WRCLandingViewController.m in Sources */,
+				DA4C71C11B3F26AB0053E6F0 /* WRCSetupLoginTextHandler.m in Sources */,
 				DA86EB991A9035C9002C1FE6 /* WRCStationDetailsViewController.m in Sources */,
 				DA322F271A8FD2C600D9CEE8 /* WRCStation.m in Sources */,
 			);
@@ -515,6 +563,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -557,6 +606,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				DEFINES_MODULE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -579,9 +629,12 @@
 			baseConfigurationReference = F81832382BDE3F1C5B9D0881 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = WrightCycle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WrightCycle/WrightCycle-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -590,9 +643,11 @@
 			baseConfigurationReference = 6227A4CBE91ED54197257B43 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = WrightCycle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WrightCycle/WrightCycle-Bridging-Header.h";
 			};
 			name = Release;
 		};
