@@ -27,7 +27,11 @@ NSString * const kPasswordFieldElementName = @"subscriberPassword";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self loadLoginPage];
+
+    //load the Divvy account login page
+    NSURL *url = [NSURL URLWithString: kDivvyAccountURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL: url];
+    [self.webView loadRequest: request];
 }
 
 - (void)prepareForSegue: (UIStoryboardSegue *)segue sender: (id)sender
@@ -43,23 +47,9 @@ NSString * const kPasswordFieldElementName = @"subscriberPassword";
 
 - (void)webViewDidFinishLoad: (UIWebView *)webView
 {
-    //autofill the username and password fields with the values stored in the keychain if displaying the login screen
-    if ([webView.request.URL.absoluteString isEqualToString: kDivvyAccountURL])
+    if ([self.webView.request.URL.absoluteString isEqualToString: kDivvyAccountURL])
     {
-        NSString *username = [[WRCKeychainManager sharedInstance] retrieveStringFromKeychainOfType: WRCKeychainItemTypeUsername];
-        NSString *password = [[WRCKeychainManager sharedInstance] retrieveStringFromKeychainOfType: WRCKeychainItemTypePassword];
-        
-        if (username)
-        {
-            NSString *usernameJavascript = [NSString stringWithFormat: @"document.getElementById('%@').value='%@'", kUsernameFieldElementName, username];
-            [self.webView stringByEvaluatingJavaScriptFromString: usernameJavascript];
-        }
-        
-        if (password)
-        {
-            NSString *passwordJavascript = [NSString stringWithFormat: @"document.getElementById('%@').value='%@'", kPasswordFieldElementName, password];
-            [self.webView stringByEvaluatingJavaScriptFromString: passwordJavascript];
-        }
+        [self updateUsernameAndPasswordFieldsInWebview];
     }
 }
 
@@ -70,18 +60,33 @@ NSString * const kPasswordFieldElementName = @"subscriberPassword";
 {
     if ([self.webView.request.URL.absoluteString isEqualToString: kDivvyAccountURL])
     {
-        [self loadLoginPage];
+        [self updateUsernameAndPasswordFieldsInWebview];
     }
 }
 
 #pragma mark - Helpers
 
-//Load the Divvy account login page
-- (void)loadLoginPage
+//Update username and password fields in the webview using javascript
+- (void)updateUsernameAndPasswordFieldsInWebview
 {
-    NSURL *url = [NSURL URLWithString: kDivvyAccountURL];
-    NSURLRequest *request = [NSURLRequest requestWithURL: url];
-    [self.webView loadRequest: request];
+    NSString *username = [[WRCKeychainManager sharedInstance] retrieveStringFromKeychainOfType: WRCKeychainItemTypeUsername];
+    NSString *password = [[WRCKeychainManager sharedInstance] retrieveStringFromKeychainOfType: WRCKeychainItemTypePassword];
+    
+    if (!username)
+    {
+        username = @"";
+    }
+    
+    if (!password)
+    {
+        password = @"";
+    }
+    
+    NSString *usernameJavascript = [NSString stringWithFormat: @"document.getElementById('%@').value='%@'", kUsernameFieldElementName, username];
+    [self.webView stringByEvaluatingJavaScriptFromString: usernameJavascript];
+
+    NSString *passwordJavascript = [NSString stringWithFormat: @"document.getElementById('%@').value='%@'", kPasswordFieldElementName, password];
+    [self.webView stringByEvaluatingJavaScriptFromString: passwordJavascript];
 }
 
 @end

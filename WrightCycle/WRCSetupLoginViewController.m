@@ -22,6 +22,7 @@
 {
     [super viewDidLoad];
     
+    //setup the initial text for the text fields
     NSString *savedUsernameText = [[WRCKeychainManager sharedInstance] retrieveStringFromKeychainOfType: WRCKeychainItemTypeUsername];
     NSString *savedPasswordText = [[WRCKeychainManager sharedInstance] retrieveStringFromKeychainOfType: WRCKeychainItemTypePassword];
     [self.textHandler setInitialUsernameText: savedUsernameText passwordText: savedPasswordText];
@@ -63,7 +64,9 @@
         NSString *title = NSLocalizedString(@"Credentials Reset", nil);
         NSString *message = NSLocalizedString(@"Your saved credentials have been reset", nil);
         [self showOkAlertWithTitle: title message: message okAction: ^{
+            
             [self dismissViewControllerAnimated: YES completion: nil];
+            [self.delegate setupLoginViewControllerUserDidUpdateCredentials: self];
         }];
         
     } noAction: nil];
