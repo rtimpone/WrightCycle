@@ -8,6 +8,6 @@
 
 #import "WRCViewController.h"
 
-@interface WRCSetupLoginViewController : WRCViewController
+@interface WRCSetupLoginViewController : WRCViewController <UITextFieldDelegate>
 
 @end

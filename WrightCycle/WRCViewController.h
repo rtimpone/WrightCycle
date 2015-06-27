@@ -29,4 +29,14 @@
  */
 - (void)showRetryAlertWithTitle: (NSString *)title message: (NSString *)message retryAction: (void (^)(UIAlertAction *action))action;
 
+/** Show an alert controller with a title, message, and two buttons: Yes and No.
+ 
+ @param title The title to show at the top of the alert.
+ @param message The message to display in the alert.
+ @param yesBlock The block to execute when the user taps the 'Yes' button.
+ @param noBlock The block to execute when the user taps the 'No' button.
+ 
+ */
+- (void)showYesNoAlertWithTitle: (NSString *)title message: (NSString *)message yesAction: (void (^)())yesBlock noAction: (void (^)())noBlock;
+
 @end

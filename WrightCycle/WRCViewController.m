@@ -29,4 +29,19 @@
     [self presentViewController: alertController animated: YES completion: nil];
 }
 
+- (void)showYesNoAlertWithTitle: (NSString *)title message: (NSString *)message yesAction: (void (^)())yesBlock noAction: (void (^)())noBlock
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle: title message: message preferredStyle: UIAlertControllerStyleAlert];
+    
+    NSString *yesString = NSLocalizedString(@"Yes", nil);
+    UIAlertAction *yesAction = [UIAlertAction actionWithTitle: yesString style: UIAlertActionStyleDefault handler: yesBlock];
+    [alertController addAction: yesAction];
+    
+    NSString *noString = NSLocalizedString(@"No", nil);
+    UIAlertAction *noAction = [UIAlertAction actionWithTitle: noString style: UIAlertActionStyleDefault handler: noBlock];
+    [alertController addAction: noAction];
+    
+    [self presentViewController: alertController animated: YES completion: nil];
+}
+
 @end

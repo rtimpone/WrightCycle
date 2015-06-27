@@ -198,14 +198,80 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwu-EM-LZf">
+                                <rect key="frame" x="16" y="84" width="568" height="60"/>
+                                <string key="text">You can enter your username and password on this screen and they will be automatically filled in on the account login screen when the app launches.</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.24313725490196078" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mA7-SA-Xwr">
+                                <rect key="frame" x="183" y="202" width="235" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="235" id="lpy-hp-Tkw"/>
+                                </constraints>
+                                <color key="textColor" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="evK-j2-z3k">
+                                <rect key="frame" x="183" y="164" width="235" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="235" id="zeM-FV-UMr"/>
+                                </constraints>
+                                <color key="textColor" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWd-ac-AaN">
+                                <rect key="frame" x="183" y="240" width="235" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="235" id="Bkc-wG-Krt"/>
+                                    <constraint firstAttribute="height" constant="30" id="dna-vh-ueb"/>
+                                </constraints>
+                                <state key="normal" title="Done">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneAction:" destination="fgj-nM-JWe" eventType="touchUpInside" id="fEj-I9-VKo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RX3-57-L5n">
+                                <rect key="frame" x="183" y="278" width="235" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="235" id="NgF-W6-8Qk"/>
+                                    <constraint firstAttribute="height" constant="30" id="RqU-bg-h2q"/>
+                                </constraints>
+                                <state key="normal" title="Reset Credentials">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetAction:" destination="fgj-nM-JWe" eventType="touchUpInside" id="9nT-3s-qHd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="PEB-2t-8aU" secondAttribute="trailing" constant="-16" id="16F-di-GjX"/>
+                            <constraint firstAttribute="centerX" secondItem="AWd-ac-AaN" secondAttribute="centerX" constant="-0.5" id="4hd-df-xcs"/>
+                            <constraint firstAttribute="centerX" secondItem="mA7-SA-Xwr" secondAttribute="centerX" constant="-0.5" id="9fS-wK-GBO"/>
+                            <constraint firstItem="hwu-EM-LZf" firstAttribute="top" secondItem="PEB-2t-8aU" secondAttribute="bottom" constant="20" id="9jH-cG-Wrq"/>
+                            <constraint firstItem="evK-j2-z3k" firstAttribute="top" secondItem="hwu-EM-LZf" secondAttribute="bottom" constant="20" id="BJc-zZ-2np"/>
                             <constraint firstItem="PEB-2t-8aU" firstAttribute="leading" secondItem="UYg-3Q-NPP" secondAttribute="leadingMargin" constant="-16" id="BMF-dv-ya9"/>
+                            <constraint firstAttribute="centerX" secondItem="RX3-57-L5n" secondAttribute="centerX" constant="-0.5" id="C7K-eo-mhg"/>
+                            <constraint firstItem="RX3-57-L5n" firstAttribute="top" secondItem="AWd-ac-AaN" secondAttribute="bottom" constant="8" id="I3A-Rj-6Kn"/>
+                            <constraint firstItem="AWd-ac-AaN" firstAttribute="top" secondItem="mA7-SA-Xwr" secondAttribute="bottom" constant="8" id="R40-dM-KRB"/>
                             <constraint firstItem="PEB-2t-8aU" firstAttribute="top" secondItem="UYg-3Q-NPP" secondAttribute="topMargin" id="VG5-Da-JRE"/>
+                            <constraint firstAttribute="centerX" secondItem="evK-j2-z3k" secondAttribute="centerX" constant="-0.5" id="Zjd-st-Nns"/>
+                            <constraint firstItem="mA7-SA-Xwr" firstAttribute="top" secondItem="evK-j2-z3k" secondAttribute="bottom" constant="8" id="alB-Lx-JSO"/>
+                            <constraint firstItem="hwu-EM-LZf" firstAttribute="leading" secondItem="UYg-3Q-NPP" secondAttribute="leadingMargin" id="iPc-HY-Ypq"/>
+                            <constraint firstItem="hwu-EM-LZf" firstAttribute="trailing" secondItem="UYg-3Q-NPP" secondAttribute="trailingMargin" id="ntV-BS-WKX"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="passwordTextField" destination="mA7-SA-Xwr" id="YLq-ZW-ZdL"/>
+                        <outlet property="usernameTextField" destination="evK-j2-z3k" id="YbK-7k-Eo2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ecs-28-iDy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
