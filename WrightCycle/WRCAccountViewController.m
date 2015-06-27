@@ -64,6 +64,18 @@ NSString * const kPasswordFieldElementName = @"subscriberPassword";
     }
 }
 
+#pragma mark - Actions
+
+- (IBAction)refreshAction: (id)sender
+{
+    [self.webView reload];
+}
+
+- (IBAction)backAction: (id)sender
+{
+    [self.webView goBack];
+}
+
 #pragma mark - Helpers
 
 //Update username and password fields in the webview using javascript
