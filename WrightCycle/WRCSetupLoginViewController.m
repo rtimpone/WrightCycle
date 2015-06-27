@@ -11,11 +11,8 @@
 
 @interface WRCSetupLoginViewController ()
 
-///The text field the user puts their username in
-@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
-
-///The text field the user puts their password in
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+///Created in the storyboard, handles text field delegate methods and text validation
+@property (strong, nonatomic) IBOutlet WRCSetupLoginTextHandler *textHandler;
 
 @end
 
@@ -24,86 +21,68 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.usernameTextField becomeFirstResponder];
+    
+    NSString *savedUsernameText = [[WRCKeychainManager sharedInstance] retrieveStringFromKeychainOfType: WRCKeychainItemTypeUsername];
+    NSString *savedPasswordText = [[WRCKeychainManager sharedInstance] retrieveStringFromKeychainOfType: WRCKeychainItemTypePassword];
+    [self.textHandler setInitialUsernameText: savedUsernameText passwordText: savedPasswordText];
 }
 
-#pragma mark - Text Field Delegate
+#pragma mark - Setup Login Text Handler Delegate
 
-- (BOOL)textFieldShouldReturn: (UITextField *)textField
+- (void)setupLoginTextHandlerUserDidTapDoneKeyboardKey: (WRCSetupLoginTextHandler *)textHandler
 {
-    if (textField == self.usernameTextField)
-    {
-        [self.passwordTextField becomeFirstResponder];
-    }
-    else
-    {
-        [textField resignFirstResponder];
-        if ([self validateAndSaveUserInput])
-        {
-            [self dismissViewControllerAnimated: YES completion: nil];
-        }
-    }
-    
-    return NO;
+    [self processUserInputAndDismissIfValid];
 }
 
 #pragma mark - Actions
 
+///Dismiss the keyboard and dismiss self
 - (IBAction)cancelAction: (id)sender
 {
     [self.view endEditing: YES];
     [self dismissViewControllerAnimated: YES completion: nil];
 }
 
+///Attempt to validate and save the user's input
 - (IBAction)doneAction: (id)sender
 {
-    if ([self validateAndSaveUserInput])
-    {
-        [self dismissViewControllerAnimated: YES completion: nil];
-    }
+    [self processUserInputAndDismissIfValid];
 }
 
+///Present a yes/no alert to the user and, if they tap yes, reset anything saved in the keychain for this app
 - (IBAction)resetAction: (id)sender
 {
     [self.view endEditing: YES];
     
     NSString *title = NSLocalizedString(@"Confirm Reset", nil);
-    NSString *message = NSLocalizedString(@"Are you sure you want to reset any saved credentials?", nil);
+    NSString *message = NSLocalizedString(@"Are you sure you want to reset your saved credentials?", nil);
     [self showYesNoAlertWithTitle: title message: message yesAction: ^{
         
         [[WRCKeychainManager sharedInstance] resetItemsSavedInKeychain];
         
         NSString *title = NSLocalizedString(@"Credentials Reset", nil);
-        NSString *message = NSLocalizedString(@"Your credentials have been reset", nil);
-        [self showOkAlertWithTitle: title message: message];
+        NSString *message = NSLocalizedString(@"Your saved credentials have been reset", nil);
+        [self showOkAlertWithTitle: title message: message okAction: ^{
+            [self dismissViewControllerAnimated: YES completion: nil];
+        }];
         
     } noAction: nil];
 }
 
 #pragma mark - Helpers
 
-- (BOOL)validateAndSaveUserInput
+///Validate the user's input and, if valid, save to the keychain and dismiss self
+- (void)processUserInputAndDismissIfValid
 {
-    if ([self.usernameTextField.text length] == 0)
+    [self.view endEditing: YES];
+    
+    if ([self.textHandler validateUserInputPresentingAlertsFromController: self])
     {
-        NSString *title = NSLocalizedString(@"Invalid Username", nil);
-        NSString *message = NSLocalizedString(@"Username cannot be blank", nil);
-        [self showOkAlertWithTitle: title message: message];
-        return NO;
+        [[WRCKeychainManager sharedInstance] saveStringToKeychain: self.textHandler.username ofItemType: WRCKeychainItemTypeUsername];
+        [[WRCKeychainManager sharedInstance] saveStringToKeychain: self.textHandler.password ofItemType: WRCKeychainItemTypePassword];
+        
+        [self dismissViewControllerAnimated: YES completion: nil];
     }
-    
-    if ([self.passwordTextField.text length] == 0)
-    {
-        NSString *title = NSLocalizedString(@"Invalid Password", nil);
-        NSString *message = NSLocalizedString(@"Password cannot be blank", nil);
-        [self showOkAlertWithTitle: title message: message];
-        return NO;
-    }
-    
-    [[WRCKeychainManager sharedInstance] saveStringToKeychain: self.usernameTextField.text ofItemType: WRCKeychainItemTypeUsername];
-    [[WRCKeychainManager sharedInstance] saveStringToKeychain: self.passwordTextField.text ofItemType: WRCKeychainItemTypePassword];
-    
-    return YES;
 }
 
 @end

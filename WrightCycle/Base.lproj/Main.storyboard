@@ -213,6 +213,9 @@
                                 <color key="textColor" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="DKk-Og-j4n" id="K9L-cF-Y2h"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="evK-j2-z3k">
                                 <rect key="frame" x="183" y="164" width="235" height="30"/>
@@ -222,6 +225,9 @@
                                 <color key="textColor" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                                <connections>
+                                    <outlet property="delegate" destination="DKk-Og-j4n" id="jzw-di-G3n"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWd-ac-AaN">
                                 <rect key="frame" x="183" y="240" width="235" height="30"/>
@@ -269,11 +275,17 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="passwordTextField" destination="mA7-SA-Xwr" id="YLq-ZW-ZdL"/>
-                        <outlet property="usernameTextField" destination="evK-j2-z3k" id="YbK-7k-Eo2"/>
+                        <outlet property="textHandler" destination="DKk-Og-j4n" id="Byh-KJ-Dfh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ecs-28-iDy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="DKk-Og-j4n" customClass="WRCSetupLoginTextHandler">
+                    <connections>
+                        <outlet property="delegate" destination="fgj-nM-JWe" id="OXo-hr-NWA"/>
+                        <outlet property="passwordTextField" destination="mA7-SA-Xwr" id="DkY-8x-Pf7"/>
+                        <outlet property="usernameTextField" destination="evK-j2-z3k" id="fPd-S6-QfX"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="3383" y="1415"/>
         </scene>

@@ -12,8 +12,13 @@
 
 - (void)showOkAlertWithTitle: (NSString *)title message: (NSString *)message
 {
+    [self showOkAlertWithTitle: title message: message okAction: nil];
+}
+
+- (void)showOkAlertWithTitle: (NSString *)title message: (NSString *)message okAction: (void (^)())okBlock
+{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle: title message: message preferredStyle: UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle: @"OK" style: UIAlertActionStyleDefault handler: nil];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle: @"OK" style: UIAlertActionStyleDefault handler: okBlock];
     [alertController addAction: okAction];
     [self presentViewController: alertController animated: YES completion: nil];
 }

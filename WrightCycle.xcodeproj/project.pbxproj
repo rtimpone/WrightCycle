@@ -22,6 +22,7 @@
 		DA322F2A1A8FDEBE00D9CEE8 /* Oswald-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA322F1C1A8FCB8A00D9CEE8 /* Oswald-Light.ttf */; };
 		DA322F2B1A8FDEBE00D9CEE8 /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA322F1D1A8FCB8A00D9CEE8 /* Oswald-Regular.ttf */; };
 		DA322F2C1A8FDEE600D9CEE8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA322EF91A8FBAD800D9CEE8 /* LaunchScreen.xib */; };
+		DA4C71C11B3F26AB0053E6F0 /* WRCSetupLoginTextHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4C71C01B3F26AB0053E6F0 /* WRCSetupLoginTextHandler.m */; };
 		DA82508A1A98EE0E006717E4 /* WRCInterappURLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8250891A98EE0E006717E4 /* WRCInterappURLManager.m */; };
 		DA8250901A98FE5C006717E4 /* NSURL+WRCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DA82508F1A98FE5C006717E4 /* NSURL+WRCAdditions.m */; };
 		DA86EB851A9007A0002C1FE6 /* WRCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA86EB841A9007A0002C1FE6 /* WRCViewController.m */; };
@@ -75,6 +76,8 @@
 		DA322F221A8FCD3100D9CEE8 /* WRCNetworkingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCNetworkingManager.m; sourceTree = "<group>"; };
 		DA322F251A8FD2C600D9CEE8 /* WRCStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WRCStation.h; path = Model/WRCStation.h; sourceTree = "<group>"; };
 		DA322F261A8FD2C600D9CEE8 /* WRCStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WRCStation.m; path = Model/WRCStation.m; sourceTree = "<group>"; };
+		DA4C71BF1B3F26AB0053E6F0 /* WRCSetupLoginTextHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCSetupLoginTextHandler.h; sourceTree = "<group>"; };
+		DA4C71C01B3F26AB0053E6F0 /* WRCSetupLoginTextHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCSetupLoginTextHandler.m; sourceTree = "<group>"; };
 		DA8250881A98EE0E006717E4 /* WRCInterappURLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WRCInterappURLManager.h; path = Managers/WRCInterappURLManager.h; sourceTree = "<group>"; };
 		DA8250891A98EE0E006717E4 /* WRCInterappURLManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WRCInterappURLManager.m; path = Managers/WRCInterappURLManager.m; sourceTree = "<group>"; };
 		DA82508E1A98FE5C006717E4 /* NSURL+WRCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+WRCAdditions.h"; path = "Categories/NSURL+WRCAdditions.h"; sourceTree = "<group>"; };
@@ -319,6 +322,8 @@
 				DAD5EC061B3EEC0A0044FBF8 /* WRCAccountViewController.m */,
 				DAD5EC0A1B3EF3B40044FBF8 /* WRCSetupLoginViewController.h */,
 				DAD5EC0B1B3EF3B40044FBF8 /* WRCSetupLoginViewController.m */,
+				DA4C71BF1B3F26AB0053E6F0 /* WRCSetupLoginTextHandler.h */,
+				DA4C71C01B3F26AB0053E6F0 /* WRCSetupLoginTextHandler.m */,
 			);
 			name = "Account Screen";
 			sourceTree = "<group>";
@@ -495,6 +500,7 @@
 				DA322EED1A8FBAD800D9CEE8 /* main.m in Sources */,
 				DA86EB851A9007A0002C1FE6 /* WRCViewController.m in Sources */,
 				DA322F191A8FCB6A00D9CEE8 /* WRCLandingViewController.m in Sources */,
+				DA4C71C11B3F26AB0053E6F0 /* WRCSetupLoginTextHandler.m in Sources */,
 				DA86EB991A9035C9002C1FE6 /* WRCStationDetailsViewController.m in Sources */,
 				DA322F271A8FD2C600D9CEE8 /* WRCStation.m in Sources */,
 			);
