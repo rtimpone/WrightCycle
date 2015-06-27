@@ -131,10 +131,10 @@
             </objects>
             <point key="canvasLocation" x="1743" y="647"/>
         </scene>
-        <!--ACCOUNT-->
+        <!--Account View Controller-->
         <scene sceneID="1GK-Mk-Hzu">
             <objects>
-                <viewController id="QAN-eT-Oet" customClass="WRCAccountViewController" sceneMemberID="viewController">
+                <viewController id="QAN-eT-Oet" userLabel="Account View Controller" customClass="WRCAccountViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qg7-EU-VI9"/>
                         <viewControllerLayoutGuide type="bottom" id="WaI-3Q-hZO"/>
@@ -146,6 +146,9 @@
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pad-B8-XY2">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="QAN-eT-Oet" id="4Qi-5b-3P2"/>
+                                </connections>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -157,9 +160,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="ACCOUNT" id="EX0-C3-MPA">
-                        <barButtonItem key="rightBarButtonItem" title="Setup" id="25A-mD-7yA">
+                        <barButtonItem key="rightBarButtonItem" title="Setup Autofill" id="25A-mD-7yA">
                             <connections>
-                                <segue destination="fgj-nM-JWe" kind="presentation" id="SEm-1v-SLw"/>
+                                <segue destination="fgj-nM-JWe" kind="presentation" identifier="setupLoginSegue" id="SEm-1v-SLw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -205,7 +208,7 @@
                                 <color key="textColor" red="0.24313725490196078" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mA7-SA-Xwr">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mA7-SA-Xwr">
                                 <rect key="frame" x="183" y="202" width="235" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="235" id="lpy-hp-Tkw"/>
@@ -217,7 +220,7 @@
                                     <outlet property="delegate" destination="DKk-Og-j4n" id="K9L-cF-Y2h"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="evK-j2-z3k">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="evK-j2-z3k">
                                 <rect key="frame" x="183" y="164" width="235" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="235" id="zeM-FV-UMr"/>

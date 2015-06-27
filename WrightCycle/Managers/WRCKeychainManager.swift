@@ -52,7 +52,7 @@ import UIKit
         return valet.stringForKey(itemType.identifier())
     }
     
-    ///Resets any app-specific strings saved in the keychain. Useful for resetting the keychain when the app is first run.
+    ///Resets any app-specific strings saved in the keychain.
     func resetItemsSavedInKeychain() {
         valet.removeAllObjects()
     }

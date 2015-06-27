@@ -82,6 +82,7 @@
         [[WRCKeychainManager sharedInstance] saveStringToKeychain: self.textHandler.password ofItemType: WRCKeychainItemTypePassword];
         
         [self dismissViewControllerAnimated: YES completion: nil];
+        [self.delegate setupLoginViewControllerUserDidUpdateCredentials: self];
     }
 }
 
