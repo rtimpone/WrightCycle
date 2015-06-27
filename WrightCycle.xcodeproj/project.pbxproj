@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C9EDA9180B8437F83AA85A9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A67CA82CAF840ADB2C2E018 /* libPods.a */; };
+		2DABE78B8FDEDA5B9B54D47E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DAC4622DEF8C4C362B5E7A8 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		DA1D53BF1B2C88D200BD31E3 /* WRCFavoriteStationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1D53BE1B2C88D200BD31E3 /* WRCFavoriteStationsManager.m */; };
 		DA322EED1A8FBAD800D9CEE8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA322EEC1A8FBAD800D9CEE8 /* main.m */; };
 		DA322EF01A8FBAD800D9CEE8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA322EEF1A8FBAD800D9CEE8 /* AppDelegate.m */; };
@@ -48,10 +48,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0A67CA82CAF840ADB2C2E018 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6227A4CBE91ED54197257B43 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		7DAC4622DEF8C4C362B5E7A8 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA1D53BD1B2C88D200BD31E3 /* WRCFavoriteStationsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WRCFavoriteStationsManager.h; path = Managers/WRCFavoriteStationsManager.h; sourceTree = "<group>"; };
 		DA1D53BE1B2C88D200BD31E3 /* WRCFavoriteStationsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WRCFavoriteStationsManager.m; path = Managers/WRCFavoriteStationsManager.m; sourceTree = "<group>"; };
+		DA3220591B3F0BAC00C2276A /* WrightCycle-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WrightCycle-Bridging-Header.h"; sourceTree = "<group>"; };
 		DA322EE71A8FBAD800D9CEE8 /* WrightCycle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WrightCycle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA322EEB1A8FBAD800D9CEE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA322EEC1A8FBAD800D9CEE8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -109,7 +110,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA93676A1A9000A20047578C /* MapKit.framework in Frameworks */,
-				0C9EDA9180B8437F83AA85A9 /* libPods.a in Frameworks */,
+				2DABE78B8FDEDA5B9B54D47E /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				DA9367691A9000A20047578C /* MapKit.framework */,
-				0A67CA82CAF840ADB2C2E018 /* libPods.a */,
+				7DAC4622DEF8C4C362B5E7A8 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -192,6 +193,7 @@
 				DA322F1A1A8FCB8A00D9CEE8 /* Fonts */,
 				DA322EEB1A8FBAD800D9CEE8 /* Info.plist */,
 				DA322EEC1A8FBAD800D9CEE8 /* main.m */,
+				DA3220591B3F0BAC00C2276A /* WrightCycle-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -330,6 +332,7 @@
 				DA322EE41A8FBAD800D9CEE8 /* Frameworks */,
 				DA322EE51A8FBAD800D9CEE8 /* Resources */,
 				DF67375E3E6A40CB9437D41F /* Copy Pods Resources */,
+				3F3B67D07FE4CB6AC159141A /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -419,6 +422,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3F3B67D07FE4CB6AC159141A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		DCCB46A524E9446895458748 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -535,6 +553,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -577,6 +596,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				DEFINES_MODULE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -599,9 +619,12 @@
 			baseConfigurationReference = F81832382BDE3F1C5B9D0881 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = WrightCycle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WrightCycle/WrightCycle-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -610,9 +633,11 @@
 			baseConfigurationReference = 6227A4CBE91ED54197257B43 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = WrightCycle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WrightCycle/WrightCycle-Bridging-Header.h";
 			};
 			name = Release;
 		};
