@@ -91,6 +91,7 @@
 		DA9367691A9000A20047578C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DAA6D1431AA22160001D70B1 /* WRCFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCFavoritesViewController.h; sourceTree = "<group>"; };
 		DAA6D1441AA22160001D70B1 /* WRCFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCFavoritesViewController.m; sourceTree = "<group>"; };
+		DAD5EC091B3EEDD00044FBF8 /* Chicago, IL, USA.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Chicago, IL, USA.gpx"; sourceTree = "<group>"; };
 		DAFEAF591AA223B600F86151 /* WRCFavoritesTableViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCFavoritesTableViewHandler.h; sourceTree = "<group>"; };
 		DAFEAF5A1AA223B600F86151 /* WRCFavoritesTableViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCFavoritesTableViewHandler.m; sourceTree = "<group>"; };
 		F81832382BDE3F1C5B9D0881 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -180,6 +181,7 @@
 		DA322EEA1A8FBAD800D9CEE8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DAD5EC091B3EEDD00044FBF8 /* Chicago, IL, USA.gpx */,
 				DA322F1A1A8FCB8A00D9CEE8 /* Fonts */,
 				DA322EEB1A8FBAD800D9CEE8 /* Info.plist */,
 				DA322EEC1A8FBAD800D9CEE8 /* main.m */,
