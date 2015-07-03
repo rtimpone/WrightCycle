@@ -24,4 +24,7 @@
 ///Create a configuration object from a CKRecord
 + (instancetype)configurationFromRecord: (CKRecord *)record;
 
+///Whether the object's properties match the properties of another configuration
+- (BOOL)isEqualToConfiguration: (WRCConfiguration *)configuration;
+
 @end

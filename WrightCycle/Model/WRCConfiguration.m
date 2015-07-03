@@ -21,4 +21,13 @@
     return configuration;
 }
 
+- (BOOL)isEqualToConfiguration: (WRCConfiguration *)configuration
+{
+    BOOL accountURLStringMatches = [self.accountURLString isEqualToString: configuration.accountURLString];
+    BOOL usernameFieldNameMatches = [self.usernameFieldElementName isEqualToString: configuration.usernameFieldElementName];
+    BOOL passwordFieldNameMatches = [self.passwordFieldElementName isEqualToString: configuration.passwordFieldElementName];
+    
+    return accountURLStringMatches && usernameFieldNameMatches && passwordFieldNameMatches;
+}
+
 @end

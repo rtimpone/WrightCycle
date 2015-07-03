@@ -26,7 +26,7 @@
 
 @end
 
-
+NSString * const kConfigurationUpdatedNotification = @"kConfigurationUpdatedNotification";
 NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/stations/json";
 
 //The Divvy API only updates its JSON feed once a minute
@@ -107,12 +107,16 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
 
 - (void)getAppConfigurationWithSuccess: (void (^)(WRCConfiguration *configuration))success failure: (void (^)(NSError *error))failure
 {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
+    
     CKDatabase *publicCloudDatabase = [[CKContainer defaultContainer] publicCloudDatabase];
     NSPredicate *truePredicate = [NSPredicate predicateWithFormat: @"TRUEPREDICATE"];
     CKQuery *query = [[CKQuery alloc] initWithRecordType: @"configuration" predicate: truePredicate];
     [publicCloudDatabase performQuery: query inZoneWithID: nil completionHandler: ^(NSArray *results, NSError *error) {
         
-        if (error && failure)
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
+        
+        if (error)
         {
             failure(error);
         }
@@ -120,14 +124,14 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
         {
             CKRecord *record = [results firstObject];
             WRCConfiguration *configuration = [WRCConfiguration configurationFromRecord: record];
-            self.cachedConfiguration = configuration;
             
-            if (success)
+            if (![self.cachedConfiguration isEqualToConfiguration: configuration])
             {
-                success(configuration);
+                self.cachedConfiguration = configuration;
             }
+
+            success(configuration);
         }
-        
     }];
 }
 
@@ -148,6 +152,15 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat: @"stationId IN %@", stationIds];
     return [self.cachedStations filteredArrayUsingPredicate: predicate];
+}
+
+#pragma mark - Setters
+
+//Post a notification when the configuration is updated
+- (void)setCachedConfiguration:(WRCConfiguration *)cachedConfiguration
+{
+    _cachedConfiguration = cachedConfiguration;
+    [[NSNotificationCenter defaultCenter] postNotificationName: kConfigurationUpdatedNotification object: cachedConfiguration];
 }
 
 @end

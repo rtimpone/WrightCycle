@@ -10,9 +10,12 @@
 
 @class WRCConfiguration;
 
+///A notification that is posted when the configuration object is updated. The new configuration will be passed along with the notification.
+extern NSString * const kConfigurationUpdatedNotification;
+
 @interface WRCNetworkingManager : NSObject
 
-///The most recent configuration object retrieved from iCloud. May be nil if no configuration has been received yet.
+/** The most recently retrieved configuration object */
 @property (strong, nonatomic, readonly) WRCConfiguration *cachedConfiguration;
 
 #pragma mark - Singleton
@@ -68,7 +71,6 @@
  
  */
 - (void)getAppConfigurationWithSuccess: (void (^)(WRCConfiguration *configuration))success failure: (void (^)(NSError *error))failure;
-
 
 #pragma mark - Cached Stations
 
