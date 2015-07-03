@@ -7,6 +7,8 @@
 //
 
 #import "WRCAccountViewController.h"
+#import "WRCConfiguration.h"
+#import "WRCNetworkingManager.h"
 #import "WrightCycle-Swift.h"
 
 @interface WRCAccountViewController ()
@@ -20,19 +22,25 @@
 ///The toolbar containing the webview controls
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
+///The string URL of the Divvy account login screen
+@property (strong, nonatomic) NSString *divvyAccountURLString;
+
 @end
 
 
-NSString * const kDivvyAccountURL = @"https://www.divvybikes.com/login";
 NSString * const kSetupLoginSegueIdentifier = @"setupLoginSegue";
-NSString * const kUsernameFieldElementName = @"subscriberUsername";
-NSString * const kPasswordFieldElementName = @"subscriberPassword";
+NSString * const kDefaultDivvyAccountURL = @"https://www.divvybikes.com/login";
+NSString * const kDefaultUsernameFieldElementName = @"subscriberUsername";
+NSString * const kDefaultPasswordFieldElementName = @"subscriberPassword";
 
 @implementation WRCAccountViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    WRCConfiguration *configuration = [[WRCNetworkingManager sharedManager] cachedConfiguration];
+    self.divvyAccountURLString = configuration.accountURLString ? configuration.accountURLString : kDefaultDivvyAccountURL;
     
     //adjust insets of the webview to account for the toolbar
     UIEdgeInsets insets = self.webView.scrollView.contentInset;
@@ -41,9 +49,10 @@ NSString * const kPasswordFieldElementName = @"subscriberPassword";
     self.webView.scrollView.scrollIndicatorInsets = newInsets;
     
     //load the Divvy account login page
-    NSURL *url = [NSURL URLWithString: kDivvyAccountURL];
-    NSURLRequest *request = [NSURLRequest requestWithURL: url];
-    [self.webView loadRequest: request];
+    [self reloadLoginPage];
+    
+    //listen for application becoming active
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(configurationUpdateNotificationReceived:) name: kConfigurationUpdatedNotification object: nil];
 }
 
 - (void)prepareForSegue: (UIStoryboardSegue *)segue sender: (id)sender
@@ -55,13 +64,30 @@ NSString * const kPasswordFieldElementName = @"subscriberPassword";
     }
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver: self];
+}
+
+#pragma mark - Notification Center Callbacks
+
+- (void)configurationUpdateNotificationReceived: (NSNotification *)notification
+{
+    WRCConfiguration *configuration = notification.object;
+    if (configuration.accountURLString && ![configuration.accountURLString isEqualToString: self.divvyAccountURLString])
+    {
+        self.divvyAccountURLString = configuration.accountURLString;
+        [self reloadLoginPage];
+    }
+}
+
 #pragma mark - Web View Delegate
 
 - (void)webViewDidFinishLoad: (UIWebView *)webView
 {
     [self.activityIndicator stopAnimating];
     
-    if ([self.webView.request.URL.absoluteString isEqualToString: kDivvyAccountURL])
+    if ([self.webView.request.URL.absoluteString isEqualToString: self.divvyAccountURLString])
     {
         [self updateUsernameAndPasswordFieldsInWebview];
     }
@@ -72,7 +98,7 @@ NSString * const kPasswordFieldElementName = @"subscriberPassword";
 //Called when the user updates their login credentials
 - (void)setupLoginViewControllerUserDidUpdateCredentials: (WRCSetupLoginViewController *)controller
 {
-    if ([self.webView.request.URL.absoluteString isEqualToString: kDivvyAccountURL])
+    if ([self.webView.request.URL.absoluteString isEqualToString: self.divvyAccountURLString])
     {
         [self updateUsernameAndPasswordFieldsInWebview];
     }
@@ -108,11 +134,23 @@ NSString * const kPasswordFieldElementName = @"subscriberPassword";
         password = @"";
     }
     
-    NSString *usernameJavascript = [NSString stringWithFormat: @"document.getElementById('%@').value='%@'", kUsernameFieldElementName, username];
+    WRCConfiguration *configuration = [[WRCNetworkingManager sharedManager] cachedConfiguration];
+    
+    NSString *usernameElementName = configuration.usernameFieldElementName ? configuration.usernameFieldElementName : kDefaultUsernameFieldElementName;
+    NSString *usernameJavascript = [NSString stringWithFormat: @"document.getElementById('%@').value='%@'", usernameElementName, username];
     [self.webView stringByEvaluatingJavaScriptFromString: usernameJavascript];
 
-    NSString *passwordJavascript = [NSString stringWithFormat: @"document.getElementById('%@').value='%@'", kPasswordFieldElementName, password];
+    NSString *passwordElementName = configuration.passwordFieldElementName ? configuration.passwordFieldElementName : kDefaultPasswordFieldElementName;
+    NSString *passwordJavascript = [NSString stringWithFormat: @"document.getElementById('%@').value='%@'", passwordElementName, password];
     [self.webView stringByEvaluatingJavaScriptFromString: passwordJavascript];
+}
+
+//Load the Divvy login page in the webview
+- (void)reloadLoginPage
+{
+    NSURL *url = [NSURL URLWithString: self.divvyAccountURLString];
+    NSURLRequest *request = [NSURLRequest requestWithURL: url];
+    [self.webView loadRequest: request];
 }
 
 @end

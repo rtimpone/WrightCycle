@@ -8,7 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class WRCConfiguration;
+
+///A notification that is posted when the configuration object is updated. The new configuration will be passed along with the notification.
+extern NSString * const kConfigurationUpdatedNotification;
+
 @interface WRCNetworkingManager : NSObject
+
+/** The most recently retrieved configuration object */
+@property (strong, nonatomic, readonly) WRCConfiguration *cachedConfiguration;
 
 #pragma mark - Singleton
 
@@ -20,7 +28,7 @@
 /** Whether an internet connection is available */
 + (BOOL)internetConnectionIsAvailable;
 
-#pragma mark - Divvy API Requests
+#pragma mark - Divvy API
 
 /** Request the current list of stations and refresh stations if necessary
  
@@ -49,6 +57,23 @@
  
  */
 - (NSArray *)getStationsListImmediately: (BOOL)shouldMakeRequestImmediately withSuccess: (void (^)(NSArray *stations))success failure: (void (^)(NSError *error))failure;
+
+#pragma mark - Cloudkit
+
+/** Request configuration information from the cloud
+ 
+ Sends a request to CloudKit for the app configuration object. This object contains data about the account login page and
+ how to locate the username and password fields. After the configuration object is successfully received, it will be stored
+ in the networking manager shared instance.
+ 
+ @param success The block to execute after a successful API response
+ @param failure The block to execute after encountering an API error
+ 
+ */
+- (void)getAppConfigurationWithSuccess: (void (^)(WRCConfiguration *configuration))success failure: (void (^)(NSError *error))failure;
+
+/** Whether enough time has passed to justify another configuration refresh */
+- (BOOL)isReadyForConfigurationRefresh;
 
 #pragma mark - Cached Stations
 

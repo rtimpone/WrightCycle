@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 Rob Timpone. All rights reserved.
 //
 
+@import CloudKit;
+
+#import "WRCConfiguration.h"
 #import <Reachability/Reachability.h>
 #import "WRCNetworkingManager.h"
 #import "WRCStation.h"
@@ -16,15 +19,22 @@
 @property (strong, nonatomic) NSArray *cachedStations;
 
 /** The last time a successful data refresh was made */
-@property (strong, nonatomic) NSDate *lastRefreshDate;
+@property (strong, nonatomic) NSDate *lastStationsRefreshDate;
+
+/** The most recently retrieved configuration object */
+@property (strong, nonatomic, readwrite) WRCConfiguration *cachedConfiguration;
+
+/** The last time a successful configuration refresh was made */
+@property (strong, nonatomic) NSDate *lastConfigurationRefreshDate;
 
 @end
 
-
+NSString * const kConfigurationUpdatedNotification = @"kConfigurationUpdatedNotification";
 NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/stations/json";
 
 //The Divvy API only updates its JSON feed once a minute
-#define SECONDS_TO_WAIT_BEFORE_REFRESHING_DATA 60
+#define SECONDS_TO_WAIT_BEFORE_REFRESHING_STATION_DATA 60
+#define SECONDS_TO_WAIT_BEFORE_REFRESHING_CONFIGURATION 15 * 60
 
 @implementation WRCNetworkingManager
 
@@ -48,7 +58,7 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
     return reachabilty.isReachable;
 }
 
-#pragma mark - Divvy API Requests
+#pragma mark - Divvy API
 
 - (NSArray *)getStationsListWithSuccess: (void (^)(NSArray *stations))success failure: (void (^)(NSError *error))failure
 {
@@ -82,7 +92,7 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
                     [stations addObject: station];
                 }
                 
-                self.lastRefreshDate = [NSDate date];
+                self.lastStationsRefreshDate = [NSDate date];
                 self.cachedStations = stations;
                 
                 success(stations);
@@ -97,13 +107,55 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
     return self.cachedStations;
 }
 
+#pragma mark - CloudKit
+
+- (void)getAppConfigurationWithSuccess: (void (^)(WRCConfiguration *configuration))success failure: (void (^)(NSError *error))failure
+{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
+    
+    CKDatabase *publicCloudDatabase = [[CKContainer defaultContainer] publicCloudDatabase];
+    NSPredicate *truePredicate = [NSPredicate predicateWithFormat: @"TRUEPREDICATE"];
+    CKQuery *query = [[CKQuery alloc] initWithRecordType: @"configuration" predicate: truePredicate];
+    [publicCloudDatabase performQuery: query inZoneWithID: nil completionHandler: ^(NSArray *results, NSError *error) {
+        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
+        
+        if (error)
+        {
+            failure(error);
+        }
+        else
+        {
+            CKRecord *record = [results firstObject];
+            WRCConfiguration *configuration = [WRCConfiguration configurationFromRecord: record];
+            
+            if (![self.cachedConfiguration isEqualToConfiguration: configuration])
+            {
+                self.cachedConfiguration = configuration;
+            }
+
+            self.lastConfigurationRefreshDate = [NSDate date];
+            success(configuration);
+        }
+    }];
+}
+
 #pragma mark - Cooldown Period
 
 //An API request should only be made if we don't have any data yet or if 60 seconds has elapsed since the last data refresh
 - (BOOL)shouldRefreshStations
 {
-    BOOL thisIsTheFirstRefresh = !self.lastRefreshDate;
-    BOOL enoughTimeHasElapsedToRefresh = -[self.lastRefreshDate timeIntervalSinceNow] >= SECONDS_TO_WAIT_BEFORE_REFRESHING_DATA;
+    BOOL thisIsTheFirstRefresh = !self.lastStationsRefreshDate;
+    BOOL enoughTimeHasElapsedToRefresh = -[self.lastStationsRefreshDate timeIntervalSinceNow] >= SECONDS_TO_WAIT_BEFORE_REFRESHING_STATION_DATA;
+    
+    return thisIsTheFirstRefresh || enoughTimeHasElapsedToRefresh;
+}
+
+//A configuration refresh should only be made if at least 15 minutes have passed since the last refresh attempt
+- (BOOL)isReadyForConfigurationRefresh
+{
+    BOOL thisIsTheFirstRefresh = !self.lastConfigurationRefreshDate;
+    BOOL enoughTimeHasElapsedToRefresh = -[self.lastConfigurationRefreshDate timeIntervalSinceNow] >= SECONDS_TO_WAIT_BEFORE_REFRESHING_CONFIGURATION;
     
     return thisIsTheFirstRefresh || enoughTimeHasElapsedToRefresh;
 }
@@ -114,6 +166,15 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat: @"stationId IN %@", stationIds];
     return [self.cachedStations filteredArrayUsingPredicate: predicate];
+}
+
+#pragma mark - Setters
+
+//Post a notification when the configuration is updated
+- (void)setCachedConfiguration:(WRCConfiguration *)cachedConfiguration
+{
+    _cachedConfiguration = cachedConfiguration;
+    [[NSNotificationCenter defaultCenter] postNotificationName: kConfigurationUpdatedNotification object: cachedConfiguration];
 }
 
 @end
