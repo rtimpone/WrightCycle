@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class WRCConfiguration;
+
 @interface WRCNetworkingManager : NSObject
+
+///The most recent configuration object retrieved from iCloud. May be nil if no configuration has been received yet.
+@property (strong, nonatomic, readonly) WRCConfiguration *cachedConfiguration;
 
 #pragma mark - Singleton
 
@@ -20,7 +25,7 @@
 /** Whether an internet connection is available */
 + (BOOL)internetConnectionIsAvailable;
 
-#pragma mark - Divvy API Requests
+#pragma mark - Divvy API
 
 /** Request the current list of stations and refresh stations if necessary
  
@@ -49,6 +54,21 @@
  
  */
 - (NSArray *)getStationsListImmediately: (BOOL)shouldMakeRequestImmediately withSuccess: (void (^)(NSArray *stations))success failure: (void (^)(NSError *error))failure;
+
+#pragma mark - Cloudkit
+
+/** Request configuration information from the cloud
+ 
+ Sends a request to CloudKit for the app configuration object. This object contains data about the account login page and
+ how to locate the username and password fields. After the configuration object is successfully received, it will be stored
+ in the networking manager shared instance.
+ 
+ @param success The block to execute after a successful API response
+ @param failure The block to execute after encountering an API error
+ 
+ */
+- (void)getAppConfigurationWithSuccess: (void (^)(WRCConfiguration *configuration))success failure: (void (^)(NSError *error))failure;
+
 
 #pragma mark - Cached Stations
 

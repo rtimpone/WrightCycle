@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 Rob Timpone. All rights reserved.
 //
 
+@import CloudKit;
+
+#import "WRCConfiguration.h"
 #import <Reachability/Reachability.h>
 #import "WRCNetworkingManager.h"
 #import "WRCStation.h"
@@ -17,6 +20,9 @@
 
 /** The last time a successful data refresh was made */
 @property (strong, nonatomic) NSDate *lastRefreshDate;
+
+/** The most recently retrieved configuration object */
+@property (strong, nonatomic, readwrite) WRCConfiguration *cachedConfiguration;
 
 @end
 
@@ -48,7 +54,7 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
     return reachabilty.isReachable;
 }
 
-#pragma mark - Divvy API Requests
+#pragma mark - Divvy API
 
 - (NSArray *)getStationsListWithSuccess: (void (^)(NSArray *stations))success failure: (void (^)(NSError *error))failure
 {
@@ -95,6 +101,34 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
     
     //return the currently cached list of stations immediately
     return self.cachedStations;
+}
+
+#pragma mark - CloudKit
+
+- (void)getAppConfigurationWithSuccess: (void (^)(WRCConfiguration *configuration))success failure: (void (^)(NSError *error))failure
+{
+    CKDatabase *publicCloudDatabase = [[CKContainer defaultContainer] publicCloudDatabase];
+    NSPredicate *truePredicate = [NSPredicate predicateWithFormat: @"TRUEPREDICATE"];
+    CKQuery *query = [[CKQuery alloc] initWithRecordType: @"configuration" predicate: truePredicate];
+    [publicCloudDatabase performQuery: query inZoneWithID: nil completionHandler: ^(NSArray *results, NSError *error) {
+        
+        if (error && failure)
+        {
+            failure(error);
+        }
+        else
+        {
+            CKRecord *record = [results firstObject];
+            WRCConfiguration *configuration = [WRCConfiguration configurationFromRecord: record];
+            self.cachedConfiguration = configuration;
+            
+            if (success)
+            {
+                success(configuration);
+            }
+        }
+        
+    }];
 }
 
 #pragma mark - Cooldown Period

@@ -35,6 +35,7 @@
 		DA93676A1A9000A20047578C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9367691A9000A20047578C /* MapKit.framework */; };
 		DAA6D1451AA22160001D70B1 /* WRCFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA6D1441AA22160001D70B1 /* WRCFavoritesViewController.m */; };
 		DAAC4C891B46E1D70030DB91 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAAC4C881B46E1D70030DB91 /* CloudKit.framework */; };
+		DAAC4C8C1B46E9930030DB91 /* WRCConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = DAAC4C8B1B46E9930030DB91 /* WRCConfiguration.m */; };
 		DAD5EC071B3EEC0A0044FBF8 /* WRCAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD5EC061B3EEC0A0044FBF8 /* WRCAccountViewController.m */; };
 		DAD5EC0C1B3EF3B40044FBF8 /* WRCSetupLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD5EC0B1B3EF3B40044FBF8 /* WRCSetupLoginViewController.m */; };
 		DAFEAF5B1AA223B600F86151 /* WRCFavoritesTableViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFEAF5A1AA223B600F86151 /* WRCFavoritesTableViewHandler.m */; };
@@ -102,6 +103,8 @@
 		DAA6D1441AA22160001D70B1 /* WRCFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCFavoritesViewController.m; sourceTree = "<group>"; };
 		DAAC4C871B46DEEB0030DB91 /* WrightCycle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = WrightCycle.entitlements; sourceTree = "<group>"; };
 		DAAC4C881B46E1D70030DB91 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		DAAC4C8A1B46E9930030DB91 /* WRCConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WRCConfiguration.h; path = Model/WRCConfiguration.h; sourceTree = "<group>"; };
+		DAAC4C8B1B46E9930030DB91 /* WRCConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WRCConfiguration.m; path = Model/WRCConfiguration.m; sourceTree = "<group>"; };
 		DAD5EC051B3EEC0A0044FBF8 /* WRCAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCAccountViewController.h; sourceTree = "<group>"; };
 		DAD5EC061B3EEC0A0044FBF8 /* WRCAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCAccountViewController.m; sourceTree = "<group>"; };
 		DAD5EC091B3EEDD00044FBF8 /* Chicago, IL, USA.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Chicago, IL, USA.gpx"; sourceTree = "<group>"; };
@@ -253,6 +256,8 @@
 		DA322F281A8FDA0900D9CEE8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DAAC4C8A1B46E9930030DB91 /* WRCConfiguration.h */,
+				DAAC4C8B1B46E9930030DB91 /* WRCConfiguration.m */,
 				DA322F251A8FD2C600D9CEE8 /* WRCStation.h */,
 				DA322F261A8FD2C600D9CEE8 /* WRCStation.m */,
 			);
@@ -507,6 +512,7 @@
 				DA8250901A98FE5C006717E4 /* NSURL+WRCAdditions.m in Sources */,
 				DAD5EC0C1B3EF3B40044FBF8 /* WRCSetupLoginViewController.m in Sources */,
 				DA86EB8E1A9011A7002C1FE6 /* WRCStationsMapViewHandler.m in Sources */,
+				DAAC4C8C1B46E9930030DB91 /* WRCConfiguration.m in Sources */,
 				DAFEAF5B1AA223B600F86151 /* WRCFavoritesTableViewHandler.m in Sources */,
 				DA1D53BF1B2C88D200BD31E3 /* WRCFavoriteStationsManager.m in Sources */,
 				DA322EED1A8FBAD800D9CEE8 /* main.m in Sources */,
