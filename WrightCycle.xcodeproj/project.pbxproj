@@ -34,6 +34,7 @@
 		DA9367681A9000830047578C /* WRCStationsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9367671A9000830047578C /* WRCStationsMapViewController.m */; };
 		DA93676A1A9000A20047578C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9367691A9000A20047578C /* MapKit.framework */; };
 		DAA6D1451AA22160001D70B1 /* WRCFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA6D1441AA22160001D70B1 /* WRCFavoritesViewController.m */; };
+		DAAC4C891B46E1D70030DB91 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAAC4C881B46E1D70030DB91 /* CloudKit.framework */; };
 		DAD5EC071B3EEC0A0044FBF8 /* WRCAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD5EC061B3EEC0A0044FBF8 /* WRCAccountViewController.m */; };
 		DAD5EC0C1B3EF3B40044FBF8 /* WRCSetupLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAD5EC0B1B3EF3B40044FBF8 /* WRCSetupLoginViewController.m */; };
 		DAFEAF5B1AA223B600F86151 /* WRCFavoritesTableViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFEAF5A1AA223B600F86151 /* WRCFavoritesTableViewHandler.m */; };
@@ -99,6 +100,8 @@
 		DA9367691A9000A20047578C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DAA6D1431AA22160001D70B1 /* WRCFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCFavoritesViewController.h; sourceTree = "<group>"; };
 		DAA6D1441AA22160001D70B1 /* WRCFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCFavoritesViewController.m; sourceTree = "<group>"; };
+		DAAC4C871B46DEEB0030DB91 /* WrightCycle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = WrightCycle.entitlements; sourceTree = "<group>"; };
+		DAAC4C881B46E1D70030DB91 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		DAD5EC051B3EEC0A0044FBF8 /* WRCAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCAccountViewController.h; sourceTree = "<group>"; };
 		DAD5EC061B3EEC0A0044FBF8 /* WRCAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCAccountViewController.m; sourceTree = "<group>"; };
 		DAD5EC091B3EEDD00044FBF8 /* Chicago, IL, USA.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Chicago, IL, USA.gpx"; sourceTree = "<group>"; };
@@ -114,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAAC4C891B46E1D70030DB91 /* CloudKit.framework in Frameworks */,
 				DA93676A1A9000A20047578C /* MapKit.framework in Frameworks */,
 				2DABE78B8FDEDA5B9B54D47E /* Pods.framework in Frameworks */,
 			);
@@ -141,6 +145,7 @@
 		D4DAEFEED01943F9B5E8D927 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DAAC4C881B46E1D70030DB91 /* CloudKit.framework */,
 				DA9367691A9000A20047578C /* MapKit.framework */,
 				7DAC4622DEF8C4C362B5E7A8 /* Pods.framework */,
 			);
@@ -170,6 +175,7 @@
 		DA322EE91A8FBAD800D9CEE8 /* WrightCycle */ = {
 			isa = PBXGroup;
 			children = (
+				DAAC4C871B46DEEB0030DB91 /* WrightCycle.entitlements */,
 				DA322EEE1A8FBAD800D9CEE8 /* AppDelegate.h */,
 				DA322EEF1A8FBAD800D9CEE8 /* AppDelegate.m */,
 				DA322F171A8FCB6A00D9CEE8 /* WRCLandingViewController.h */,
@@ -380,6 +386,12 @@
 				TargetAttributes = {
 					DA322EE61A8FBAD800D9CEE8 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = HTVQW2NNE8;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					DA322EFF1A8FBAD800D9CEE8 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -630,9 +642,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = WrightCycle/WrightCycle.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = WrightCycle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WrightCycle/WrightCycle-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -644,9 +660,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = WrightCycle/WrightCycle.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = WrightCycle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WrightCycle/WrightCycle-Bridging-Header.h";
 			};
 			name = Release;
