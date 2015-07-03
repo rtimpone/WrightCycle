@@ -48,12 +48,17 @@
 - (void)applicationDidBecomeActive: (UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    //Refresh the configuration object that contains information about the Divvy account login page
-    [[WRCNetworkingManager sharedManager] getAppConfigurationWithSuccess: ^(WRCConfiguration *configuration) {
-        NSLog(@"%@: Configuration object retrieved", NSStringFromSelector(_cmd));
-    } failure:^(NSError *error) {
-        NSLog(@"%@: Error retrieving configuration: %@", NSStringFromSelector(_cmd), error);
-    }];
+    
+    //Only request a configuration object refresh if enough time has passed
+    if ([[WRCNetworkingManager sharedManager] isReadyForConfigurationRefresh])
+    {
+        //Refresh the configuration object that contains information about the Divvy account login page
+        [[WRCNetworkingManager sharedManager] getAppConfigurationWithSuccess: ^(WRCConfiguration *configuration) {
+            NSLog(@"%@: Configuration object retrieved", NSStringFromSelector(_cmd));
+        } failure:^(NSError *error) {
+            NSLog(@"%@: Error retrieving configuration: %@", NSStringFromSelector(_cmd), error);
+        }];
+    }
 }
 
 - (void)applicationWillTerminate: (UIApplication *)application

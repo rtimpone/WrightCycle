@@ -72,6 +72,9 @@ extern NSString * const kConfigurationUpdatedNotification;
  */
 - (void)getAppConfigurationWithSuccess: (void (^)(WRCConfiguration *configuration))success failure: (void (^)(NSError *error))failure;
 
+/** Whether enough time has passed to justify another configuration refresh */
+- (BOOL)isReadyForConfigurationRefresh;
+
 #pragma mark - Cached Stations
 
 /** Fetch any cached stations that have an id in an array of ids

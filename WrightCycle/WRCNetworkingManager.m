@@ -19,10 +19,13 @@
 @property (strong, nonatomic) NSArray *cachedStations;
 
 /** The last time a successful data refresh was made */
-@property (strong, nonatomic) NSDate *lastRefreshDate;
+@property (strong, nonatomic) NSDate *lastStationsRefreshDate;
 
 /** The most recently retrieved configuration object */
 @property (strong, nonatomic, readwrite) WRCConfiguration *cachedConfiguration;
+
+/** The last time a successful configuration refresh was made */
+@property (strong, nonatomic) NSDate *lastConfigurationRefreshDate;
 
 @end
 
@@ -30,7 +33,8 @@ NSString * const kConfigurationUpdatedNotification = @"kConfigurationUpdatedNoti
 NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/stations/json";
 
 //The Divvy API only updates its JSON feed once a minute
-#define SECONDS_TO_WAIT_BEFORE_REFRESHING_DATA 60
+#define SECONDS_TO_WAIT_BEFORE_REFRESHING_STATION_DATA 60
+#define SECONDS_TO_WAIT_BEFORE_REFRESHING_CONFIGURATION 15 * 60
 
 @implementation WRCNetworkingManager
 
@@ -88,7 +92,7 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
                     [stations addObject: station];
                 }
                 
-                self.lastRefreshDate = [NSDate date];
+                self.lastStationsRefreshDate = [NSDate date];
                 self.cachedStations = stations;
                 
                 success(stations);
@@ -130,6 +134,7 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
                 self.cachedConfiguration = configuration;
             }
 
+            self.lastConfigurationRefreshDate = [NSDate date];
             success(configuration);
         }
     }];
@@ -140,8 +145,17 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
 //An API request should only be made if we don't have any data yet or if 60 seconds has elapsed since the last data refresh
 - (BOOL)shouldRefreshStations
 {
-    BOOL thisIsTheFirstRefresh = !self.lastRefreshDate;
-    BOOL enoughTimeHasElapsedToRefresh = -[self.lastRefreshDate timeIntervalSinceNow] >= SECONDS_TO_WAIT_BEFORE_REFRESHING_DATA;
+    BOOL thisIsTheFirstRefresh = !self.lastStationsRefreshDate;
+    BOOL enoughTimeHasElapsedToRefresh = -[self.lastStationsRefreshDate timeIntervalSinceNow] >= SECONDS_TO_WAIT_BEFORE_REFRESHING_STATION_DATA;
+    
+    return thisIsTheFirstRefresh || enoughTimeHasElapsedToRefresh;
+}
+
+//A configuration refresh should only be made if at least 15 minutes have passed since the last refresh attempt
+- (BOOL)isReadyForConfigurationRefresh
+{
+    BOOL thisIsTheFirstRefresh = !self.lastConfigurationRefreshDate;
+    BOOL enoughTimeHasElapsedToRefresh = -[self.lastConfigurationRefreshDate timeIntervalSinceNow] >= SECONDS_TO_WAIT_BEFORE_REFRESHING_CONFIGURATION;
     
     return thisIsTheFirstRefresh || enoughTimeHasElapsedToRefresh;
 }
