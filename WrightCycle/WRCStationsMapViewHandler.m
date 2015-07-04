@@ -7,6 +7,7 @@
 //
 
 #import "MKMapView+WRCAdditions.h"
+#import "WRCStation.h"
 #import "WRCStationAnnotationView.h"
 #import "WRCStationsMapViewHandler.h"
 
@@ -30,9 +31,28 @@
 - (void)setStations: (NSArray *)stations
 {
     _stations = stations;
-    
-    [self.mapView removeAnnotations: self.mapView.annotations];
-    [self.mapView addAnnotations: stations];
+
+    for (WRCStation *station in stations)
+    {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"stationId = %@", station.stationId];
+        WRCStation *existingAnnotation = [[self.mapView.annotations filteredArrayUsingPredicate: predicate] firstObject];
+        
+        if (existingAnnotation)
+        {
+            BOOL bikeCountChanged = station.availableBikes.integerValue != existingAnnotation.availableBikes.integerValue;
+            BOOL dockCountChanged = station.availableDocks.integerValue != existingAnnotation.availableDocks.integerValue;
+            
+            if (bikeCountChanged || dockCountChanged)
+            {
+                [self.mapView removeAnnotation: existingAnnotation];
+                [self.mapView addAnnotation: station];
+            }
+        }
+        else
+        {
+            [self.mapView addAnnotation: station];
+        }
+    }
 }
 
 #pragma mark - Map View Delegate

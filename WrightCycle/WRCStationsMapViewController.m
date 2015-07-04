@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Rob Timpone. All rights reserved.
 //
 
+#import "WRCAutoRefreshDataManager.h"
 #import "WRCStationDetailsViewController.h"
 #import "WRCStationsMapViewController.h"
 #import "WRCStationsRequestHandler.h"
@@ -52,6 +53,20 @@
     }];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear: animated];
+    
+    //listen for when the stations data is automatically updated
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(didReceiveStationsUpdateNotification:) name: kStationsUpdatedNotification object: nil];
+}
+
+- (void)viewWillDisappear: (BOOL)animated
+{
+    [super viewWillDisappear: animated];
+    [[NSNotificationCenter defaultCenter] removeObserver: self];
+}
+
 - (void)prepareForSegue: (UIStoryboardSegue *)segue sender: (id)sender
 {
     if ([segue.identifier isEqualToString: @"stationDetailsSegue"])
@@ -80,6 +95,17 @@
 {
     self.selectedStation = station;
     [self performSegueWithIdentifier: @"stationDetailsSegue" sender: self];
+}
+
+#pragma mark - Notification Center Callbacks
+
+//Called when station data is automatically updated by the auto refresh data manager
+//Updates the stations being shown in the mapview
+- (void)didReceiveStationsUpdateNotification: (NSNotification *)notification
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.mapViewHandler.stations = notification.object;
+    });
 }
 
 #pragma mark - Actions
