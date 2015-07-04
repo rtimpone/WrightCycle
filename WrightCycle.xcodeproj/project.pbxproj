@@ -25,6 +25,7 @@
 		DA5FE04E1B47592700740E3F /* WRCStationsRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5FE04D1B47592700740E3F /* WRCStationsRequestHandler.m */; };
 		DA5FE0511B47594700740E3F /* WRCiCloudRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5FE0501B47594700740E3F /* WRCiCloudRequestHandler.m */; };
 		DA5FE0541B47596C00740E3F /* WRCRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5FE0531B47596C00740E3F /* WRCRequestHandler.m */; };
+		DA62148C1B488B49002B757D /* WRCAutoRefreshDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA62148B1B488B49002B757D /* WRCAutoRefreshDataManager.m */; };
 		DA82508A1A98EE0E006717E4 /* WRCInterappURLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8250891A98EE0E006717E4 /* WRCInterappURLManager.m */; };
 		DA8250901A98FE5C006717E4 /* NSURL+WRCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DA82508F1A98FE5C006717E4 /* NSURL+WRCAdditions.m */; };
 		DA86EB851A9007A0002C1FE6 /* WRCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA86EB841A9007A0002C1FE6 /* WRCViewController.m */; };
@@ -86,6 +87,8 @@
 		DA5FE0501B47594700740E3F /* WRCiCloudRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WRCiCloudRequestHandler.m; path = Managers/WRCiCloudRequestHandler.m; sourceTree = "<group>"; };
 		DA5FE0521B47596C00740E3F /* WRCRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCRequestHandler.h; sourceTree = "<group>"; };
 		DA5FE0531B47596C00740E3F /* WRCRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCRequestHandler.m; sourceTree = "<group>"; };
+		DA62148A1B488B49002B757D /* WRCAutoRefreshDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WRCAutoRefreshDataManager.h; path = Managers/WRCAutoRefreshDataManager.h; sourceTree = "<group>"; };
+		DA62148B1B488B49002B757D /* WRCAutoRefreshDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WRCAutoRefreshDataManager.m; path = Managers/WRCAutoRefreshDataManager.m; sourceTree = "<group>"; };
 		DA8250881A98EE0E006717E4 /* WRCInterappURLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WRCInterappURLManager.h; path = Managers/WRCInterappURLManager.h; sourceTree = "<group>"; };
 		DA8250891A98EE0E006717E4 /* WRCInterappURLManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WRCInterappURLManager.m; path = Managers/WRCInterappURLManager.m; sourceTree = "<group>"; };
 		DA82508E1A98FE5C006717E4 /* NSURL+WRCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+WRCAdditions.h"; path = "Categories/NSURL+WRCAdditions.h"; sourceTree = "<group>"; };
@@ -248,6 +251,8 @@
 		DA322F241A8FD28100D9CEE8 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				DA62148A1B488B49002B757D /* WRCAutoRefreshDataManager.h */,
+				DA62148B1B488B49002B757D /* WRCAutoRefreshDataManager.m */,
 				DA5FE04F1B47594700740E3F /* WRCiCloudRequestHandler.h */,
 				DA5FE0501B47594700740E3F /* WRCiCloudRequestHandler.m */,
 				DA1D53BD1B2C88D200BD31E3 /* WRCFavoriteStationsManager.h */,
@@ -529,6 +534,7 @@
 				DA322EED1A8FBAD800D9CEE8 /* main.m in Sources */,
 				DA86EB851A9007A0002C1FE6 /* WRCViewController.m in Sources */,
 				DA322F191A8FCB6A00D9CEE8 /* WRCLandingViewController.m in Sources */,
+				DA62148C1B488B49002B757D /* WRCAutoRefreshDataManager.m in Sources */,
 				DA4C71C11B3F26AB0053E6F0 /* WRCSetupLoginTextHandler.m in Sources */,
 				DA86EB991A9035C9002C1FE6 /* WRCStationDetailsViewController.m in Sources */,
 				DA322F271A8FD2C600D9CEE8 /* WRCStation.m in Sources */,
