@@ -8,11 +8,15 @@
 
 #import "WRCFavoritesTableViewHandler.h"
 #import "WRCStation.h"
+#import "WRCFavoriteStationsManager.h"
 
 @interface WRCFavoritesTableViewHandler ()
 
 /** The table view to display the favorite stations in */
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+/** The edit button used to toggle table view editing */
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 
 /** The favorite stations to display in the table view */
 @property (strong, nonatomic) NSArray *favoriteStations;
@@ -56,6 +60,31 @@
     [tableView deselectRowAtIndexPath: indexPath animated: YES];
 }
 
+- (void)tableView: (UITableView *)tableView commitEditingStyle: (UITableViewCellEditingStyle)editingStyle forRowAtIndexPath: (NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        //update the favorite stations list stored in user defaults
+        WRCStation *station = self.favoriteStations[indexPath.row];
+        [WRCFavoriteStationsManager removeStationFromFavorites: station];
+        
+        //update the tableview and data source
+        self.favoriteStations = [WRCFavoriteStationsManager fetchFavoriteStations];
+        [self.tableView deleteRowsAtIndexPaths: @[indexPath] withRowAnimation: UITableViewRowAnimationAutomatic];
+    }
+}
+
+- (BOOL)tableView: (UITableView *)tableView canMoveRowAtIndexPath: (NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView: (UITableView *)tableView moveRowAtIndexPath: (NSIndexPath *)sourceIndexPath toIndexPath: (NSIndexPath *)destinationIndexPath
+{
+    [WRCFavoriteStationsManager moveFavoriteStationAtIndex: sourceIndexPath.row toIndex: destinationIndexPath.row];
+    self.favoriteStations = [WRCFavoriteStationsManager fetchFavoriteStations];
+}
+
 #pragma mark - Actions
 
 //Called when the user activates the refresh control
@@ -92,6 +121,21 @@
     
     self.favoriteStations = favoriteStations;
     [self.tableView reloadData];
+}
+
+//Brings the tableview into or out of editing mode
+- (void)toggleTableViewEditing
+{
+    if (self.tableView.isEditing)
+    {
+        [self.tableView setEditing: NO animated: YES];
+        self.editButton.title = NSLocalizedString(@"Edit", nil);
+    }
+    else
+    {
+        [self.tableView setEditing: YES animated: YES];
+        self.editButton.title = NSLocalizedString(@"Done", nil);
+    }
 }
 
 @end

@@ -30,6 +30,16 @@
  */
 + (void)removeStationFromFavorites: (WRCStation *)station;
 
+/** Change where a station appears on the favorites list
+ 
+ This will update the order that the favorite stations list appears in
+ 
+ @param sourceIndex The index of the station to move
+ @param destinationIndex The index to move the station to
+ 
+ */
++ (void)moveFavoriteStationAtIndex: (NSInteger)sourceIndex toIndex: (NSInteger)destinationIndex;
+
 /** Whether a station is in the favories list
  
  Checks the list of favorite station ids stored in user defaults to see if the station is a favorite.

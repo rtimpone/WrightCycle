@@ -33,7 +33,21 @@ NSString * const kFavoriteStations = @"kFavoriteStations";
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSArray *favoriteStationIds = [defaults objectForKey: kFavoriteStations];
-    return [[WRCStationsRequestHandler sharedManager] fetchCachedStationsWithIds: favoriteStationIds];
+    NSArray *cachedStations = [[WRCStationsRequestHandler sharedManager] cachedStations];
+    
+    NSMutableArray *favoriteStations = [[NSMutableArray alloc] init];
+    for (NSNumber *stationId in favoriteStationIds)
+    {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"stationId = %@", stationId];
+        NSArray *stationMatches = [cachedStations filteredArrayUsingPredicate: predicate];
+        if ([stationMatches count])
+        {
+            WRCStation *station = [stationMatches firstObject];
+            [favoriteStations addObject: station];
+        }
+    }
+    
+    return favoriteStations;
 }
 
 + (void)addStationAsFavorite: (WRCStation *)station
@@ -55,6 +69,20 @@ NSString * const kFavoriteStations = @"kFavoriteStations";
     
     NSMutableArray *mutableFavoriteStationIds = [favoriteStationIds mutableCopy];
     [mutableFavoriteStationIds removeObject: station.stationId];
+    
+    [defaults setObject: mutableFavoriteStationIds forKey: kFavoriteStations];
+    [defaults synchronize];
+}
+
++ (void)moveFavoriteStationAtIndex: (NSInteger)sourceIndex toIndex: (NSInteger)destinationIndex
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *favoriteStationIds = [WRCFavoriteStationsManager fetchFavoriteStationsIds];
+    
+    NSMutableArray *mutableFavoriteStationIds = [favoriteStationIds mutableCopy];
+    WRCStation *stationToMove = mutableFavoriteStationIds[sourceIndex];
+    [mutableFavoriteStationIds removeObjectAtIndex: sourceIndex];
+    [mutableFavoriteStationIds insertObject: stationToMove atIndex: destinationIndex];
     
     [defaults setObject: mutableFavoriteStationIds forKey: kFavoriteStations];
     [defaults synchronize];

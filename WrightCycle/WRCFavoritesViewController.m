@@ -67,6 +67,14 @@
                                                               }];
 }
 
+#pragma mark - Actions
+
+//Called when the user taps the edit button
+- (IBAction)editAction: (id)sender
+{
+    [self.tableViewHandler toggleTableViewEditing];
+}
+
 #pragma mark - Helpers
 
 //Fetches the favorite stations from the data manager and passes them to the table view handler to update the table
