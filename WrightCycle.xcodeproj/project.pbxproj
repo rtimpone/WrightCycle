@@ -16,7 +16,6 @@
 		DA322EF81A8FBAD800D9CEE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA322EF71A8FBAD800D9CEE8 /* Images.xcassets */; };
 		DA322F071A8FBAD800D9CEE8 /* WrightCycleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA322F061A8FBAD800D9CEE8 /* WrightCycleTests.m */; };
 		DA322F191A8FCB6A00D9CEE8 /* WRCLandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA322F181A8FCB6A00D9CEE8 /* WRCLandingViewController.m */; };
-		DA322F231A8FCD3100D9CEE8 /* WRCNetworkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DA322F221A8FCD3100D9CEE8 /* WRCNetworkingManager.m */; };
 		DA322F271A8FD2C600D9CEE8 /* WRCStation.m in Sources */ = {isa = PBXBuildFile; fileRef = DA322F261A8FD2C600D9CEE8 /* WRCStation.m */; };
 		DA322F291A8FDEBE00D9CEE8 /* Oswald-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA322F1B1A8FCB8A00D9CEE8 /* Oswald-Bold.ttf */; };
 		DA322F2A1A8FDEBE00D9CEE8 /* Oswald-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA322F1C1A8FCB8A00D9CEE8 /* Oswald-Light.ttf */; };
@@ -77,8 +76,6 @@
 		DA322F1B1A8FCB8A00D9CEE8 /* Oswald-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Bold.ttf"; sourceTree = "<group>"; };
 		DA322F1C1A8FCB8A00D9CEE8 /* Oswald-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Light.ttf"; sourceTree = "<group>"; };
 		DA322F1D1A8FCB8A00D9CEE8 /* Oswald-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Regular.ttf"; sourceTree = "<group>"; };
-		DA322F211A8FCD3100D9CEE8 /* WRCNetworkingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCNetworkingManager.h; sourceTree = "<group>"; };
-		DA322F221A8FCD3100D9CEE8 /* WRCNetworkingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCNetworkingManager.m; sourceTree = "<group>"; };
 		DA322F251A8FD2C600D9CEE8 /* WRCStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WRCStation.h; path = Model/WRCStation.h; sourceTree = "<group>"; };
 		DA322F261A8FD2C600D9CEE8 /* WRCStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WRCStation.m; path = Model/WRCStation.m; sourceTree = "<group>"; };
 		DA4C71BF1B3F26AB0053E6F0 /* WRCSetupLoginTextHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCSetupLoginTextHandler.h; sourceTree = "<group>"; };
@@ -260,8 +257,6 @@
 				DA32205A1B3F0BAD00C2276A /* WRCKeychainManager.swift */,
 				DA5FE04C1B47592700740E3F /* WRCStationsRequestHandler.h */,
 				DA5FE04D1B47592700740E3F /* WRCStationsRequestHandler.m */,
-				DA322F211A8FCD3100D9CEE8 /* WRCNetworkingManager.h */,
-				DA322F221A8FCD3100D9CEE8 /* WRCNetworkingManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -514,7 +509,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA322F231A8FCD3100D9CEE8 /* WRCNetworkingManager.m in Sources */,
 				DAD5EC071B3EEC0A0044FBF8 /* WRCAccountViewController.m in Sources */,
 				DA5FE04E1B47592700740E3F /* WRCStationsRequestHandler.m in Sources */,
 				DA86EB9D1A904956002C1FE6 /* WRCStationDetailsMapViewHandler.m in Sources */,

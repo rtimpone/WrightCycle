@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "WRCNetworkingManager.h"
+#import "WRCiCloudRequestHandler.h"
 
 @interface AppDelegate ()
 
@@ -50,10 +50,10 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
     //Only request a configuration object refresh if enough time has passed
-    if ([[WRCNetworkingManager sharedManager] isReadyForConfigurationRefresh])
+    if ([[WRCiCloudRequestHandler sharedManager] isReadyForConfigurationRefresh] && [WRCiCloudRequestHandler internetConnectionIsAvailable])
     {
         //Refresh the configuration object that contains information about the Divvy account login page
-        [[WRCNetworkingManager sharedManager] getAppConfigurationWithSuccess: ^(WRCConfiguration *configuration) {
+        [[WRCiCloudRequestHandler sharedManager] getAppConfigurationWithSuccess: ^(WRCConfiguration *configuration) {
             NSLog(@"%@: Configuration object retrieved", NSStringFromSelector(_cmd));
         } failure:^(NSError *error) {
             NSLog(@"%@: Error retrieving configuration: %@", NSStringFromSelector(_cmd), error);

@@ -8,7 +8,7 @@
 
 #import "WRCAccountViewController.h"
 #import "WRCConfiguration.h"
-#import "WRCNetworkingManager.h"
+#import "WRCiCloudRequestHandler.h"
 #import "WrightCycle-Swift.h"
 
 @interface WRCAccountViewController ()
@@ -39,7 +39,7 @@ NSString * const kDefaultPasswordFieldElementName = @"subscriberPassword";
 {
     [super viewDidLoad];
     
-    WRCConfiguration *configuration = [[WRCNetworkingManager sharedManager] cachedConfiguration];
+    WRCConfiguration *configuration = [[WRCiCloudRequestHandler sharedManager] cachedConfiguration];
     self.divvyAccountURLString = configuration.accountURLString ? configuration.accountURLString : kDefaultDivvyAccountURL;
     
     //adjust insets of the webview to account for the toolbar
@@ -134,7 +134,7 @@ NSString * const kDefaultPasswordFieldElementName = @"subscriberPassword";
         password = @"";
     }
     
-    WRCConfiguration *configuration = [[WRCNetworkingManager sharedManager] cachedConfiguration];
+    WRCConfiguration *configuration = [[WRCiCloudRequestHandler sharedManager] cachedConfiguration];
     
     NSString *usernameElementName = configuration.usernameFieldElementName ? configuration.usernameFieldElementName : kDefaultUsernameFieldElementName;
     NSString *usernameJavascript = [NSString stringWithFormat: @"document.getElementById('%@').value='%@'", usernameElementName, username];
