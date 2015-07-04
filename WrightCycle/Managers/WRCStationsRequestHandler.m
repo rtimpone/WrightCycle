@@ -74,12 +74,4 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
     }
 }
 
-#pragma mark - Cached Stations
-
-- (NSArray *)fetchCachedStationsWithIds: (NSArray *)stationIds
-{
-    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"stationId IN %@", stationIds];
-    return [self.cachedStations filteredArrayUsingPredicate: predicate];
-}
-
 @end

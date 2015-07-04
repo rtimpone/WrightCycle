@@ -8,6 +8,7 @@
 
 #import "WRCFavoritesTableViewHandler.h"
 #import "WRCStation.h"
+#import "WRCFavoriteStationsManager.h"
 
 @interface WRCFavoritesTableViewHandler ()
 
@@ -57,6 +58,31 @@
     WRCStation *selectedStation = self.favoriteStations[indexPath.row];
     [self.delegate favoritesTableViewHandler: self userSelectedStation: selectedStation];
     [tableView deselectRowAtIndexPath: indexPath animated: YES];
+}
+
+- (void)tableView: (UITableView *)tableView commitEditingStyle: (UITableViewCellEditingStyle)editingStyle forRowAtIndexPath: (NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        //update the favorite stations list stored in user defaults
+        WRCStation *station = self.favoriteStations[indexPath.row];
+        [WRCFavoriteStationsManager removeStationFromFavorites: station];
+        
+        //update the tableview and data source
+        self.favoriteStations = [WRCFavoriteStationsManager fetchFavoriteStations];
+        [self.tableView deleteRowsAtIndexPaths: @[indexPath] withRowAnimation: UITableViewRowAnimationAutomatic];
+    }
+}
+
+- (BOOL)tableView: (UITableView *)tableView canMoveRowAtIndexPath: (NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView: (UITableView *)tableView moveRowAtIndexPath: (NSIndexPath *)sourceIndexPath toIndexPath: (NSIndexPath *)destinationIndexPath
+{
+    [WRCFavoriteStationsManager moveFavoriteStationAtIndex: sourceIndexPath.row toIndex: destinationIndexPath.row];
+    self.favoriteStations = [WRCFavoriteStationsManager fetchFavoriteStations];
 }
 
 #pragma mark - Actions

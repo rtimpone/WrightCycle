@@ -37,12 +37,4 @@
  */
 - (void)getStationsListImmediately: (BOOL)shouldMakeRequestImmediately withSuccess: (void (^)(NSArray *stations))success failure: (void (^)(NSError *error))failure;
 
-/** Fetch any cached stations that have an id in an array of ids
- 
- @param stationIds The station ids of the stations being requested
- @return An array of stations with an id in the array of station ids
- 
- */
-- (NSArray *)fetchCachedStationsWithIds: (NSArray *)stationIds;
-
 @end
