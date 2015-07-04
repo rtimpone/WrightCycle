@@ -10,6 +10,9 @@
 
 @interface WRCRequestHandler : NSObject
 
+/** The last time a data refresh was completed */
+@property (strong, nonatomic) NSDate *lastRefreshDate;
+
 #pragma mark - Singleton
 
 /** A shared networking manager to be used as a singleton */
@@ -19,5 +22,13 @@
 
 /** Whether an internet connection is available */
 + (BOOL)internetConnectionIsAvailable;
+
+#pragma mark - Cooldown Period
+
+/** Whether enough time has passed to justify another request */
+- (BOOL)isReadyForRefresh;
+
+/** How long to wait before making another data request */
+- (NSInteger)secondsToWaitBeforeRefresh;
 
 @end

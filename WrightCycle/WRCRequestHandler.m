@@ -16,10 +16,10 @@
 + (instancetype)sharedManager
 {
     static NSMutableDictionary *singletons = nil;
-    if (!singletons)
-    {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         singletons = [[NSMutableDictionary alloc] init];
-    }
+    });
     
     NSString *className = NSStringFromClass([self class]);
     WRCRequestHandler *sharedInstance = singletons[className];
@@ -38,6 +38,21 @@
 {
     Reachability *reachabilty = [Reachability reachabilityForInternetConnection];
     return reachabilty.isReachable;
+}
+
+#pragma mark - Cooldown Period
+
+- (BOOL)isReadyForRefresh
+{
+    BOOL thisIsTheFirstRefresh = !self.lastRefreshDate;
+    BOOL enoughTimeHasElapsedToRefresh = -[self.lastRefreshDate timeIntervalSinceNow] >= [self secondsToWaitBeforeRefresh];
+    
+    return thisIsTheFirstRefresh || enoughTimeHasElapsedToRefresh;
+}
+
+- (NSInteger)secondsToWaitBeforeRefresh
+{
+    return 0;
 }
 
 @end

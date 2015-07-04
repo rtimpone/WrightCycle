@@ -14,17 +14,21 @@
 /** The most recent list of stations from the API */
 @property (strong, nonatomic, readwrite) NSArray *cachedStations;
 
-/** The last time a successful data refresh was made */
-@property (strong, nonatomic) NSDate *lastStationsRefreshDate;
-
 @end
 
-
-#define SECONDS_TO_WAIT_BEFORE_REFRESHING_STATION_DATA 60
 
 NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/stations/json";
 
 @implementation WRCStationsRequestHandler
+
+#pragma mark - Request Handler Superclass
+
+- (NSInteger)secondsToWaitBeforeRefresh
+{
+    return 60;
+}
+
+#pragma mark - Divvy API Requests
 
 - (NSArray *)getStationsListWithSuccess: (void (^)(NSArray *stations))success failure: (void (^)(NSError *error))failure
 {
@@ -33,7 +37,7 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
 
 - (NSArray *)getStationsListImmediately: (BOOL)shouldMakeRequestImmediately withSuccess: (void (^)(NSArray *stations))success failure: (void (^)(NSError *error))failure
 {
-    if ([self shouldRefreshStations] || shouldMakeRequestImmediately)
+    if ([self isReadyForRefresh] || shouldMakeRequestImmediately)
     {
         NSURL *url = [NSURL URLWithString: kDivvyStationsJsonFeedUrlString];
         NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL: url completionHandler: ^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -58,7 +62,7 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
                     [stations addObject: station];
                 }
                 
-                self.lastStationsRefreshDate = [NSDate date];
+                self.lastRefreshDate = [NSDate date];
                 self.cachedStations = stations;
                 
                 success(stations);
@@ -73,14 +77,7 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
     return self.cachedStations;
 }
 
-//An API request should only be made if we don't have any data yet or if 60 seconds has elapsed since the last data refresh
-- (BOOL)shouldRefreshStations
-{
-    BOOL thisIsTheFirstRefresh = !self.lastStationsRefreshDate;
-    BOOL enoughTimeHasElapsedToRefresh = -[self.lastStationsRefreshDate timeIntervalSinceNow] >= SECONDS_TO_WAIT_BEFORE_REFRESHING_STATION_DATA;
-    
-    return thisIsTheFirstRefresh || enoughTimeHasElapsedToRefresh;
-}
+#pragma mark - Cached Stations
 
 - (NSArray *)fetchCachedStationsWithIds: (NSArray *)stationIds
 {

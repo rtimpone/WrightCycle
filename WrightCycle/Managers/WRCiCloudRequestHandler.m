@@ -17,18 +17,21 @@
 /** The most recently retrieved configuration object */
 @property (strong, nonatomic, readwrite) WRCConfiguration *cachedConfiguration;
 
-/** The last time a successful configuration refresh was made */
-@property (strong, nonatomic) NSDate *lastConfigurationRefreshDate;
-
 @end
 
 
 NSString * const kConfigurationUpdatedNotification = @"kConfigurationUpdatedNotification";
 
-//The Divvy API only updates its JSON feed once a minute
-#define SECONDS_TO_WAIT_BEFORE_REFRESHING_CONFIGURATION 15 * 60
-
 @implementation WRCiCloudRequestHandler
+
+#pragma mark - Request Handler Superclass
+
+- (NSInteger)secondsToWaitBeforeRefresh
+{
+    return 15 * 60;
+}
+
+#pragma mark - iCloud Requests
 
 - (void)getAppConfigurationWithSuccess: (void (^)(WRCConfiguration *configuration))success failure: (void (^)(NSError *error))failure
 {
@@ -40,6 +43,9 @@ NSString * const kConfigurationUpdatedNotification = @"kConfigurationUpdatedNoti
     [publicCloudDatabase performQuery: query inZoneWithID: nil completionHandler: ^(NSArray *results, NSError *error) {
         
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
+        
+        //we don't care whether the request succeeded, we only want to make it once every 15 minutes
+        self.lastRefreshDate = [NSDate date];
         
         if (error)
         {
@@ -55,21 +61,9 @@ NSString * const kConfigurationUpdatedNotification = @"kConfigurationUpdatedNoti
                 self.cachedConfiguration = configuration;
             }
             
-            self.lastConfigurationRefreshDate = [NSDate date];
             success(configuration);
         }
     }];
-}
-
-#pragma mark - Cooldown Period
-
-//A configuration refresh should only be made if at least 15 minutes have passed since the last refresh attempt
-- (BOOL)isReadyForConfigurationRefresh
-{
-    BOOL thisIsTheFirstRefresh = !self.lastConfigurationRefreshDate;
-    BOOL enoughTimeHasElapsedToRefresh = -[self.lastConfigurationRefreshDate timeIntervalSinceNow] >= SECONDS_TO_WAIT_BEFORE_REFRESHING_CONFIGURATION;
-    
-    return thisIsTheFirstRefresh || enoughTimeHasElapsedToRefresh;
 }
 
 #pragma mark - Setters

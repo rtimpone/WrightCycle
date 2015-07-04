@@ -50,7 +50,7 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
     //Only request a configuration object refresh if enough time has passed
-    if ([[WRCiCloudRequestHandler sharedManager] isReadyForConfigurationRefresh] && [WRCiCloudRequestHandler internetConnectionIsAvailable])
+    if ([[WRCiCloudRequestHandler sharedManager] isReadyForRefresh] && [WRCiCloudRequestHandler internetConnectionIsAvailable])
     {
         //Refresh the configuration object that contains information about the Divvy account login page
         [[WRCiCloudRequestHandler sharedManager] getAppConfigurationWithSuccess: ^(WRCConfiguration *configuration) {
