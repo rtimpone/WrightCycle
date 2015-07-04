@@ -14,6 +14,9 @@
 /** The table view to display the favorite stations in */
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+/** The edit button used to toggle table view editing */
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
+
 /** The favorite stations to display in the table view */
 @property (strong, nonatomic) NSArray *favoriteStations;
 
@@ -92,6 +95,21 @@
     
     self.favoriteStations = favoriteStations;
     [self.tableView reloadData];
+}
+
+//Brings the tableview into or out of editing mode
+- (void)toggleTableViewEditing
+{
+    if (self.tableView.isEditing)
+    {
+        [self.tableView setEditing: NO animated: YES];
+        self.editButton.title = NSLocalizedString(@"Edit", nil);
+    }
+    else
+    {
+        [self.tableView setEditing: YES animated: YES];
+        self.editButton.title = NSLocalizedString(@"Done", nil);
+    }
 }
 
 @end

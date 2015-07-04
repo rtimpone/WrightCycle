@@ -31,4 +31,7 @@
 /** Updates the data source with a list of favorite stations and reload the table view */
 - (void)updateTableWithFavoriteStations: (NSArray *)favoriteStations;
 
+/** Brings the tableview into or out of editing mode */
+- (void)toggleTableViewEditing;
+
 @end
