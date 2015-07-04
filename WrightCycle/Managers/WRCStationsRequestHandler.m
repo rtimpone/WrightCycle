@@ -30,12 +30,12 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
 
 #pragma mark - Divvy API Requests
 
-- (NSArray *)getStationsListWithSuccess: (void (^)(NSArray *stations))success failure: (void (^)(NSError *error))failure
+- (void)getStationsListWithSuccess: (void (^)(NSArray *stations))success failure: (void (^)(NSError *error))failure
 {
-    return [self getStationsListImmediately: NO withSuccess: success failure: failure];
+    [self getStationsListImmediately: NO withSuccess: success failure: failure];
 }
 
-- (NSArray *)getStationsListImmediately: (BOOL)shouldMakeRequestImmediately withSuccess: (void (^)(NSArray *stations))success failure: (void (^)(NSError *error))failure
+- (void)getStationsListImmediately: (BOOL)shouldMakeRequestImmediately withSuccess: (void (^)(NSArray *stations))success failure: (void (^)(NSError *error))failure
 {
     if ([self isReadyForRefresh] || shouldMakeRequestImmediately)
     {
@@ -72,9 +72,6 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
         [task resume];
     }
-    
-    //return the currently cached list of stations immediately
-    return self.cachedStations;
 }
 
 #pragma mark - Cached Stations

@@ -11,7 +11,7 @@
 
 @class WRCConfiguration;
 
-///A notification that is posted when the configuration object is updated. The new configuration will be passed along with the notification.
+/** A notification that is posted when the configuration object is updated. The new configuration will be passed along with the notification. */
 extern NSString * const kConfigurationUpdatedNotification;
 
 @interface WRCiCloudRequestHandler : WRCRequestHandler
