@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Rob Timpone. All rights reserved.
 //
 
-#import "WRCNetworkingManager.h"
 #import "WRCStationDetailsViewController.h"
 #import "WRCStationsMapViewController.h"
+#import "WRCStationsRequestHandler.h"
 
 @interface WRCStationsMapViewController ()
 
@@ -38,7 +38,8 @@
     [self.locationManager requestWhenInUseAuthorization];
     
     //load cached station data into the mapview and request refreshed data from the API if necessary
-    self.mapViewHandler.stations = [[WRCNetworkingManager sharedManager] getStationsListWithSuccess: ^(NSArray *stations) {
+    self.mapViewHandler.stations = [[WRCStationsRequestHandler sharedManager] cachedStations];
+    [[WRCStationsRequestHandler sharedManager] getStationsListWithSuccess: ^(NSArray *stations) {
         
         self.mapViewHandler.stations = stations;
         

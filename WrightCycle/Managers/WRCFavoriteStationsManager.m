@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Rob Timpone. All rights reserved.
 //
 
-#import "WRCNetworkingManager.h"
 #import "WRCFavoriteStationsManager.h"
 #import "WRCStation.h"
+#import "WRCStationsRequestHandler.h"
 
 //The key used to store an array of station ids in user defaults representing the user's favorite stations
 NSString * const kFavoriteStations = @"kFavoriteStations";
@@ -33,7 +33,7 @@ NSString * const kFavoriteStations = @"kFavoriteStations";
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSArray *favoriteStationIds = [defaults objectForKey: kFavoriteStations];
-    return [[WRCNetworkingManager sharedManager] fetchCachedStationsWithIds: favoriteStationIds];
+    return [[WRCStationsRequestHandler sharedManager] fetchCachedStationsWithIds: favoriteStationIds];
 }
 
 + (void)addStationAsFavorite: (WRCStation *)station
