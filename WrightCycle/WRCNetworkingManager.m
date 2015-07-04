@@ -9,7 +9,6 @@
 @import CloudKit;
 
 #import "WRCConfiguration.h"
-#import <Reachability/Reachability.h>
 #import "WRCNetworkingManager.h"
 #import "WRCStation.h"
 
@@ -37,26 +36,6 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
 #define SECONDS_TO_WAIT_BEFORE_REFRESHING_CONFIGURATION 15 * 60
 
 @implementation WRCNetworkingManager
-
-#pragma mark - Singleton
-
-+ (instancetype)sharedManager
-{
-    static WRCNetworkingManager *sharedManager;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedManager = [[WRCNetworkingManager alloc] init];
-    });
-    return sharedManager;
-}
-
-#pragma mark - Reachability
-
-+ (BOOL)internetConnectionIsAvailable
-{
-    Reachability *reachabilty = [Reachability reachabilityForInternetConnection];
-    return reachabilty.isReachable;
-}
 
 #pragma mark - Divvy API
 

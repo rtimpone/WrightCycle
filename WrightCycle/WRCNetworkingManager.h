@@ -7,26 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WRCRequestHandler.h"
 
 @class WRCConfiguration;
 
 ///A notification that is posted when the configuration object is updated. The new configuration will be passed along with the notification.
 extern NSString * const kConfigurationUpdatedNotification;
 
-@interface WRCNetworkingManager : NSObject
+@interface WRCNetworkingManager : WRCRequestHandler
 
 /** The most recently retrieved configuration object */
 @property (strong, nonatomic, readonly) WRCConfiguration *cachedConfiguration;
 
-#pragma mark - Singleton
 
-/** A shared data manager to be used as a singleton */
-+ (WRCNetworkingManager *)sharedManager;
-
-#pragma mark - Reachability
-
-/** Whether an internet connection is available */
-+ (BOOL)internetConnectionIsAvailable;
 
 #pragma mark - Divvy API
 
