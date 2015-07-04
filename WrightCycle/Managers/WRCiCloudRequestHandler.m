@@ -20,8 +20,6 @@
 @end
 
 
-NSString * const kConfigurationUpdatedNotification = @"kConfigurationUpdatedNotification";
-
 @implementation WRCiCloudRequestHandler
 
 #pragma mark - Request Handler Superclass
@@ -64,15 +62,6 @@ NSString * const kConfigurationUpdatedNotification = @"kConfigurationUpdatedNoti
             success(configuration);
         }
     }];
-}
-
-#pragma mark - Setters
-
-//Post a notification when the configuration is updated
-- (void)setCachedConfiguration:(WRCConfiguration *)cachedConfiguration
-{
-    _cachedConfiguration = cachedConfiguration;
-    [[NSNotificationCenter defaultCenter] postNotificationName: kConfigurationUpdatedNotification object: cachedConfiguration];
 }
 
 @end
