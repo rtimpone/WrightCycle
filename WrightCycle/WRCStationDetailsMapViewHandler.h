@@ -20,4 +20,7 @@
 /** The station to display in the map view */
 @property (strong, nonatomic) WRCStation *station;
 
+/** Zoom the mapview in on a station */
+- (void)zoomInOnStation: (WRCStation *)station;
+
 @end

@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Rob Timpone. All rights reserved.
 //
 
+#import "WRCAutoRefreshDataManager.h"
 #import "WRCFavoriteStationsManager.h"
 #import "WRCInterappURLManager.h"
 #import "WRCStation.h"
@@ -40,6 +41,7 @@
     [self updateStationLabelsText];
     
     self.mapViewHandler.station = self.station;
+    [self.mapViewHandler zoomInOnStation: self.station];
     
     //refresh the stations list if needed and fail silently
     [[WRCStationsRequestHandler sharedManager] getStationsListWithSuccess: ^(NSArray *stations) {
@@ -49,6 +51,20 @@
         [self updateStationLabelsText];
         
     } failure: nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear: animated];
+    
+    //listen for when the stations data is automatically updated
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(didReceiveStationsUpdateNotification:) name: kStationsUpdatedNotification object: nil];
+}
+
+- (void)viewWillDisappear: (BOOL)animated
+{
+    [super viewWillDisappear: animated];
+    [[NSNotificationCenter defaultCenter] removeObserver: self];
 }
 
 #pragma mark - Actions
@@ -89,6 +105,44 @@
     }
 }
 
+#pragma mark - Notification Center Callbacks
+
+//Called when station data is automatically updated by the auto refresh data manager
+//Updates the stations being shown in the mapview
+- (void)didReceiveStationsUpdateNotification: (NSNotification *)notification
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSArray *stations = notification.object;
+        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"stationId = %@", self.station.stationId];
+        WRCStation *updatedStation = [[stations filteredArrayUsingPredicate: predicate] firstObject];
+        
+        if (updatedStation)
+        {
+            WRCStation *originalStation = self.station;
+            
+            self.station = updatedStation;
+            [self updateStationLabelsText];
+            
+            BOOL bikeCountChanged = updatedStation.availableBikes.integerValue != originalStation.availableBikes.integerValue;
+            if (bikeCountChanged)
+            {
+                [self animateTextColorChangeForLabel: self.numBikesLabel];
+            }
+        
+            BOOL dockCountChanged = updatedStation.availableDocks.integerValue != originalStation.availableDocks.integerValue;
+            if (dockCountChanged)
+            {
+                [self animateTextColorChangeForLabel: self.numDocksLabel];
+            }
+            
+            if (bikeCountChanged || dockCountChanged)
+            {
+                self.mapViewHandler.station = updatedStation;
+            }
+        }
+    });
+}
+
 #pragma mark - UI Updates
 
 - (void)updateStationLabelsText
@@ -109,6 +163,24 @@
     NSString *buttonText = [WRCFavoriteStationsManager stationIsFavorite: self.station] ? removeFromFavoritesString : addToFavoritesString;
     
     [self.favoriteButton setTitle: buttonText forState: UIControlStateNormal];
+}
+
+#pragma mark - Helpers
+
+//Use animation to change a label's color to blue for 3 seconds
+- (void)animateTextColorChangeForLabel: (UILabel *)label
+{
+    UIColor *originalLabelColor = label.textColor;
+    
+    [UIView transitionWithView: label duration: 0.25 options: UIViewAnimationOptionTransitionCrossDissolve animations: ^{
+                        label.textColor = [UIColor colorWithRed: 0.000 green: 0.463 blue: 1.000 alpha: 1.000];
+                    }
+                    completion: ^(BOOL finished) {
+                        
+                        [UIView transitionWithView: label duration: 3 options: UIViewAnimationOptionTransitionCrossDissolve animations: ^{
+                            label.textColor = originalLabelColor;
+                        } completion: nil];
+                    }];
 }
 
 @end

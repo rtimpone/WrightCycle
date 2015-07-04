@@ -13,12 +13,32 @@
 
 @implementation WRCStationDetailsMapViewHandler
 
+- (void)zoomInOnStation: (WRCStation *)station
+{
+    [self.mapView zoomInOnStation: station animated: NO];
+}
+
 - (void)setStation: (WRCStation *)station
 {
     _station = station;
     
-    [self.mapView zoomInOnStation: station animated: NO];
-    [self.mapView addAnnotation: station];
+    WRCStation *existingAnnotation = [self.mapView.annotations firstObject];
+    
+    BOOL bikeCountChanged = station.availableBikes.integerValue != existingAnnotation.availableBikes.integerValue;
+    BOOL dockCountChanged = station.availableDocks.integerValue != existingAnnotation.availableDocks.integerValue;
+    
+    if (existingAnnotation)
+    {
+        if (bikeCountChanged || dockCountChanged)
+        {
+            [self.mapView removeAnnotations: self.mapView.annotations];
+            [self.mapView addAnnotation: station];
+        }
+    }
+    else
+    {
+        [self.mapView addAnnotation: station];
+    }
 }
 
 #pragma mark - Map View Delegate

@@ -56,11 +56,11 @@ NSString * const kStationsUpdatedNotification = @"kStationsUpdatedNotification";
     {
         [[WRCStationsRequestHandler sharedManager] getStationsListImmediately: YES withSuccess: ^(NSArray *stations) {
             
-            NSLog(@"%@ %@: Stations refreshed successfully", [self class], NSStringFromSelector(_cmd));
+            NSLog(@"[%@ %@]: Stations refreshed successfully", [self class], NSStringFromSelector(_cmd));
             [[NSNotificationCenter defaultCenter] postNotificationName: kStationsUpdatedNotification object: stations];
             
         } failure: ^(NSError *error) {
-            NSLog(@"%@ %@: Error retrieving stations: %@", [self class], NSStringFromSelector(_cmd), error);
+            NSLog(@"[%@ %@]: Error retrieving stations: %@", [self class], NSStringFromSelector(_cmd), error);
         }];
     }
 }
@@ -71,11 +71,11 @@ NSString * const kStationsUpdatedNotification = @"kStationsUpdatedNotification";
     {
         [[WRCiCloudRequestHandler sharedManager] getAppConfigurationWithSuccess: ^(WRCConfiguration *configuration) {
             
-            NSLog(@"%@ %@: Configuration object retrieved successfully", [self class], NSStringFromSelector(_cmd));
+            NSLog(@"[%@ %@]: Configuration object retrieved successfully", [self class], NSStringFromSelector(_cmd));
             [[NSNotificationCenter defaultCenter] postNotificationName: kConfigurationUpdatedNotification object: configuration];
             
         } failure:^(NSError *error) {
-            NSLog(@"%@ %@: Error retrieving configuration: %@", [self class], NSStringFromSelector(_cmd), error);
+            NSLog(@"[%@ %@]: Error retrieving configuration: %@", [self class], NSStringFromSelector(_cmd), error);
         }];
     }
 }
