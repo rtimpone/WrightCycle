@@ -70,6 +70,8 @@
 //Sets up a refresh control when the table view is set
 - (void)setTableView: (UITableView *)tableView
 {
+    _tableView = tableView;
+    
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget: self action: @selector(refreshControlAction) forControlEvents: UIControlEventValueChanged];
     [tableView addSubview: refreshControl];
