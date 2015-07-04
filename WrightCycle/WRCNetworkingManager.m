@@ -7,18 +7,12 @@
 //
 
 @import CloudKit;
+@import UIKit;
 
 #import "WRCConfiguration.h"
 #import "WRCNetworkingManager.h"
-#import "WRCStation.h"
 
 @interface WRCNetworkingManager ()
-
-/** The most recent list of stations from the API */
-@property (strong, nonatomic) NSArray *cachedStations;
-
-/** The last time a successful data refresh was made */
-@property (strong, nonatomic) NSDate *lastStationsRefreshDate;
 
 /** The most recently retrieved configuration object */
 @property (strong, nonatomic, readwrite) WRCConfiguration *cachedConfiguration;
@@ -29,62 +23,11 @@
 @end
 
 NSString * const kConfigurationUpdatedNotification = @"kConfigurationUpdatedNotification";
-NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/stations/json";
 
 //The Divvy API only updates its JSON feed once a minute
-#define SECONDS_TO_WAIT_BEFORE_REFRESHING_STATION_DATA 60
 #define SECONDS_TO_WAIT_BEFORE_REFRESHING_CONFIGURATION 15 * 60
 
 @implementation WRCNetworkingManager
-
-#pragma mark - Divvy API
-
-- (NSArray *)getStationsListWithSuccess: (void (^)(NSArray *stations))success failure: (void (^)(NSError *error))failure
-{
-    return [self getStationsListImmediately: NO withSuccess: success failure: failure];
-}
-
-- (NSArray *)getStationsListImmediately: (BOOL)shouldMakeRequestImmediately withSuccess: (void (^)(NSArray *stations))success failure: (void (^)(NSError *error))failure
-{
-    if ([self shouldRefreshStations] || shouldMakeRequestImmediately)
-    {
-        NSURL *url = [NSURL URLWithString: kDivvyStationsJsonFeedUrlString];
-        NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL: url completionHandler: ^(NSData *data, NSURLResponse *response, NSError *error) {
-            
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
-            
-            if (error && failure)
-            {
-                failure(error);
-            }
-            else
-            {
-                //extract the array of station dictionaries from the API response
-                NSDictionary *json = [NSJSONSerialization JSONObjectWithData: data options: 0 error: nil];
-                NSArray *stationDictionaries = json[@"stationBeanList"];
-                
-                //convert the dictionaries into station objects
-                NSMutableArray *stations = [[NSMutableArray alloc] init];
-                for (NSDictionary *stationDictionary in stationDictionaries)
-                {
-                    WRCStation *station = [WRCStation stationFromDictionary: stationDictionary];
-                    [stations addObject: station];
-                }
-                
-                self.lastStationsRefreshDate = [NSDate date];
-                self.cachedStations = stations;
-                
-                success(stations);
-            }
-        }];
-        
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
-        [task resume];
-    }
-    
-    //return the currently cached list of stations immediately
-    return self.cachedStations;
-}
 
 #pragma mark - CloudKit
 
@@ -121,15 +64,6 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
 
 #pragma mark - Cooldown Period
 
-//An API request should only be made if we don't have any data yet or if 60 seconds has elapsed since the last data refresh
-- (BOOL)shouldRefreshStations
-{
-    BOOL thisIsTheFirstRefresh = !self.lastStationsRefreshDate;
-    BOOL enoughTimeHasElapsedToRefresh = -[self.lastStationsRefreshDate timeIntervalSinceNow] >= SECONDS_TO_WAIT_BEFORE_REFRESHING_STATION_DATA;
-    
-    return thisIsTheFirstRefresh || enoughTimeHasElapsedToRefresh;
-}
-
 //A configuration refresh should only be made if at least 15 minutes have passed since the last refresh attempt
 - (BOOL)isReadyForConfigurationRefresh
 {
@@ -137,14 +71,6 @@ NSString * const kDivvyStationsJsonFeedUrlString = @"http://www.divvybikes.com/s
     BOOL enoughTimeHasElapsedToRefresh = -[self.lastConfigurationRefreshDate timeIntervalSinceNow] >= SECONDS_TO_WAIT_BEFORE_REFRESHING_CONFIGURATION;
     
     return thisIsTheFirstRefresh || enoughTimeHasElapsedToRefresh;
-}
-
-#pragma mark - Cached Stations
-
-- (NSArray *)fetchCachedStationsWithIds: (NSArray *)stationIds
-{
-    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"stationId IN %@", stationIds];
-    return [self.cachedStations filteredArrayUsingPredicate: predicate];
 }
 
 #pragma mark - Setters

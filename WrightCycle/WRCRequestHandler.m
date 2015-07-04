@@ -15,12 +15,21 @@
 
 + (instancetype)sharedManager
 {
-    static WRCRequestHandler *sharedManager;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedManager = [[self alloc] init];
-    });
-    return sharedManager;
+    static NSMutableDictionary *singletons = nil;
+    if (!singletons)
+    {
+        singletons = [[NSMutableDictionary alloc] init];
+    }
+    
+    NSString *className = NSStringFromClass([self class]);
+    WRCRequestHandler *sharedInstance = singletons[className];
+    if (!sharedInstance)
+    {
+        sharedInstance = [[self alloc] init];
+        singletons[className] = sharedInstance;
+    }
+    
+    return sharedInstance;
 }
 
 #pragma mark - Reachability

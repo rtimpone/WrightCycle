@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 Rob Timpone. All rights reserved.
 //
 
-#import "WRCNetworkingManager.h"
 #import "WRCFavoriteStationsManager.h"
 #import "WRCInterappURLManager.h"
 #import "WRCStation.h"
 #import "WRCStationDetailsMapViewHandler.h"
 #import "WRCStationDetailsViewController.h"
+#import "WRCStationsRequestHandler.h"
 
 @interface WRCStationDetailsViewController ()
 
@@ -42,7 +42,7 @@
     self.mapViewHandler.station = self.station;
     
     //refresh the stations list if needed and fail silently
-    [[WRCNetworkingManager sharedManager] getStationsListWithSuccess: ^(NSArray *stations) {
+    [[WRCStationsRequestHandler sharedManager] getStationsListWithSuccess: ^(NSArray *stations) {
         
         NSPredicate *predicate = [NSPredicate predicateWithFormat: @"stationId = %@", self.station.stationId];
         self.station = [[stations filteredArrayUsingPredicate: predicate] firstObject];

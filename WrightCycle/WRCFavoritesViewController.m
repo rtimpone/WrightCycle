@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Rob Timpone. All rights reserved.
 //
 
-#import "WRCNetworkingManager.h"
 #import "WRCFavoriteStationsManager.h"
 #import "WRCFavoritesViewController.h"
 #import "WRCStationDetailsViewController.h"
+#import "WRCStationsRequestHandler.h"
 
 @interface WRCFavoritesViewController ()
 
@@ -53,18 +53,18 @@
 //Tells the request handler to get fresh data from the API
 - (void)favoritesTableViewHandlerUserActivatedRefreshControl: (WRCFavoritesTableViewHandler *)handler
 {
-    [[WRCNetworkingManager sharedManager] getStationsListImmediately: YES
-                                                   withSuccess: ^(NSArray *stations) {
+    [[WRCStationsRequestHandler sharedManager] getStationsListImmediately: YES
+                                                              withSuccess: ^(NSArray *stations) {
         
-                                                       [self refreshFavoriteStations];
+                                                                  [self refreshFavoriteStations];
         
-                                                   } failure: ^(NSError *error) {
+                                                              } failure: ^(NSError *error) {
         
-                                                       NSString *title = NSLocalizedString(@"Error", nil);
-                                                       NSString *message = NSLocalizedString(@"Unable to refresh station data.", nil);
-                                                       [self showOkAlertWithTitle: title message: message];
-                                                        
-                                                   }];
+                                                                  NSString *title = NSLocalizedString(@"Error", nil);
+                                                                  NSString *message = NSLocalizedString(@"Unable to refresh station data.", nil);
+                                                                  [self showOkAlertWithTitle: title message: message];
+                                                                  
+                                                              }];
 }
 
 #pragma mark - Helpers
