@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Rob Timpone. All rights reserved.
 //
 
+#import "WRCAutoRefreshDataManager.h"
 #import "WRCAccountViewController.h"
 #import "WRCConfiguration.h"
 #import "WRCiCloudRequestHandler.h"

@@ -22,7 +22,9 @@
 {
     _station = station;
     
-    WRCStation *existingAnnotation = [self.mapView.annotations firstObject];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"class != %@", [MKUserLocation class]];
+    NSArray *annotations = [self.mapView.annotations filteredArrayUsingPredicate: predicate];
+    WRCStation *existingAnnotation = [annotations firstObject];
     
     BOOL bikeCountChanged = station.availableBikes.integerValue != existingAnnotation.availableBikes.integerValue;
     BOOL dockCountChanged = station.availableDocks.integerValue != existingAnnotation.availableDocks.integerValue;

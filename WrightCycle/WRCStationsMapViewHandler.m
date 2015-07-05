@@ -34,7 +34,7 @@
 
     for (WRCStation *station in stations)
     {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"stationId = %@", station.stationId];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat: @"class != %@ && stationId = %@", [MKUserLocation class], station.stationId];
         WRCStation *existingAnnotation = [[self.mapView.annotations filteredArrayUsingPredicate: predicate] firstObject];
         
         if (existingAnnotation)
