@@ -10,6 +10,11 @@
 
 @implementation UIColor (WRCAdditions)
 
++ (UIColor *)lightBlueColor
+{
+    return [UIColor colorWithRed: 0.138 green: 0.805 blue: 1.000 alpha: 1.000];
+}
+
 + (UIColor *)mediumBlueColor
 {
     return [UIColor colorWithRed: 0.000 green: 0.463 blue: 1.000 alpha: 1.000];

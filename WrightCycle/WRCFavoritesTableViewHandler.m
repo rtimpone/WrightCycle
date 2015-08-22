@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Rob Timpone. All rights reserved.
 //
 
+#import "UIColor+WRCAdditions.h"
+#import "UITableViewCell+WRCAdditions.h"
 #import "WRCFavoritesTableViewHandler.h"
 #import "WRCStation.h"
 #import "WRCFavoriteStationsManager.h"
@@ -122,6 +124,8 @@
     NSArray *originalFavoriteStations = self.favoriteStations;
     NSArray *updatedFavoriteStations = favoriteStations;
     
+    //get a set of stations where the number of bikes or docks changed
+    NSMutableSet *stationsThatChanged = [[NSMutableSet alloc] init];
     for (WRCStation *originalStation in originalFavoriteStations)
     {
         NSPredicate *stationIdPredicate = [NSPredicate predicateWithFormat: @"stationId = %@", originalStation.stationId];
@@ -134,13 +138,25 @@
             
             if (bikeCountChanged || dockCountChanged)
             {
-                //flash station cell
+                [stationsThatChanged addObject: updatedStation];
             }
         }
     }
     
     self.favoriteStations = updatedFavoriteStations;
     [self.tableView reloadData];
+
+    //find the cell for each station that changed and animate the cell to alert the user of the update
+    for (int i = 0; i < [updatedFavoriteStations count]; i++)
+    {
+        WRCStation *station = updatedFavoriteStations[i];
+        if ([stationsThatChanged containsObject: station])
+        {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow: i inSection: 0];
+            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath: indexPath];
+            [cell temporarilySetTextColorToColor: [UIColor whiteColor] andBackgroundColorToColor: [UIColor lightBlueColor] duration: 1.0];
+        }
+    }
 }
 
 //Brings the tableview into or out of editing mode

@@ -37,6 +37,7 @@
 		DA9367681A9000830047578C /* WRCStationsMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9367671A9000830047578C /* WRCStationsMapViewController.m */; };
 		DA93676A1A9000A20047578C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9367691A9000A20047578C /* MapKit.framework */; };
 		DAA6D1451AA22160001D70B1 /* WRCFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA6D1441AA22160001D70B1 /* WRCFavoritesViewController.m */; };
+		DAA8A3561B88DBF700979D14 /* UITableViewCell+WRCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA8A3551B88DBF700979D14 /* UITableViewCell+WRCAdditions.m */; };
 		DAA8A3591B88DCAF00979D14 /* UILabel+WRCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA8A3581B88DCAF00979D14 /* UILabel+WRCAdditions.m */; };
 		DAA8A35C1B88DE5200979D14 /* UIColor+WRCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA8A35B1B88DE5200979D14 /* UIColor+WRCAdditions.m */; };
 		DAAC4C891B46E1D70030DB91 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAAC4C881B46E1D70030DB91 /* CloudKit.framework */; };
@@ -112,6 +113,8 @@
 		DA9367691A9000A20047578C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DAA6D1431AA22160001D70B1 /* WRCFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRCFavoritesViewController.h; sourceTree = "<group>"; };
 		DAA6D1441AA22160001D70B1 /* WRCFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRCFavoritesViewController.m; sourceTree = "<group>"; };
+		DAA8A3541B88DBF700979D14 /* UITableViewCell+WRCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableViewCell+WRCAdditions.h"; path = "Categories/UITableViewCell+WRCAdditions.h"; sourceTree = "<group>"; };
+		DAA8A3551B88DBF700979D14 /* UITableViewCell+WRCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+WRCAdditions.m"; path = "Categories/UITableViewCell+WRCAdditions.m"; sourceTree = "<group>"; };
 		DAA8A3571B88DCAF00979D14 /* UILabel+WRCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+WRCAdditions.h"; path = "Categories/UILabel+WRCAdditions.h"; sourceTree = "<group>"; };
 		DAA8A3581B88DCAF00979D14 /* UILabel+WRCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+WRCAdditions.m"; path = "Categories/UILabel+WRCAdditions.m"; sourceTree = "<group>"; };
 		DAA8A35A1B88DE5200979D14 /* UIColor+WRCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+WRCAdditions.h"; path = "Categories/UIColor+WRCAdditions.h"; sourceTree = "<group>"; };
@@ -305,6 +308,8 @@
 				DAA8A35B1B88DE5200979D14 /* UIColor+WRCAdditions.m */,
 				DAA8A3571B88DCAF00979D14 /* UILabel+WRCAdditions.h */,
 				DAA8A3581B88DCAF00979D14 /* UILabel+WRCAdditions.m */,
+				DAA8A3541B88DBF700979D14 /* UITableViewCell+WRCAdditions.h */,
+				DAA8A3551B88DBF700979D14 /* UITableViewCell+WRCAdditions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -548,6 +553,7 @@
 				DA322F191A8FCB6A00D9CEE8 /* WRCLandingViewController.m in Sources */,
 				DA62148C1B488B49002B757D /* WRCAutoRefreshDataManager.m in Sources */,
 				DA4C71C11B3F26AB0053E6F0 /* WRCSetupLoginTextHandler.m in Sources */,
+				DAA8A3561B88DBF700979D14 /* UITableViewCell+WRCAdditions.m in Sources */,
 				DA86EB991A9035C9002C1FE6 /* WRCStationDetailsViewController.m in Sources */,
 				DA322F271A8FD2C600D9CEE8 /* WRCStation.m in Sources */,
 				DA5FE0511B47594700740E3F /* WRCiCloudRequestHandler.m in Sources */,

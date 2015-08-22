@@ -10,14 +10,14 @@
 
 @interface UILabel (WRCAdditions)
 
-/** Set the text color of a label, then animate it back to its original color with animation.
+/** Set the text color of a label, then animate it back to its original color.
  
  Uses UIView's transitionWithView:duration:options:animations:completion: method to cross dissolve
  animate the text change. The text color is quickly changed to the temporary color using animation,
  then is animated back to the original text color using the duration param. 
  
- @param temporaryTextColor The color to temporarily change the label's textColor to
- @param duration The amount of time the animation back to the original text color should take.
+ @param temporaryTextColor The color to temporarily change the label's textColor to.
+ @param duration The amount of time in seconds the animation back to the original text color should take.
  
  */
 - (void)temporarilySetTextColorToColor: (UIColor *)temporaryTextColor duration: (CGFloat)duration;

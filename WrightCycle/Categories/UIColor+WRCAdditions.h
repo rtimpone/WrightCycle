@@ -10,6 +10,7 @@
 
 @interface UIColor (WRCAdditions)
 
++ (UIColor *)lightBlueColor;
 + (UIColor *)mediumBlueColor;
 + (UIColor *)mediumGreyColor;
 
