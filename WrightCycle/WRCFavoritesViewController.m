@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Rob Timpone. All rights reserved.
 //
 
+#import "WRCAutoRefreshDataManager.h"
 #import "WRCFavoriteStationsManager.h"
 #import "WRCFavoritesViewController.h"
 #import "WRCStationDetailsViewController.h"
@@ -28,6 +29,15 @@
 {
     [super viewWillAppear: animated];
     [self refreshFavoriteStations];
+    
+    //listen for when the stations data is automatically updated
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(didReceiveStationsUpdateNotification:) name: kStationsUpdatedNotification object: nil];
+}
+
+- (void)viewWillDisappear: (BOOL)animated
+{
+    [super viewWillDisappear: animated];
+    [[NSNotificationCenter defaultCenter] removeObserver: self];
 }
 
 - (void)prepareForSegue: (UIStoryboardSegue *)segue sender: (id)sender
@@ -65,6 +75,17 @@
                                                                   [self showOkAlertWithTitle: title message: message];
                                                                   
                                                               }];
+}
+
+#pragma mark - Notification Center Callbacks
+
+//Called when station data is automatically updated by the auto refresh data manager
+//Updates the stations being shown in the tableview
+- (void)didReceiveStationsUpdateNotification: (NSNotification *)notification
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self refreshFavoriteStations];
+    });
 }
 
 #pragma mark - Actions

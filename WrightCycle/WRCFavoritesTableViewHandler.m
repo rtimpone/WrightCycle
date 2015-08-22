@@ -119,7 +119,27 @@
         [self.refreshControl endRefreshing];
     }
     
-    self.favoriteStations = favoriteStations;
+    NSArray *originalFavoriteStations = self.favoriteStations;
+    NSArray *updatedFavoriteStations = favoriteStations;
+    
+    for (WRCStation *originalStation in originalFavoriteStations)
+    {
+        NSPredicate *stationIdPredicate = [NSPredicate predicateWithFormat: @"stationId = %@", originalStation.stationId];
+        WRCStation *updatedStation = [[updatedFavoriteStations filteredArrayUsingPredicate: stationIdPredicate] firstObject];
+        
+        if (updatedStation)
+        {
+            BOOL bikeCountChanged = updatedStation.availableBikes.integerValue != originalStation.availableBikes.integerValue;
+            BOOL dockCountChanged = updatedStation.availableDocks.integerValue != originalStation.availableDocks.integerValue;
+            
+            if (bikeCountChanged || dockCountChanged)
+            {
+                //flash station cell
+            }
+        }
+    }
+    
+    self.favoriteStations = updatedFavoriteStations;
     [self.tableView reloadData];
 }
 
