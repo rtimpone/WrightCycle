@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "WRCAutoRefreshDataManager.h"
+#import "UIColor+WRCAdditions.h"
 
 @interface AppDelegate ()
 
@@ -20,7 +21,7 @@
 - (BOOL)application: (UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //custom navigation bar title font and text color
-    UIColor *navBarTitleColor = [UIColor colorWithRed:62/255.0 green: 62/255.0 blue: 62/255.0 alpha: 1.0];
+    UIColor *navBarTitleColor = [UIColor mediumGreyColor];
     UIFont *navBarTitleFont = [UIFont fontWithName: @"Oswald-Light" size: 20];
     [[UINavigationBar appearance] setTitleTextAttributes: @{ NSForegroundColorAttributeName : navBarTitleColor,
                                                              NSFontAttributeName : navBarTitleFont }];

@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Rob Timpone. All rights reserved.
 //
 
+#import "UIColor+WRCAdditions.h"
+#import "UILabel+WRCAdditions.h"
 #import "WRCAutoRefreshDataManager.h"
 #import "WRCFavoriteStationsManager.h"
 #import "WRCInterappURLManager.h"
@@ -170,17 +172,7 @@
 //Use animation to change a label's color to blue for 3 seconds
 - (void)animateTextColorChangeForLabel: (UILabel *)label
 {
-    UIColor *originalLabelColor = label.textColor;
-    
-    [UIView transitionWithView: label duration: 0.25 options: UIViewAnimationOptionTransitionCrossDissolve animations: ^{
-                        label.textColor = [UIColor colorWithRed: 0.000 green: 0.463 blue: 1.000 alpha: 1.000];
-                    }
-                    completion: ^(BOOL finished) {
-                        
-                        [UIView transitionWithView: label duration: 3 options: UIViewAnimationOptionTransitionCrossDissolve animations: ^{
-                            label.textColor = originalLabelColor;
-                        } completion: nil];
-                    }];
+    [label temporarilySetTextColorToColor: [UIColor mediumBlueColor] duration: 3];
 }
 
 @end
